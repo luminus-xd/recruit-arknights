@@ -1,0 +1,1302 @@
+[
+  {
+    "id": 1,
+    "name": "Castle-3",
+    "rarity": "★1",
+    "type": "前衛",
+    "tags": "['近距離', '支援', 'ロボット']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?Castle-3",
+    "imgPath": "/img/operators1.png"
+  },
+  {
+    "id": 2,
+    "name": "Friston-3",
+    "rarity": "★1",
+    "type": "重装",
+    "tags": "['近距離', '防御', 'ロボット']",
+    "addDay": "2023/12/05",
+    "wiki": "https://arknights.wikiru.jp/index.php?Friston-3",
+    "imgPath": "/img/operators2.png"
+  },
+  {
+    "id": 3,
+    "name": "ジャスティスナイト",
+    "rarity": "★1",
+    "type": "狙撃",
+    "tags": "['遠距離', '支援', 'ロボット']",
+    "addDay": "2022/04/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%82%B9%E3%83%8A%E3%82%A4%E3%83%88",
+    "imgPath": "/img/operators3.png"
+  },
+  {
+    "id": 4,
+    "name": "Lancet-2",
+    "rarity": "★1",
+    "type": "医療",
+    "tags": "['遠距離', '治療', 'ロボット']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?Lancet-2",
+    "imgPath": "/img/operators4.png"
+  },
+  {
+    "id": 5,
+    "name": "THRM-EX",
+    "rarity": "★1",
+    "type": "特殊",
+    "tags": "['近距離', '爆発力', 'ロボット']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?THRM-EX",
+    "imgPath": "/img/operators5.png"
+  },
+  {
+    "id": 6,
+    "name": "ヤトウ",
+    "rarity": "★2",
+    "type": "先鋒",
+    "tags": "['初期', '近距離']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A4%E3%83%88%E3%82%A6",
+    "imgPath": "/img/operators6.png"
+  },
+  {
+    "id": 7,
+    "name": "ノイルホーン",
+    "rarity": "★2",
+    "type": "重装",
+    "tags": "['初期', '近距離']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8E%E3%82%A4%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%B3",
+    "imgPath": "/img/operators7.png"
+  },
+  {
+    "id": 8,
+    "name": "レンジャー",
+    "rarity": "★2",
+    "type": "狙撃",
+    "tags": "['初期', '遠距離']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC",
+    "imgPath": "/img/operators8.png"
+  },
+  {
+    "id": 9,
+    "name": "12F",
+    "rarity": "★2",
+    "type": "術師",
+    "tags": "['初期', '遠距離']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?12F",
+    "imgPath": "/img/operators9.png"
+  },
+  {
+    "id": 10,
+    "name": "ドゥリン",
+    "rarity": "★2",
+    "type": "術師",
+    "tags": "['初期', '遠距離']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%89%E3%82%A5%E3%83%AA%E3%83%B3",
+    "imgPath": "/img/operators10.png"
+  },
+  {
+    "id": 11,
+    "name": "バニラ",
+    "rarity": "★3",
+    "type": "先鋒",
+    "tags": "['近距離', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%90%E3%83%8B%E3%83%A9",
+    "imgPath": "/img/operators11.png"
+  },
+  {
+    "id": 12,
+    "name": "フェン",
+    "rarity": "★3",
+    "type": "先鋒",
+    "tags": "['近距離', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A7%E3%83%B3",
+    "imgPath": "/img/operators12.png"
+  },
+  {
+    "id": 13,
+    "name": "プリュム",
+    "rarity": "★3",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%AA%E3%83%A5%E3%83%A0",
+    "imgPath": "/img/operators13.png"
+  },
+  {
+    "id": 14,
+    "name": "ポプカル",
+    "rarity": "★3",
+    "type": "前衛",
+    "tags": "['近距離', '生存', '範囲攻撃']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9D%E3%83%97%E3%82%AB%E3%83%AB",
+    "imgPath": "/img/operators14.png"
+  },
+  {
+    "id": 15,
+    "name": "ミッドナイト",
+    "rarity": "★3",
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9F%E3%83%83%E3%83%89%E3%83%8A%E3%82%A4%E3%83%88",
+    "imgPath": "/img/operators15.png"
+  },
+  {
+    "id": 16,
+    "name": "メランサ",
+    "rarity": "★3",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%A9%E3%83%B3%E3%82%B5",
+    "imgPath": "/img/operators16.png"
+  },
+  {
+    "id": 17,
+    "name": "スポット",
+    "rarity": "★3",
+    "type": "重装",
+    "tags": "['近距離', '防御', '治療']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88",
+    "imgPath": "/img/operators17.png"
+  },
+  {
+    "id": 18,
+    "name": "ビーグル",
+    "rarity": "★3",
+    "type": "重装",
+    "tags": "['近距離', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%82%B0%E3%83%AB",
+    "imgPath": "/img/operators18.png"
+  },
+  {
+    "id": 19,
+    "name": "アドナキエル",
+    "rarity": "★3",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%89%E3%83%8A%E3%82%AD%E3%82%A8%E3%83%AB",
+    "imgPath": "/img/operators19.png"
+  },
+  {
+    "id": 20,
+    "name": "カタパルト",
+    "rarity": "★3",
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%82%BF%E3%83%91%E3%83%AB%E3%83%88",
+    "imgPath": "/img/operators20.png"
+  },
+  {
+    "id": 21,
+    "name": "クルース",
+    "rarity": "★3",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B9",
+    "imgPath": "/img/operators21.png"
+  },
+  {
+    "id": 22,
+    "name": "スチュワード",
+    "rarity": "★3",
+    "type": "術師",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%81%E3%83%A5%E3%83%AF%E3%83%BC%E3%83%89",
+    "imgPath": "/img/operators22.png"
+  },
+  {
+    "id": 23,
+    "name": "ラヴァ",
+    "rarity": "★3",
+    "type": "術師",
+    "tags": "['遠距離', '範囲攻撃']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A9%E3%83%B4%E3%82%A1",
+    "imgPath": "/img/operators23.png"
+  },
+  {
+    "id": 24,
+    "name": "アンセル",
+    "rarity": "★3",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%82%BB%E3%83%AB",
+    "imgPath": "/img/operators24.png"
+  },
+  {
+    "id": 25,
+    "name": "ハイビスカス",
+    "rarity": "★3",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8F%E3%82%A4%E3%83%93%E3%82%B9%E3%82%AB%E3%82%B9",
+    "imgPath": "/img/operators25.png"
+  },
+  {
+    "id": 26,
+    "name": "オーキッド",
+    "rarity": "★3",
+    "type": "補助",
+    "tags": "['遠距離', '減速']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AA%E3%83%BC%E3%82%AD%E3%83%83%E3%83%89",
+    "imgPath": "/img/operators26.png"
+  },
+  {
+    "id": 27,
+    "name": "ヴィグナ",
+    "rarity": "★4",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A3%E3%82%B0%E3%83%8A",
+    "imgPath": "/img/operators27.png"
+  },
+  {
+    "id": 28,
+    "name": "スカベンジャー",
+    "rarity": "★4",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%AB%E3%83%99%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC",
+    "imgPath": "/img/operators28.png"
+  },
+  {
+    "id": 29,
+    "name": "テンニンカ",
+    "rarity": "★4",
+    "type": "先鋒",
+    "tags": "['近距離', '治療', 'COST回復']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%86%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%AB",
+    "imgPath": "/img/operators29.png"
+  },
+  {
+    "id": 30,
+    "name": "ウタゲ",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2022/10/19",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%82%BF%E3%82%B2",
+    "imgPath": "/img/operators30.png"
+  },
+  {
+    "id": 31,
+    "name": "エステル",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '生存', '範囲攻撃']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%B9%E3%83%86%E3%83%AB",
+    "imgPath": "/img/operators31.png"
+  },
+  {
+    "id": 32,
+    "name": "カッター",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '爆発力']",
+    "addDay": "2023/01/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%83%83%E3%82%BF%E3%83%BC",
+    "imgPath": "/img/operators32.png"
+  },
+  {
+    "id": 33,
+    "name": "ドーベルマン",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%89%E3%83%BC%E3%83%99%E3%83%AB%E3%83%9E%E3%83%B3",
+    "imgPath": "/img/operators33.png"
+  },
+  {
+    "id": 34,
+    "name": "ビーハンター",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%83%8F%E3%83%B3%E3%82%BF%E3%83%BC",
+    "imgPath": "/img/operators34.png"
+  },
+  {
+    "id": 35,
+    "name": "フロストリーフ",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '減速']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%83%AD%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%95",
+    "imgPath": "/img/operators35.png"
+  },
+  {
+    "id": 36,
+    "name": "マトイマル",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%88%E3%82%A4%E3%83%9E%E3%83%AB",
+    "imgPath": "/img/operators36.png"
+  },
+  {
+    "id": 37,
+    "name": "ムース",
+    "rarity": "★4",
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A0%E3%83%BC%E3%82%B9",
+    "imgPath": "/img/operators37.png"
+  },
+  {
+    "id": 38,
+    "name": "クオーラ",
+    "rarity": "★4",
+    "type": "重装",
+    "tags": "['近距離', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%82%AA%E3%83%BC%E3%83%A9",
+    "imgPath": "/img/operators38.png"
+  },
+  {
+    "id": 39,
+    "name": "グム",
+    "rarity": "★4",
+    "type": "重装",
+    "tags": "['近距離', '防御', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A0",
+    "imgPath": "/img/operators39.png"
+  },
+  {
+    "id": 40,
+    "name": "マッターホルン",
+    "rarity": "★4",
+    "type": "重装",
+    "tags": "['近距離', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%83%E3%82%BF%E3%83%BC%E3%83%9B%E3%83%AB%E3%83%B3",
+    "imgPath": "/img/operators40.png"
+  },
+  {
+    "id": 41,
+    "name": "アシッドドロップ",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2024/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B7%E3%83%83%E3%83%89%E3%83%89%E3%83%AD%E3%83%83%E3%83%97",
+    "imgPath": "/img/operators41.png"
+  },
+  {
+    "id": 42,
+    "name": "アンブリエル",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '減速']",
+    "addDay": "2022/01/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%83%96%E3%83%AA%E3%82%A8%E3%83%AB",
+    "imgPath": "/img/operators42.png"
+  },
+  {
+    "id": 43,
+    "name": "ヴァーミル",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2021/07/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A1%E3%83%BC%E3%83%9F%E3%83%AB",
+    "imgPath": "/img/operators43.png"
+  },
+  {
+    "id": 44,
+    "name": "ジェシカ",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '生存']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%82%A7%E3%82%B7%E3%82%AB",
+    "imgPath": "/img/operators44.png"
+  },
+  {
+    "id": 45,
+    "name": "シラユキ",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃', '減速']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A9%E3%83%A6%E3%82%AD",
+    "imgPath": "/img/operators45.png"
+  },
+  {
+    "id": 46,
+    "name": "メイ",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '減速']",
+    "addDay": "2021/09/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%82%A4",
+    "imgPath": "/img/operators46.png"
+  },
+  {
+    "id": 47,
+    "name": "メテオ",
+    "rarity": "★4",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '弱化']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%86%E3%82%AA",
+    "imgPath": "/img/operators47.png"
+  },
+  {
+    "id": 48,
+    "name": "ギターノ",
+    "rarity": "★4",
+    "type": "術師",
+    "tags": "['遠距離', '範囲攻撃']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AE%E3%82%BF%E3%83%BC%E3%83%8E",
+    "imgPath": "/img/operators48.png"
+  },
+  {
+    "id": 49,
+    "name": "グレイ",
+    "rarity": "★4",
+    "type": "術師",
+    "tags": "['遠距離', '範囲攻撃', '減速']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%AC%E3%82%A4",
+    "imgPath": "/img/operators49.png"
+  },
+  {
+    "id": 50,
+    "name": "ヘイズ",
+    "rarity": "★4",
+    "type": "術師",
+    "tags": "['遠距離', '火力', '弱化']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%98%E3%82%A4%E3%82%BA",
+    "imgPath": "/img/operators50.png"
+  },
+  {
+    "id": 51,
+    "name": "カシャ",
+    "rarity": "★4",
+    "type": "術師",
+    "tags": "['遠距離', '火力', '牽制']",
+    "addDay": "2023/11/07",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%82%B7%E3%83%A3",
+    "imgPath": "/img/operators51.png"
+  },
+  {
+    "id": 52,
+    "name": "ススーロ",
+    "rarity": "★4",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%B9%E3%83%BC%E3%83%AD",
+    "imgPath": "/img/operators52.png"
+  },
+  {
+    "id": 53,
+    "name": "セイリュウ",
+    "rarity": "★4",
+    "type": "医療",
+    "tags": "['遠距離', '治療', '支援']",
+    "addDay": "2022/07/29",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BB%E3%82%A4%E3%83%AA%E3%83%A5%E3%82%A6",
+    "imgPath": "/img/operators53.png"
+  },
+  {
+    "id": 54,
+    "name": "パフューマー",
+    "rarity": "★4",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%91%E3%83%95%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC",
+    "imgPath": "/img/operators54.png"
+  },
+  {
+    "id": 55,
+    "name": "ミルラ",
+    "rarity": "★4",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9F%E3%83%AB%E3%83%A9",
+    "imgPath": "/img/operators55.png"
+  },
+  {
+    "id": 56,
+    "name": "アーススピリット",
+    "rarity": "★4",
+    "type": "補助",
+    "tags": "['遠距離', '減速']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%BC%E3%82%B9%E3%82%B9%E3%83%94%E3%83%AA%E3%83%83%E3%83%88",
+    "imgPath": "/img/operators56.png"
+  },
+  {
+    "id": 57,
+    "name": "ポデンコ",
+    "rarity": "★4",
+    "type": "補助",
+    "tags": "['遠距離', '治療', '減速']",
+    "addDay": "2023/07/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9D%E3%83%87%E3%83%B3%E3%82%B3",
+    "imgPath": "/img/operators57.png"
+  },
+  {
+    "id": 58,
+    "name": "グラベル",
+    "rarity": "★4",
+    "type": "特殊",
+    "tags": "['近距離', '防御', '高速再配置']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A9%E3%83%99%E3%83%AB",
+    "imgPath": "/img/operators58.png"
+  },
+  {
+    "id": 59,
+    "name": "ジェイ",
+    "rarity": "★4",
+    "type": "特殊",
+    "tags": "['近距離', '火力', '高速再配置']",
+    "addDay": "2024/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%82%A7%E3%82%A4",
+    "imgPath": "/img/operators59.png"
+  },
+  {
+    "id": 60,
+    "name": "ショウ",
+    "rarity": "★4",
+    "type": "特殊",
+    "tags": "['近距離', '強制移動']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A7%E3%82%A6",
+    "imgPath": "/img/operators60.png"
+  },
+  {
+    "id": 61,
+    "name": "ロープ",
+    "rarity": "★4",
+    "type": "特殊",
+    "tags": "['近距離', '強制移動']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AD%E3%83%BC%E3%83%97",
+    "imgPath": "/img/operators61.png"
+  },
+  {
+    "id": 62,
+    "name": "キアーベ",
+    "rarity": "★5",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2024/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AD%E3%82%A2%E3%83%BC%E3%83%99",
+    "imgPath": "/img/operators62.png"
+  },
+  {
+    "id": 63,
+    "name": "ズィマー",
+    "rarity": "★5",
+    "type": "先鋒",
+    "tags": "['近距離', '支援', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BA%E3%82%A3%E3%83%9E%E3%83%BC",
+    "imgPath": "/img/operators63.png"
+  },
+  {
+    "id": 64,
+    "name": "テキサス",
+    "rarity": "★5",
+    "type": "先鋒",
+    "tags": "['近距離', '牽制', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%86%E3%82%AD%E3%82%B5%E3%82%B9",
+    "imgPath": "/img/operators64.png"
+  },
+  {
+    "id": 65,
+    "name": "リード",
+    "rarity": "★5",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2022/01/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AA%E3%83%BC%E3%83%89",
+    "imgPath": "/img/operators65.png"
+  },
+  {
+    "id": 66,
+    "name": "エリジウム",
+    "rarity": "★5",
+    "type": "先鋒",
+    "tags": "['近距離', '支援', 'COST回復']",
+    "addDay": "2023/05/23",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%83%AA%E3%82%B8%E3%82%A6%E3%83%A0",
+    "imgPath": "/img/operators66.png"
+  },
+  {
+    "id": 67,
+    "name": "アステシア",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '防御']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B9%E3%83%86%E3%82%B7%E3%82%A2",
+    "imgPath": "/img/operators67.png"
+  },
+  {
+    "id": 68,
+    "name": "インドラ",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%B3%E3%83%89%E3%83%A9",
+    "imgPath": "/img/operators68.png"
+  },
+  {
+    "id": 69,
+    "name": "スペクター",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '生存', '範囲攻撃']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC",
+    "imgPath": "/img/operators69.png"
+  },
+  {
+    "id": 70,
+    "name": "スワイヤー",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '支援']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC",
+    "imgPath": "/img/operators70.png"
+  },
+  {
+    "id": 71,
+    "name": "フリント",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2024/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%83%AA%E3%83%B3%E3%83%88",
+    "imgPath": "/img/operators71.png"
+  },
+  {
+    "id": 72,
+    "name": "ブローカ",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '生存', '範囲攻撃']",
+    "addDay": "2022/01/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%96%E3%83%AD%E3%83%BC%E3%82%AB",
+    "imgPath": "/img/operators72.png"
+  },
+  {
+    "id": 73,
+    "name": "エアースカーペ",
+    "rarity": "★5",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '範囲攻撃']",
+    "addDay": "2023/11/07",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%A2%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%9A",
+    "imgPath": "/img/operators73.png"
+  },
+  {
+    "id": 74,
+    "name": "ヴァルカン",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '火力', '生存', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A1%E3%83%AB%E3%82%AB%E3%83%B3",
+    "imgPath": "/img/operators74.png"
+  },
+  {
+    "id": 75,
+    "name": "ウン",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '防御', '治療']",
+    "addDay": "2022/04/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%83%B3",
+    "imgPath": "/img/operators75.png"
+  },
+  {
+    "id": 76,
+    "name": "クロワッサン",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '防御', '強制移動']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AD%E3%83%AF%E3%83%83%E3%82%B5%E3%83%B3",
+    "imgPath": "/img/operators76.png"
+  },
+  {
+    "id": 77,
+    "name": "ニアール",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '防御', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8B%E3%82%A2%E3%83%BC%E3%83%AB",
+    "imgPath": "/img/operators77.png"
+  },
+  {
+    "id": 78,
+    "name": "リスカム",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '火力', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AA%E3%82%B9%E3%82%AB%E3%83%A0",
+    "imgPath": "/img/operators78.png"
+  },
+  {
+    "id": 79,
+    "name": "アスベストス",
+    "rarity": "★5",
+    "type": "重装",
+    "tags": "['近距離', '火力', '防御']",
+    "addDay": "2023/05/23",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B9%E3%83%99%E3%82%B9%E3%83%88%E3%82%B9",
+    "imgPath": "/img/operators79.png"
+  },
+  {
+    "id": 80,
+    "name": "アズリウス",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%BA%E3%83%AA%E3%82%A6%E3%82%B9",
+    "imgPath": "/img/operators80.png"
+  },
+  {
+    "id": 81,
+    "name": "アンドレアナ",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '減速']",
+    "addDay": "2024/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AC%E3%82%A2%E3%83%8A",
+    "imgPath": "/img/operators81.png"
+  },
+  {
+    "id": 82,
+    "name": "イグゼキュター",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃']",
+    "addDay": "2021/07/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%82%B0%E3%82%BC%E3%82%AD%E3%83%A5%E3%82%BF%E3%83%BC",
+    "imgPath": "/img/operators82.png"
+  },
+  {
+    "id": 83,
+    "name": "グレースロート",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2022/01/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B9%E3%83%AD%E3%83%BC%E3%83%88",
+    "imgPath": "/img/operators83.png"
+  },
+  {
+    "id": 84,
+    "name": "シェーシャ",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃', '弱化']",
+    "addDay": "2022/10/19",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%82%A7%E3%83%BC%E3%82%B7%E3%83%A3",
+    "imgPath": "/img/operators84.png"
+  },
+  {
+    "id": 85,
+    "name": "ファイヤーウォッチ",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '爆発力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A1%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81",
+    "imgPath": "/img/operators85.png"
+  },
+  {
+    "id": 86,
+    "name": "プラチナ",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%A9%E3%83%81%E3%83%8A",
+    "imgPath": "/img/operators86.png"
+  },
+  {
+    "id": 87,
+    "name": "プロヴァンス",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%AD%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%B9",
+    "imgPath": "/img/operators87.png"
+  },
+  {
+    "id": 88,
+    "name": "メテオリーテ",
+    "rarity": "★5",
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃', '弱化']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%86%E3%82%AA%E3%83%AA%E3%83%BC%E3%83%86",
+    "imgPath": "/img/operators88.png"
+  },
+  {
+    "id": 89,
+    "name": "ナイトメア",
+    "rarity": "★5",
+    "type": "術師",
+    "tags": "['遠距離', '火力', '治療', '減速']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8A%E3%82%A4%E3%83%88%E3%83%A1%E3%82%A2",
+    "imgPath": "/img/operators89.png"
+  },
+  {
+    "id": 90,
+    "name": "ビーズワクス",
+    "rarity": "★5",
+    "type": "術師",
+    "tags": "['遠距離', '防御', '範囲攻撃']",
+    "addDay": "2024/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%82%BA%E3%83%AF%E3%82%AF%E3%82%B9",
+    "imgPath": "/img/operators90.png"
+  },
+  {
+    "id": 91,
+    "name": "レイズ",
+    "rarity": "★5",
+    "type": "術師",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2022/07/29",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%82%A4%E3%82%BA",
+    "imgPath": "/img/operators91.png"
+  },
+  {
+    "id": 92,
+    "name": "レオンハルト",
+    "rarity": "★5",
+    "type": "術師",
+    "tags": "['遠距離', '範囲攻撃', '爆発力']",
+    "addDay": "2023/07/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%8F%E3%83%AB%E3%83%88",
+    "imgPath": "/img/operators92.png"
+  },
+  {
+    "id": 93,
+    "name": "サイレンス",
+    "rarity": "★5",
+    "type": "医療",
+    "tags": "['遠距離', '治療']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B5%E3%82%A4%E3%83%AC%E3%83%B3%E3%82%B9",
+    "imgPath": "/img/operators93.png"
+  },
+  {
+    "id": 94,
+    "name": "フィリオプシス",
+    "rarity": "★5",
+    "type": "医療",
+    "tags": "['遠距離', '治療', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A3%E3%83%AA%E3%82%AA%E3%83%97%E3%82%B7%E3%82%B9",
+    "imgPath": "/img/operators94.png"
+  },
+  {
+    "id": 95,
+    "name": "ワルファリン",
+    "rarity": "★5",
+    "type": "医療",
+    "tags": "['遠距離', '治療', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AF%E3%83%AB%E3%83%95%E3%82%A1%E3%83%AA%E3%83%B3",
+    "imgPath": "/img/operators95.png"
+  },
+  {
+    "id": 96,
+    "name": "イースチナ",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '火力', '減速']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%81%E3%83%8A",
+    "imgPath": "/img/operators96.png"
+  },
+  {
+    "id": 97,
+    "name": "グラウコス",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '減速', '牽制']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A9%E3%82%A6%E3%82%B3%E3%82%B9",
+    "imgPath": "/img/operators97.png"
+  },
+  {
+    "id": 98,
+    "name": "シャマレ",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '弱化']",
+    "addDay": "2023/01/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A3%E3%83%9E%E3%83%AC",
+    "imgPath": "/img/operators98.png"
+  },
+  {
+    "id": 99,
+    "name": "プラマニクス",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '弱化']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%A9%E3%83%9E%E3%83%8B%E3%82%AF%E3%82%B9",
+    "imgPath": "/img/operators99.png"
+  },
+  {
+    "id": 100,
+    "name": "メイヤー",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '牽制', '召喚']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%82%A4%E3%83%A4%E3%83%BC",
+    "imgPath": "/img/operators100.png"
+  },
+  {
+    "id": 101,
+    "name": "ツキノギ",
+    "rarity": "★5",
+    "type": "補助",
+    "tags": "['遠距離', '生存', '支援']",
+    "addDay": "2023/05/23",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%84%E3%82%AD%E3%83%8E%E3%82%AE",
+    "imgPath": "/img/operators101.png"
+  },
+  {
+    "id": 102,
+    "name": "エフイーター",
+    "rarity": "★5",
+    "type": "特殊",
+    "tags": "['近距離', '減速', '強制移動']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%83%95%E3%82%A4%E3%83%BC%E3%82%BF%E3%83%BC",
+    "imgPath": "/img/operators102.png"
+  },
+  {
+    "id": 103,
+    "name": "クリフハート",
+    "rarity": "★5",
+    "type": "特殊",
+    "tags": "['近距離', '火力', '強制移動']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AA%E3%83%95%E3%83%8F%E3%83%BC%E3%83%88",
+    "imgPath": "/img/operators103.png"
+  },
+  {
+    "id": 104,
+    "name": "マンティコア",
+    "rarity": "★5",
+    "type": "特殊",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%82%B3%E3%82%A2",
+    "imgPath": "/img/operators104.png"
+  },
+  {
+    "id": 105,
+    "name": "レッド",
+    "rarity": "★5",
+    "type": "特殊",
+    "tags": "['近距離', '牽制', '高速再配置']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%83%83%E3%83%89",
+    "imgPath": "/img/operators105.png"
+  },
+  {
+    "id": 106,
+    "name": "ワイフー",
+    "rarity": "★5",
+    "type": "特殊",
+    "tags": "['近距離', '弱化', '高速再配置']",
+    "addDay": "2021/09/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AF%E3%82%A4%E3%83%95%E3%83%BC",
+    "imgPath": "/img/operators106.png"
+  },
+  {
+    "id": 107,
+    "name": "シージ",
+    "rarity": "★6",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%BC%E3%82%B8",
+    "imgPath": "/img/operators107.png"
+  },
+  {
+    "id": 108,
+    "name": "バグパイプ",
+    "rarity": "★6",
+    "type": "先鋒",
+    "tags": "['近距離', '火力', 'COST回復']",
+    "addDay": "2022/10/19",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%90%E3%82%B0%E3%83%91%E3%82%A4%E3%83%97",
+    "imgPath": "/img/operators108.png"
+  },
+  {
+    "id": 109,
+    "name": "シルバーアッシュ",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5",
+    "imgPath": "/img/operators109.png"
+  },
+  {
+    "id": 110,
+    "name": "スカジ",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%AB%E3%82%B8",
+    "imgPath": "/img/operators110.png"
+  },
+  {
+    "id": 111,
+    "name": "ソーンズ",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '防御']",
+    "addDay": "2024/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BD%E3%83%BC%E3%83%B3%E3%82%BA",
+    "imgPath": "/img/operators111.png"
+  },
+  {
+    "id": 112,
+    "name": "チェン",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '爆発力']",
+    "addDay": "2020/12/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%81%E3%82%A7%E3%83%B3",
+    "imgPath": "/img/operators112.png"
+  },
+  {
+    "id": 113,
+    "name": "ブレイズ",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2022/01/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%96%E3%83%AC%E3%82%A4%E3%82%BA",
+    "imgPath": "/img/operators113.png"
+  },
+  {
+    "id": 114,
+    "name": "ヘラグ",
+    "rarity": "★6",
+    "type": "前衛",
+    "tags": "['近距離', '火力', '生存']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%98%E3%83%A9%E3%82%B0",
+    "imgPath": "/img/operators114.png"
+  },
+  {
+    "id": 115,
+    "name": "サリア",
+    "rarity": "★6",
+    "type": "重装",
+    "tags": "['近距離', '防御', '治療', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B5%E3%83%AA%E3%82%A2",
+    "imgPath": "/img/operators115.png"
+  },
+  {
+    "id": 116,
+    "name": "ホシグマ",
+    "rarity": "★6",
+    "type": "重装",
+    "tags": "['近距離', '火力', '防御']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9B%E3%82%B7%E3%82%B0%E3%83%9E",
+    "imgPath": "/img/operators116.png"
+  },
+  {
+    "id": 117,
+    "name": "ユーネクテス",
+    "rarity": "★6",
+    "type": "重装",
+    "tags": "['近距離', '火力', '生存', '防御']",
+    "addDay": "2024/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A6%E3%83%BC%E3%83%8D%E3%82%AF%E3%83%86%E3%82%B9",
+    "imgPath": "/img/operators117.png"
+  },
+  {
+    "id": 118,
+    "name": "エクシア",
+    "rarity": "★6",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%AF%E3%82%B7%E3%82%A2",
+    "imgPath": "/img/operators118.png"
+  },
+  {
+    "id": 119,
+    "name": "シュヴァルツ",
+    "rarity": "★6",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2021/04/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A5%E3%83%B4%E3%82%A1%E3%83%AB%E3%83%84",
+    "imgPath": "/img/operators119.png"
+  },
+  {
+    "id": 120,
+    "name": "ロサ",
+    "rarity": "★6",
+    "type": "狙撃",
+    "tags": "['遠距離', '火力', '牽制']",
+    "addDay": "2023/07/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AD%E3%82%B5",
+    "imgPath": "/img/operators120.png"
+  },
+  {
+    "id": 121,
+    "name": "イフリータ",
+    "rarity": "★6",
+    "type": "術師",
+    "tags": "['遠距離', '範囲攻撃', '弱化']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BF",
+    "imgPath": "/img/operators121.png"
+  },
+  {
+    "id": 122,
+    "name": "ケオベ",
+    "rarity": "★6",
+    "type": "術師",
+    "tags": "['遠距離', '火力', '牽制']",
+    "addDay": "2022/07/29",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B1%E3%82%AA%E3%83%99",
+    "imgPath": "/img/operators122.png"
+  },
+  {
+    "id": 123,
+    "name": "モスティマ",
+    "rarity": "★6",
+    "type": "術師",
+    "tags": "['遠距離', '支援', '範囲攻撃', '牽制']",
+    "addDay": "2021/09/30",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A2%E3%82%B9%E3%83%86%E3%82%A3%E3%83%9E",
+    "imgPath": "/img/operators123.png"
+  },
+  {
+    "id": 124,
+    "name": "シャイニング",
+    "rarity": "★6",
+    "type": "医療",
+    "tags": "['遠距離', '治療', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0",
+    "imgPath": "/img/operators124.png"
+  },
+  {
+    "id": 125,
+    "name": "ナイチンゲール",
+    "rarity": "★6",
+    "type": "医療",
+    "tags": "['遠距離', '治療', '支援']",
+    "addDay": "2020/01/16",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8A%E3%82%A4%E3%83%81%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%AB",
+    "imgPath": "/img/operators125.png"
+  },
+  {
+    "id": 126,
+    "name": "マゼラン",
+    "rarity": "★6",
+    "type": "補助",
+    "tags": "['遠距離', '火力', '支援', '減速']",
+    "addDay": "2021/07/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%82%BC%E3%83%A9%E3%83%B3",
+    "imgPath": "/img/operators126.png"
+  },
+  {
+    "id": 127,
+    "name": "スズラン",
+    "rarity": "★6",
+    "type": "補助",
+    "tags": "['遠距離', '火力', '支援', '減速']",
+    "addDay": "2023/11/07",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%BA%E3%83%A9%E3%83%B3",
+    "imgPath": "/img/operators127.png"
+  },
+  {
+    "id": 128,
+    "name": "ア",
+    "rarity": "★6",
+    "type": "特殊",
+    "tags": "['遠距離', '火力', '支援']",
+    "addDay": "2022/04/28",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2",
+    "imgPath": "/img/operators128.png"
+  },
+  {
+    "id": 129,
+    "name": "ファントム",
+    "rarity": "★6",
+    "type": "特殊",
+    "tags": "['近距離', '火力', '牽制', '高速再配置']",
+    "addDay": "2023/01/13",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0",
+    "imgPath": "/img/operators129.png"
+  },
+  {
+    "id": 130,
+    "name": "ウィーディ",
+    "rarity": "★6",
+    "type": "特殊",
+    "tags": "['近距離', '火力', '牽制', '強制移動']",
+    "addDay": "2023/05/23",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%82%A3%E3%83%BC%E3%83%87%E3%82%A3",
+    "imgPath": "/img/operators130.png"
+  }
+]
