@@ -114,12 +114,12 @@ export default function CheckboxArea() {
 
       {/* 選択されたタグの表示 */}
       <div className="mt-6">
-        <h3 className="text-xl font-bold">選択されたタグ:</h3>
+        <h3 className="text-xl font-bold">選択されたタグ</h3>
         <div className="flex flex-wrap gap-2 mt-2">
           {selectedItems.map((item) => (
             <span
               key={item}
-              className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full"
+              className="inline-block text-xs bg-gray-200 text-gray-700 font-bold px-3 py-1 rounded-full"
             >
               {item}
             </span>
@@ -128,11 +128,11 @@ export default function CheckboxArea() {
       </div>
 
       {/* フィルタリングされたオペレーターの表示 */}
-      <div className="grid mt-6 gap-6">
+      <div className="grid mt-8 gap-6">
         {Object.entries(filteredOperators).map(([combination, operators]) => (
           <div key={combination}>
-            <h3 className="text-xl font-bold">{combination}</h3>
-            <ul className="flex flex-wrap mt-2 gap-1">
+            <h3 className="text-xl font-bold border-b-2 pb-1">{combination}</h3>
+            <ul className="flex flex-wrap mt-3 gap-1">
               {(operators as Operator[]).map((operator) => (
                 <li key={operator.id}>
                   <a
@@ -140,7 +140,7 @@ export default function CheckboxArea() {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Avatar>
+                    <Avatar rarity={operator.rarity}>
                       <AvatarImage alt={operator.name} src={operator.imgPath} />
                       <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
                     </Avatar>
