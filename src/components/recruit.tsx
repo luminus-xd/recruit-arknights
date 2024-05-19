@@ -6,7 +6,9 @@ import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
 import { useFilterOperators } from "@/hooks/useFilterOperators";
+import { useResetCheckboxes } from "@/hooks/useResetCheckboxes"; // 追加
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button"; // 追加
 import type { Operator } from "@/types/recruit";
 
 export default function CheckboxArea() {
@@ -24,6 +26,12 @@ export default function CheckboxArea() {
 
   useLimitWarning(selectedCount, selectedItems);
   useUpdateURLParams(selectedItems);
+
+  const { resetCheckboxes } = useResetCheckboxes(
+    setCheckedItems,
+    setSelectedItems,
+    setSelectedCount
+  ); // 追加
 
   useEffect(() => {
     if (!isLoading) {
@@ -112,12 +120,21 @@ export default function CheckboxArea() {
       />
       <CheckboxGroup title="Tag" description="タグ" items={tags} prefix="tag" />
 
+      <div className="mt-4">
+        <Button className="text-sm" onClick={resetCheckboxes}>
+          選択状態をリセット
+        </Button>
+      </div>
+
       {/* 選択されたタグの表示 */}
-      <div>
+      <div className="mt-8">
         <hgroup className="flex items-center gap-3">
           <h2 className="text-3xl font-bold">Result</h2>
           <p className="mt-1 text-gray-500 dark:text-gray-400">結果</p>
         </hgroup>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          オペレーターのアイコンクリックで白Wikiに遷移します
+        </p>
         <div className="mt-6">
           <h3 className="text-lg font-bold">選択されたタグ</h3>
           <div className="flex flex-wrap gap-2 mt-2">
