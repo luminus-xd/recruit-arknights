@@ -6,29 +6,31 @@ import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
-  title: "アークナイツ 公開求人",
-  description: "公開求人の絞り込みツール",
+  title: "Arknights Recruitment | アークナイツ公開求人ツール",
+  description:
+    "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするアプリケーションです",
   icons: {
     apple: "/apple-touch-icon.png",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "アークナイツ 公開求人",
+    title: "Arknights Recruitment | アークナイツ公開求人ツール",
     // startUpImage: [],
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
-    title: "アークナイツ 公開求人",
-    description: "公開求人の絞り込みツール",
-    images: "/ogp-luminus.png",
+    title: "Arknights Recruitment | アークナイツ公開求人ツール",
+    description:
+      "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするアプリケーションです",
+    images: "/img/ogp.png",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "アークナイツ 公開求人",
-    images: "/ogp-luminus.png",
+    card: "summary",
+    title: "Arknights Recruitment | アークナイツ公開求人ツール",
+    images: "/ogp.png",
     creator: "@midnight_dev2",
   },
   // manifest: "/manifest.json",
