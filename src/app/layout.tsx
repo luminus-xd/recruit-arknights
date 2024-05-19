@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
-    images: "/ogp.png",
+    images: "/img/ogp.png",
     creator: "@midnight_dev2",
   },
-  // manifest: "/manifest.json",
+  manifest: "/manifest.json",
   alternates: {
     canonical: "/",
   },
