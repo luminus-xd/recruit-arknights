@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
-  title: "Arknights Recruit",
+  title: "アークナイツ 公開求人",
   description: "公開求人の絞り込みツール",
   icons: {
     apple: "/apple-touch-icon.png",
@@ -12,20 +12,20 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Arknights Recruit",
+    title: "アークナイツ 公開求人",
     // startUpImage: [],
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
-    title: "Arknights Recruit",
+    title: "アークナイツ 公開求人",
     description: "公開求人の絞り込みツール",
     images: "/ogp-luminus.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arknights Recruit",
+    title: "アークナイツ 公開求人",
     images: "/ogp-luminus.png",
     creator: "@midnight_dev2",
   },

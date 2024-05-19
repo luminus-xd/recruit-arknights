@@ -37,85 +37,66 @@ export default function CheckboxArea() {
     }
   };
 
-  if (recruitData) {
+  if (isLoading) {
     console.table(recruitData);
   }
 
-  return (
+  const CheckboxGroup = ({
+    title,
+    description,
+    items,
+    prefix,
+  }: {
+    title: string;
+    description: string;
+    items: string[];
+    prefix: string;
+  }) => (
     <>
       <hgroup className="flex items-center gap-3">
-        <h2 className="text-2xl font-bold">Type</h2>
-        <p className="mt-1 text-gray-500 dark:text-gray-400">職分</p>
-      </hgroup>
-      <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-        {types.map((type, index) => (
-          <div key={index} className="flex w-full items-center gap-2">
-            <input
-              type="checkbox"
-              id={`type-${index + 1}`}
-              className="hidden peer"
-              checked={!!checkedItems[`type-${index + 1}`]}
-              value={type}
-              onChange={(e) => handleCheckboxChange(e, `type-${index + 1}`)}
-            />
-            <label
-              htmlFor={`type-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-9 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
-            >
-              <span>{type}</span>
-            </label>
-          </div>
-        ))}
-      </div>
-
-      <hgroup className="flex items-center gap-3">
-        <h2 className="text-2xl font-bold">Position</h2>
-        <p className="text-gray-500 dark:text-gray-400">位置</p>
+        <h2 className="text-2xl font-bold">{title}</h2>
+        <p className="mt-1 text-gray-500 dark:text-gray-400">{description}</p>
       </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {positions.map((position, index) => (
+        {items.map((item, index) => (
           <div key={index} className="flex w-full items-center gap-2">
             <input
               type="checkbox"
-              id={`position-${index + 1}`}
+              id={`${prefix}-${index + 1}`}
               className="hidden peer"
-              checked={!!checkedItems[`position-${index + 1}`]}
-              value={position}
-              onChange={(e) => handleCheckboxChange(e, `position-${index + 1}`)}
+              checked={!!checkedItems[`${prefix}-${index + 1}`]}
+              value={item}
+              onChange={(e) =>
+                handleCheckboxChange(e, `${prefix}-${index + 1}`)
+              }
             />
             <label
-              htmlFor={`position-${index + 1}`}
+              htmlFor={`${prefix}-${index + 1}`}
               className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
             >
-              <span>{position}</span>
+              <span>{item}</span>
             </label>
           </div>
         ))}
       </div>
+    </>
+  );
 
-      <hgroup className="flex items-center gap-3">
-        <h2 className="text-2xl font-bold">Tag</h2>
-        <p className="text-gray-500 dark:text-gray-400">タグ</p>
-      </hgroup>
-      <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {tags.map((tag, index) => (
-          <div key={index} className="flex w-full items-center gap-2">
-            <input
-              type="checkbox"
-              id={`tag-${index + 1}`}
-              className="hidden peer"
-              checked={!!checkedItems[`tag-${index + 1}`]}
-              onChange={(e) => handleCheckboxChange(e, `tag-${index + 1}`)}
-            />
-            <label
-              htmlFor={`tag-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
-            >
-              <span>{tag}</span>
-            </label>
-          </div>
-        ))}
-      </div>
+  return (
+    <>
+      <CheckboxGroup
+        title="Type"
+        description="職分"
+        items={types}
+        prefix="type"
+      />
+      <CheckboxGroup
+        title="Position"
+        description="位置"
+        items={positions}
+        prefix="position"
+      />
+      <CheckboxGroup title="Tag" description="タグ" items={tags} prefix="tag" />
     </>
   );
 }

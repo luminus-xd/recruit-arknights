@@ -13,7 +13,7 @@ export default function Home() {
       <RecruitProvider>
         <article key="1" className="container mx-auto px-4 py-8">
           <div className="mb-6">
-            <h1 className="text-4xl font-bold">Recruit</h1>
+            <h1 className="text-4xl font-bold">Recruitment</h1>
             <p className="text-gray-500 dark:text-gray-400">
               絞り込みを行うタグを選択してください
             </p>
