@@ -7,7 +7,7 @@
     "tags": "['近距離', '支援', 'ロボット']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?Castle-3",
-    "imgPath": "/img/operators1.png"
+    "imgPath": "/img/operators/1.png"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "tags": "['近距離', '防御', 'ロボット']",
     "addDay": "2023/12/05",
     "wiki": "https://arknights.wikiru.jp/index.php?Friston-3",
-    "imgPath": "/img/operators2.png"
+    "imgPath": "/img/operators/2.png"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "tags": "['遠距離', '支援', 'ロボット']",
     "addDay": "2022/04/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%82%B9%E3%83%8A%E3%82%A4%E3%83%88",
-    "imgPath": "/img/operators3.png"
+    "imgPath": "/img/operators/3.png"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "tags": "['遠距離', '治療', 'ロボット']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?Lancet-2",
-    "imgPath": "/img/operators4.png"
+    "imgPath": "/img/operators/4.png"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@
     "tags": "['近距離', '爆発力', 'ロボット']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?THRM-EX",
-    "imgPath": "/img/operators5.png"
+    "imgPath": "/img/operators/5.png"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@
     "tags": "['初期', '近距離']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A4%E3%83%88%E3%82%A6",
-    "imgPath": "/img/operators6.png"
+    "imgPath": "/img/operators/6.png"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@
     "tags": "['初期', '近距離']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8E%E3%82%A4%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%B3",
-    "imgPath": "/img/operators7.png"
+    "imgPath": "/img/operators/7.png"
   },
   {
     "id": 8,
@@ -77,7 +77,7 @@
     "tags": "['初期', '遠距離']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC",
-    "imgPath": "/img/operators8.png"
+    "imgPath": "/img/operators/8.png"
   },
   {
     "id": 9,
@@ -87,7 +87,7 @@
     "tags": "['初期', '遠距離']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?12F",
-    "imgPath": "/img/operators9.png"
+    "imgPath": "/img/operators/9.png"
   },
   {
     "id": 10,
@@ -97,7 +97,7 @@
     "tags": "['初期', '遠距離']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%89%E3%82%A5%E3%83%AA%E3%83%B3",
-    "imgPath": "/img/operators10.png"
+    "imgPath": "/img/operators/10.png"
   },
   {
     "id": 11,
@@ -107,7 +107,7 @@
     "tags": "['近距離', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%90%E3%83%8B%E3%83%A9",
-    "imgPath": "/img/operators11.png"
+    "imgPath": "/img/operators/11.png"
   },
   {
     "id": 12,
@@ -117,7 +117,7 @@
     "tags": "['近距離', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A7%E3%83%B3",
-    "imgPath": "/img/operators12.png"
+    "imgPath": "/img/operators/12.png"
   },
   {
     "id": 13,
@@ -127,7 +127,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%AA%E3%83%A5%E3%83%A0",
-    "imgPath": "/img/operators13.png"
+    "imgPath": "/img/operators/13.png"
   },
   {
     "id": 14,
@@ -137,7 +137,7 @@
     "tags": "['近距離', '生存', '範囲攻撃']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9D%E3%83%97%E3%82%AB%E3%83%AB",
-    "imgPath": "/img/operators14.png"
+    "imgPath": "/img/operators/14.png"
   },
   {
     "id": 15,
@@ -147,7 +147,7 @@
     "tags": "['近距離', '火力']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9F%E3%83%83%E3%83%89%E3%83%8A%E3%82%A4%E3%83%88",
-    "imgPath": "/img/operators15.png"
+    "imgPath": "/img/operators/15.png"
   },
   {
     "id": 16,
@@ -157,7 +157,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%A9%E3%83%B3%E3%82%B5",
-    "imgPath": "/img/operators16.png"
+    "imgPath": "/img/operators/16.png"
   },
   {
     "id": 17,
@@ -167,7 +167,7 @@
     "tags": "['近距離', '防御', '治療']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88",
-    "imgPath": "/img/operators17.png"
+    "imgPath": "/img/operators/17.png"
   },
   {
     "id": 18,
@@ -177,7 +177,7 @@
     "tags": "['近距離', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%82%B0%E3%83%AB",
-    "imgPath": "/img/operators18.png"
+    "imgPath": "/img/operators/18.png"
   },
   {
     "id": 19,
@@ -187,7 +187,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%89%E3%83%8A%E3%82%AD%E3%82%A8%E3%83%AB",
-    "imgPath": "/img/operators19.png"
+    "imgPath": "/img/operators/19.png"
   },
   {
     "id": 20,
@@ -197,7 +197,7 @@
     "tags": "['遠距離', '範囲攻撃']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%82%BF%E3%83%91%E3%83%AB%E3%83%88",
-    "imgPath": "/img/operators20.png"
+    "imgPath": "/img/operators/20.png"
   },
   {
     "id": 21,
@@ -207,7 +207,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B9",
-    "imgPath": "/img/operators21.png"
+    "imgPath": "/img/operators/21.png"
   },
   {
     "id": 22,
@@ -217,7 +217,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%81%E3%83%A5%E3%83%AF%E3%83%BC%E3%83%89",
-    "imgPath": "/img/operators22.png"
+    "imgPath": "/img/operators/22.png"
   },
   {
     "id": 23,
@@ -227,7 +227,7 @@
     "tags": "['遠距離', '範囲攻撃']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A9%E3%83%B4%E3%82%A1",
-    "imgPath": "/img/operators23.png"
+    "imgPath": "/img/operators/23.png"
   },
   {
     "id": 24,
@@ -237,7 +237,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%82%BB%E3%83%AB",
-    "imgPath": "/img/operators24.png"
+    "imgPath": "/img/operators/24.png"
   },
   {
     "id": 25,
@@ -247,7 +247,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8F%E3%82%A4%E3%83%93%E3%82%B9%E3%82%AB%E3%82%B9",
-    "imgPath": "/img/operators25.png"
+    "imgPath": "/img/operators/25.png"
   },
   {
     "id": 26,
@@ -257,7 +257,7 @@
     "tags": "['遠距離', '減速']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AA%E3%83%BC%E3%82%AD%E3%83%83%E3%83%89",
-    "imgPath": "/img/operators26.png"
+    "imgPath": "/img/operators/26.png"
   },
   {
     "id": 27,
@@ -267,7 +267,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A3%E3%82%B0%E3%83%8A",
-    "imgPath": "/img/operators27.png"
+    "imgPath": "/img/operators/27.png"
   },
   {
     "id": 28,
@@ -277,7 +277,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%AB%E3%83%99%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC",
-    "imgPath": "/img/operators28.png"
+    "imgPath": "/img/operators/28.png"
   },
   {
     "id": 29,
@@ -287,7 +287,7 @@
     "tags": "['近距離', '治療', 'COST回復']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%86%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%AB",
-    "imgPath": "/img/operators29.png"
+    "imgPath": "/img/operators/29.png"
   },
   {
     "id": 30,
@@ -297,7 +297,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2022/10/19",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%82%BF%E3%82%B2",
-    "imgPath": "/img/operators30.png"
+    "imgPath": "/img/operators/30.png"
   },
   {
     "id": 31,
@@ -307,7 +307,7 @@
     "tags": "['近距離', '生存', '範囲攻撃']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%B9%E3%83%86%E3%83%AB",
-    "imgPath": "/img/operators31.png"
+    "imgPath": "/img/operators/31.png"
   },
   {
     "id": 32,
@@ -317,7 +317,7 @@
     "tags": "['近距離', '火力', '爆発力']",
     "addDay": "2023/01/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%83%83%E3%82%BF%E3%83%BC",
-    "imgPath": "/img/operators32.png"
+    "imgPath": "/img/operators/32.png"
   },
   {
     "id": 33,
@@ -327,7 +327,7 @@
     "tags": "['近距離', '火力', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%89%E3%83%BC%E3%83%99%E3%83%AB%E3%83%9E%E3%83%B3",
-    "imgPath": "/img/operators33.png"
+    "imgPath": "/img/operators/33.png"
   },
   {
     "id": 34,
@@ -337,7 +337,7 @@
     "tags": "['近距離', '火力']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%83%8F%E3%83%B3%E3%82%BF%E3%83%BC",
-    "imgPath": "/img/operators34.png"
+    "imgPath": "/img/operators/34.png"
   },
   {
     "id": 35,
@@ -347,7 +347,7 @@
     "tags": "['近距離', '火力', '減速']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%83%AD%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%95",
-    "imgPath": "/img/operators35.png"
+    "imgPath": "/img/operators/35.png"
   },
   {
     "id": 36,
@@ -357,7 +357,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%88%E3%82%A4%E3%83%9E%E3%83%AB",
-    "imgPath": "/img/operators36.png"
+    "imgPath": "/img/operators/36.png"
   },
   {
     "id": 37,
@@ -367,7 +367,7 @@
     "tags": "['近距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A0%E3%83%BC%E3%82%B9",
-    "imgPath": "/img/operators37.png"
+    "imgPath": "/img/operators/37.png"
   },
   {
     "id": 38,
@@ -377,7 +377,7 @@
     "tags": "['近距離', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%82%AA%E3%83%BC%E3%83%A9",
-    "imgPath": "/img/operators38.png"
+    "imgPath": "/img/operators/38.png"
   },
   {
     "id": 39,
@@ -387,7 +387,7 @@
     "tags": "['近距離', '防御', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A0",
-    "imgPath": "/img/operators39.png"
+    "imgPath": "/img/operators/39.png"
   },
   {
     "id": 40,
@@ -397,7 +397,7 @@
     "tags": "['近距離', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%83%E3%82%BF%E3%83%BC%E3%83%9B%E3%83%AB%E3%83%B3",
-    "imgPath": "/img/operators40.png"
+    "imgPath": "/img/operators/40.png"
   },
   {
     "id": 41,
@@ -407,7 +407,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2024/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B7%E3%83%83%E3%83%89%E3%83%89%E3%83%AD%E3%83%83%E3%83%97",
-    "imgPath": "/img/operators41.png"
+    "imgPath": "/img/operators/41.png"
   },
   {
     "id": 42,
@@ -417,7 +417,7 @@
     "tags": "['遠距離', '火力', '減速']",
     "addDay": "2022/01/14",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%83%96%E3%83%AA%E3%82%A8%E3%83%AB",
-    "imgPath": "/img/operators42.png"
+    "imgPath": "/img/operators/42.png"
   },
   {
     "id": 43,
@@ -427,7 +427,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2021/07/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A1%E3%83%BC%E3%83%9F%E3%83%AB",
-    "imgPath": "/img/operators43.png"
+    "imgPath": "/img/operators/43.png"
   },
   {
     "id": 44,
@@ -437,7 +437,7 @@
     "tags": "['遠距離', '火力', '生存']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%82%A7%E3%82%B7%E3%82%AB",
-    "imgPath": "/img/operators44.png"
+    "imgPath": "/img/operators/44.png"
   },
   {
     "id": 45,
@@ -447,7 +447,7 @@
     "tags": "['遠距離', '範囲攻撃', '減速']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A9%E3%83%A6%E3%82%AD",
-    "imgPath": "/img/operators45.png"
+    "imgPath": "/img/operators/45.png"
   },
   {
     "id": 46,
@@ -457,7 +457,7 @@
     "tags": "['遠距離', '火力', '減速']",
     "addDay": "2021/09/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%82%A4",
-    "imgPath": "/img/operators46.png"
+    "imgPath": "/img/operators/46.png"
   },
   {
     "id": 47,
@@ -467,7 +467,7 @@
     "tags": "['遠距離', '火力', '弱化']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%86%E3%82%AA",
-    "imgPath": "/img/operators47.png"
+    "imgPath": "/img/operators/47.png"
   },
   {
     "id": 48,
@@ -477,7 +477,7 @@
     "tags": "['遠距離', '範囲攻撃']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AE%E3%82%BF%E3%83%BC%E3%83%8E",
-    "imgPath": "/img/operators48.png"
+    "imgPath": "/img/operators/48.png"
   },
   {
     "id": 49,
@@ -487,7 +487,7 @@
     "tags": "['遠距離', '範囲攻撃', '減速']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%AC%E3%82%A4",
-    "imgPath": "/img/operators49.png"
+    "imgPath": "/img/operators/49.png"
   },
   {
     "id": 50,
@@ -497,7 +497,7 @@
     "tags": "['遠距離', '火力', '弱化']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%98%E3%82%A4%E3%82%BA",
-    "imgPath": "/img/operators50.png"
+    "imgPath": "/img/operators/50.png"
   },
   {
     "id": 51,
@@ -507,7 +507,7 @@
     "tags": "['遠距離', '火力', '牽制']",
     "addDay": "2023/11/07",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%82%B7%E3%83%A3",
-    "imgPath": "/img/operators51.png"
+    "imgPath": "/img/operators/51.png"
   },
   {
     "id": 52,
@@ -517,7 +517,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%B9%E3%83%BC%E3%83%AD",
-    "imgPath": "/img/operators52.png"
+    "imgPath": "/img/operators/52.png"
   },
   {
     "id": 53,
@@ -527,7 +527,7 @@
     "tags": "['遠距離', '治療', '支援']",
     "addDay": "2022/07/29",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BB%E3%82%A4%E3%83%AA%E3%83%A5%E3%82%A6",
-    "imgPath": "/img/operators53.png"
+    "imgPath": "/img/operators/53.png"
   },
   {
     "id": 54,
@@ -537,7 +537,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%91%E3%83%95%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC",
-    "imgPath": "/img/operators54.png"
+    "imgPath": "/img/operators/54.png"
   },
   {
     "id": 55,
@@ -547,7 +547,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9F%E3%83%AB%E3%83%A9",
-    "imgPath": "/img/operators55.png"
+    "imgPath": "/img/operators/55.png"
   },
   {
     "id": 56,
@@ -557,7 +557,7 @@
     "tags": "['遠距離', '減速']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%BC%E3%82%B9%E3%82%B9%E3%83%94%E3%83%AA%E3%83%83%E3%83%88",
-    "imgPath": "/img/operators56.png"
+    "imgPath": "/img/operators/56.png"
   },
   {
     "id": 57,
@@ -567,7 +567,7 @@
     "tags": "['遠距離', '治療', '減速']",
     "addDay": "2023/07/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9D%E3%83%87%E3%83%B3%E3%82%B3",
-    "imgPath": "/img/operators57.png"
+    "imgPath": "/img/operators/57.png"
   },
   {
     "id": 58,
@@ -577,7 +577,7 @@
     "tags": "['近距離', '防御', '高速再配置']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A9%E3%83%99%E3%83%AB",
-    "imgPath": "/img/operators58.png"
+    "imgPath": "/img/operators/58.png"
   },
   {
     "id": 59,
@@ -587,7 +587,7 @@
     "tags": "['近距離', '火力', '高速再配置']",
     "addDay": "2024/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B8%E3%82%A7%E3%82%A4",
-    "imgPath": "/img/operators59.png"
+    "imgPath": "/img/operators/59.png"
   },
   {
     "id": 60,
@@ -597,7 +597,7 @@
     "tags": "['近距離', '強制移動']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A7%E3%82%A6",
-    "imgPath": "/img/operators60.png"
+    "imgPath": "/img/operators/60.png"
   },
   {
     "id": 61,
@@ -607,7 +607,7 @@
     "tags": "['近距離', '強制移動']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AD%E3%83%BC%E3%83%97",
-    "imgPath": "/img/operators61.png"
+    "imgPath": "/img/operators/61.png"
   },
   {
     "id": 62,
@@ -617,7 +617,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2024/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AD%E3%82%A2%E3%83%BC%E3%83%99",
-    "imgPath": "/img/operators62.png"
+    "imgPath": "/img/operators/62.png"
   },
   {
     "id": 63,
@@ -627,7 +627,7 @@
     "tags": "['近距離', '支援', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BA%E3%82%A3%E3%83%9E%E3%83%BC",
-    "imgPath": "/img/operators63.png"
+    "imgPath": "/img/operators/63.png"
   },
   {
     "id": 64,
@@ -637,7 +637,7 @@
     "tags": "['近距離', '牽制', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%86%E3%82%AD%E3%82%B5%E3%82%B9",
-    "imgPath": "/img/operators64.png"
+    "imgPath": "/img/operators/64.png"
   },
   {
     "id": 65,
@@ -647,7 +647,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2022/01/14",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AA%E3%83%BC%E3%83%89",
-    "imgPath": "/img/operators65.png"
+    "imgPath": "/img/operators/65.png"
   },
   {
     "id": 66,
@@ -657,7 +657,7 @@
     "tags": "['近距離', '支援', 'COST回復']",
     "addDay": "2023/05/23",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%83%AA%E3%82%B8%E3%82%A6%E3%83%A0",
-    "imgPath": "/img/operators66.png"
+    "imgPath": "/img/operators/66.png"
   },
   {
     "id": 67,
@@ -667,7 +667,7 @@
     "tags": "['近距離', '火力', '防御']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B9%E3%83%86%E3%82%B7%E3%82%A2",
-    "imgPath": "/img/operators67.png"
+    "imgPath": "/img/operators/67.png"
   },
   {
     "id": 68,
@@ -677,7 +677,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%B3%E3%83%89%E3%83%A9",
-    "imgPath": "/img/operators68.png"
+    "imgPath": "/img/operators/68.png"
   },
   {
     "id": 69,
@@ -687,7 +687,7 @@
     "tags": "['近距離', '生存', '範囲攻撃']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC",
-    "imgPath": "/img/operators69.png"
+    "imgPath": "/img/operators/69.png"
   },
   {
     "id": 70,
@@ -697,7 +697,7 @@
     "tags": "['近距離', '火力', '支援']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC",
-    "imgPath": "/img/operators70.png"
+    "imgPath": "/img/operators/70.png"
   },
   {
     "id": 71,
@@ -707,7 +707,7 @@
     "tags": "['近距離', '火力']",
     "addDay": "2024/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%83%AA%E3%83%B3%E3%83%88",
-    "imgPath": "/img/operators71.png"
+    "imgPath": "/img/operators/71.png"
   },
   {
     "id": 72,
@@ -717,7 +717,7 @@
     "tags": "['近距離', '生存', '範囲攻撃']",
     "addDay": "2022/01/14",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%96%E3%83%AD%E3%83%BC%E3%82%AB",
-    "imgPath": "/img/operators72.png"
+    "imgPath": "/img/operators/72.png"
   },
   {
     "id": 73,
@@ -727,7 +727,7 @@
     "tags": "['近距離', '火力', '範囲攻撃']",
     "addDay": "2023/11/07",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%A2%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%9A",
-    "imgPath": "/img/operators73.png"
+    "imgPath": "/img/operators/73.png"
   },
   {
     "id": 74,
@@ -737,7 +737,7 @@
     "tags": "['近距離', '火力', '生存', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%B4%E3%82%A1%E3%83%AB%E3%82%AB%E3%83%B3",
-    "imgPath": "/img/operators74.png"
+    "imgPath": "/img/operators/74.png"
   },
   {
     "id": 75,
@@ -747,7 +747,7 @@
     "tags": "['近距離', '防御', '治療']",
     "addDay": "2022/04/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%83%B3",
-    "imgPath": "/img/operators75.png"
+    "imgPath": "/img/operators/75.png"
   },
   {
     "id": 76,
@@ -757,7 +757,7 @@
     "tags": "['近距離', '防御', '強制移動']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AD%E3%83%AF%E3%83%83%E3%82%B5%E3%83%B3",
-    "imgPath": "/img/operators76.png"
+    "imgPath": "/img/operators/76.png"
   },
   {
     "id": 77,
@@ -767,7 +767,7 @@
     "tags": "['近距離', '防御', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8B%E3%82%A2%E3%83%BC%E3%83%AB",
-    "imgPath": "/img/operators77.png"
+    "imgPath": "/img/operators/77.png"
   },
   {
     "id": 78,
@@ -777,7 +777,7 @@
     "tags": "['近距離', '火力', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AA%E3%82%B9%E3%82%AB%E3%83%A0",
-    "imgPath": "/img/operators78.png"
+    "imgPath": "/img/operators/78.png"
   },
   {
     "id": 79,
@@ -787,7 +787,7 @@
     "tags": "['近距離', '火力', '防御']",
     "addDay": "2023/05/23",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%B9%E3%83%99%E3%82%B9%E3%83%88%E3%82%B9",
-    "imgPath": "/img/operators79.png"
+    "imgPath": "/img/operators/79.png"
   },
   {
     "id": 80,
@@ -797,7 +797,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%BA%E3%83%AA%E3%82%A6%E3%82%B9",
-    "imgPath": "/img/operators80.png"
+    "imgPath": "/img/operators/80.png"
   },
   {
     "id": 81,
@@ -807,7 +807,7 @@
     "tags": "['遠距離', '火力', '減速']",
     "addDay": "2024/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AC%E3%82%A2%E3%83%8A",
-    "imgPath": "/img/operators81.png"
+    "imgPath": "/img/operators/81.png"
   },
   {
     "id": 82,
@@ -817,7 +817,7 @@
     "tags": "['遠距離', '範囲攻撃']",
     "addDay": "2021/07/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%82%B0%E3%82%BC%E3%82%AD%E3%83%A5%E3%82%BF%E3%83%BC",
-    "imgPath": "/img/operators82.png"
+    "imgPath": "/img/operators/82.png"
   },
   {
     "id": 83,
@@ -827,7 +827,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2022/01/14",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B9%E3%83%AD%E3%83%BC%E3%83%88",
-    "imgPath": "/img/operators83.png"
+    "imgPath": "/img/operators/83.png"
   },
   {
     "id": 84,
@@ -837,7 +837,7 @@
     "tags": "['遠距離', '範囲攻撃', '弱化']",
     "addDay": "2022/10/19",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%82%A7%E3%83%BC%E3%82%B7%E3%83%A3",
-    "imgPath": "/img/operators84.png"
+    "imgPath": "/img/operators/84.png"
   },
   {
     "id": 85,
@@ -847,7 +847,7 @@
     "tags": "['遠距離', '火力', '爆発力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A1%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81",
-    "imgPath": "/img/operators85.png"
+    "imgPath": "/img/operators/85.png"
   },
   {
     "id": 86,
@@ -857,7 +857,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%A9%E3%83%81%E3%83%8A",
-    "imgPath": "/img/operators86.png"
+    "imgPath": "/img/operators/86.png"
   },
   {
     "id": 87,
@@ -867,7 +867,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%AD%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%B9",
-    "imgPath": "/img/operators87.png"
+    "imgPath": "/img/operators/87.png"
   },
   {
     "id": 88,
@@ -877,7 +877,7 @@
     "tags": "['遠距離', '範囲攻撃', '弱化']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%83%86%E3%82%AA%E3%83%AA%E3%83%BC%E3%83%86",
-    "imgPath": "/img/operators88.png"
+    "imgPath": "/img/operators/88.png"
   },
   {
     "id": 89,
@@ -887,7 +887,7 @@
     "tags": "['遠距離', '火力', '治療', '減速']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8A%E3%82%A4%E3%83%88%E3%83%A1%E3%82%A2",
-    "imgPath": "/img/operators89.png"
+    "imgPath": "/img/operators/89.png"
   },
   {
     "id": 90,
@@ -897,7 +897,7 @@
     "tags": "['遠距離', '防御', '範囲攻撃']",
     "addDay": "2024/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%82%BA%E3%83%AF%E3%82%AF%E3%82%B9",
-    "imgPath": "/img/operators90.png"
+    "imgPath": "/img/operators/90.png"
   },
   {
     "id": 91,
@@ -907,7 +907,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2022/07/29",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%82%A4%E3%82%BA",
-    "imgPath": "/img/operators91.png"
+    "imgPath": "/img/operators/91.png"
   },
   {
     "id": 92,
@@ -917,7 +917,7 @@
     "tags": "['遠距離', '範囲攻撃', '爆発力']",
     "addDay": "2023/07/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%8F%E3%83%AB%E3%83%88",
-    "imgPath": "/img/operators92.png"
+    "imgPath": "/img/operators/92.png"
   },
   {
     "id": 93,
@@ -927,7 +927,7 @@
     "tags": "['遠距離', '治療']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B5%E3%82%A4%E3%83%AC%E3%83%B3%E3%82%B9",
-    "imgPath": "/img/operators93.png"
+    "imgPath": "/img/operators/93.png"
   },
   {
     "id": 94,
@@ -937,7 +937,7 @@
     "tags": "['遠距離', '治療', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A3%E3%83%AA%E3%82%AA%E3%83%97%E3%82%B7%E3%82%B9",
-    "imgPath": "/img/operators94.png"
+    "imgPath": "/img/operators/94.png"
   },
   {
     "id": 95,
@@ -947,7 +947,7 @@
     "tags": "['遠距離', '治療', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AF%E3%83%AB%E3%83%95%E3%82%A1%E3%83%AA%E3%83%B3",
-    "imgPath": "/img/operators95.png"
+    "imgPath": "/img/operators/95.png"
   },
   {
     "id": 96,
@@ -957,7 +957,7 @@
     "tags": "['遠距離', '火力', '減速']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%81%E3%83%8A",
-    "imgPath": "/img/operators96.png"
+    "imgPath": "/img/operators/96.png"
   },
   {
     "id": 97,
@@ -967,7 +967,7 @@
     "tags": "['遠距離', '減速', '牽制']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B0%E3%83%A9%E3%82%A6%E3%82%B3%E3%82%B9",
-    "imgPath": "/img/operators97.png"
+    "imgPath": "/img/operators/97.png"
   },
   {
     "id": 98,
@@ -977,7 +977,7 @@
     "tags": "['遠距離', '弱化']",
     "addDay": "2023/01/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A3%E3%83%9E%E3%83%AC",
-    "imgPath": "/img/operators98.png"
+    "imgPath": "/img/operators/98.png"
   },
   {
     "id": 99,
@@ -987,7 +987,7 @@
     "tags": "['遠距離', '弱化']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%97%E3%83%A9%E3%83%9E%E3%83%8B%E3%82%AF%E3%82%B9",
-    "imgPath": "/img/operators99.png"
+    "imgPath": "/img/operators/99.png"
   },
   {
     "id": 100,
@@ -997,7 +997,7 @@
     "tags": "['遠距離', '牽制', '召喚']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A1%E3%82%A4%E3%83%A4%E3%83%BC",
-    "imgPath": "/img/operators100.png"
+    "imgPath": "/img/operators/100.png"
   },
   {
     "id": 101,
@@ -1007,7 +1007,7 @@
     "tags": "['遠距離', '生存', '支援']",
     "addDay": "2023/05/23",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%84%E3%82%AD%E3%83%8E%E3%82%AE",
-    "imgPath": "/img/operators101.png"
+    "imgPath": "/img/operators/101.png"
   },
   {
     "id": 102,
@@ -1017,7 +1017,7 @@
     "tags": "['近距離', '減速', '強制移動']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%83%95%E3%82%A4%E3%83%BC%E3%82%BF%E3%83%BC",
-    "imgPath": "/img/operators102.png"
+    "imgPath": "/img/operators/102.png"
   },
   {
     "id": 103,
@@ -1027,7 +1027,7 @@
     "tags": "['近距離', '火力', '強制移動']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%83%AA%E3%83%95%E3%83%8F%E3%83%BC%E3%83%88",
-    "imgPath": "/img/operators103.png"
+    "imgPath": "/img/operators/103.png"
   },
   {
     "id": 104,
@@ -1037,7 +1037,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%82%B3%E3%82%A2",
-    "imgPath": "/img/operators104.png"
+    "imgPath": "/img/operators/104.png"
   },
   {
     "id": 105,
@@ -1047,7 +1047,7 @@
     "tags": "['近距離', '牽制', '高速再配置']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AC%E3%83%83%E3%83%89",
-    "imgPath": "/img/operators105.png"
+    "imgPath": "/img/operators/105.png"
   },
   {
     "id": 106,
@@ -1057,7 +1057,7 @@
     "tags": "['近距離', '弱化', '高速再配置']",
     "addDay": "2021/09/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AF%E3%82%A4%E3%83%95%E3%83%BC",
-    "imgPath": "/img/operators106.png"
+    "imgPath": "/img/operators/106.png"
   },
   {
     "id": 107,
@@ -1067,7 +1067,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%BC%E3%82%B8",
-    "imgPath": "/img/operators107.png"
+    "imgPath": "/img/operators/107.png"
   },
   {
     "id": 108,
@@ -1077,7 +1077,7 @@
     "tags": "['近距離', '火力', 'COST回復']",
     "addDay": "2022/10/19",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%90%E3%82%B0%E3%83%91%E3%82%A4%E3%83%97",
-    "imgPath": "/img/operators108.png"
+    "imgPath": "/img/operators/108.png"
   },
   {
     "id": 109,
@@ -1087,7 +1087,7 @@
     "tags": "['近距離', '火力', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5",
-    "imgPath": "/img/operators109.png"
+    "imgPath": "/img/operators/109.png"
   },
   {
     "id": 110,
@@ -1097,7 +1097,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%AB%E3%82%B8",
-    "imgPath": "/img/operators110.png"
+    "imgPath": "/img/operators/110.png"
   },
   {
     "id": 111,
@@ -1107,7 +1107,7 @@
     "tags": "['近距離', '火力', '防御']",
     "addDay": "2024/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%BD%E3%83%BC%E3%83%B3%E3%82%BA",
-    "imgPath": "/img/operators111.png"
+    "imgPath": "/img/operators/111.png"
   },
   {
     "id": 112,
@@ -1117,7 +1117,7 @@
     "tags": "['近距離', '火力', '爆発力']",
     "addDay": "2020/12/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%81%E3%82%A7%E3%83%B3",
-    "imgPath": "/img/operators112.png"
+    "imgPath": "/img/operators/112.png"
   },
   {
     "id": 113,
@@ -1127,7 +1127,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2022/01/14",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%96%E3%83%AC%E3%82%A4%E3%82%BA",
-    "imgPath": "/img/operators113.png"
+    "imgPath": "/img/operators/113.png"
   },
   {
     "id": 114,
@@ -1137,7 +1137,7 @@
     "tags": "['近距離', '火力', '生存']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%98%E3%83%A9%E3%82%B0",
-    "imgPath": "/img/operators114.png"
+    "imgPath": "/img/operators/114.png"
   },
   {
     "id": 115,
@@ -1147,7 +1147,7 @@
     "tags": "['近距離', '防御', '治療', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B5%E3%83%AA%E3%82%A2",
-    "imgPath": "/img/operators115.png"
+    "imgPath": "/img/operators/115.png"
   },
   {
     "id": 116,
@@ -1157,7 +1157,7 @@
     "tags": "['近距離', '火力', '防御']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9B%E3%82%B7%E3%82%B0%E3%83%9E",
-    "imgPath": "/img/operators116.png"
+    "imgPath": "/img/operators/116.png"
   },
   {
     "id": 117,
@@ -1167,7 +1167,7 @@
     "tags": "['近距離', '火力', '生存', '防御']",
     "addDay": "2024/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A6%E3%83%BC%E3%83%8D%E3%82%AF%E3%83%86%E3%82%B9",
-    "imgPath": "/img/operators117.png"
+    "imgPath": "/img/operators/117.png"
   },
   {
     "id": 118,
@@ -1177,7 +1177,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%AF%E3%82%B7%E3%82%A2",
-    "imgPath": "/img/operators118.png"
+    "imgPath": "/img/operators/118.png"
   },
   {
     "id": 119,
@@ -1187,7 +1187,7 @@
     "tags": "['遠距離', '火力']",
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A5%E3%83%B4%E3%82%A1%E3%83%AB%E3%83%84",
-    "imgPath": "/img/operators119.png"
+    "imgPath": "/img/operators/119.png"
   },
   {
     "id": 120,
@@ -1197,7 +1197,7 @@
     "tags": "['遠距離', '火力', '牽制']",
     "addDay": "2023/07/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%AD%E3%82%B5",
-    "imgPath": "/img/operators120.png"
+    "imgPath": "/img/operators/120.png"
   },
   {
     "id": 121,
@@ -1207,7 +1207,7 @@
     "tags": "['遠距離', '範囲攻撃', '弱化']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A4%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BF",
-    "imgPath": "/img/operators121.png"
+    "imgPath": "/img/operators/121.png"
   },
   {
     "id": 122,
@@ -1217,7 +1217,7 @@
     "tags": "['遠距離', '火力', '牽制']",
     "addDay": "2022/07/29",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B1%E3%82%AA%E3%83%99",
-    "imgPath": "/img/operators122.png"
+    "imgPath": "/img/operators/122.png"
   },
   {
     "id": 123,
@@ -1227,7 +1227,7 @@
     "tags": "['遠距離', '支援', '範囲攻撃', '牽制']",
     "addDay": "2021/09/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A2%E3%82%B9%E3%83%86%E3%82%A3%E3%83%9E",
-    "imgPath": "/img/operators123.png"
+    "imgPath": "/img/operators/123.png"
   },
   {
     "id": 124,
@@ -1237,7 +1237,7 @@
     "tags": "['遠距離', '治療', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0",
-    "imgPath": "/img/operators124.png"
+    "imgPath": "/img/operators/124.png"
   },
   {
     "id": 125,
@@ -1247,7 +1247,7 @@
     "tags": "['遠距離', '治療', '支援']",
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%8A%E3%82%A4%E3%83%81%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%AB",
-    "imgPath": "/img/operators125.png"
+    "imgPath": "/img/operators/125.png"
   },
   {
     "id": 126,
@@ -1257,7 +1257,7 @@
     "tags": "['遠距離', '火力', '支援', '減速']",
     "addDay": "2021/07/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%82%BC%E3%83%A9%E3%83%B3",
-    "imgPath": "/img/operators126.png"
+    "imgPath": "/img/operators/126.png"
   },
   {
     "id": 127,
@@ -1267,7 +1267,7 @@
     "tags": "['遠距離', '火力', '支援', '減速']",
     "addDay": "2023/11/07",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%82%BA%E3%83%A9%E3%83%B3",
-    "imgPath": "/img/operators127.png"
+    "imgPath": "/img/operators/127.png"
   },
   {
     "id": 128,
@@ -1277,7 +1277,7 @@
     "tags": "['遠距離', '火力', '支援']",
     "addDay": "2022/04/28",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2",
-    "imgPath": "/img/operators128.png"
+    "imgPath": "/img/operators/128.png"
   },
   {
     "id": 129,
@@ -1287,7 +1287,7 @@
     "tags": "['近距離', '火力', '牽制', '高速再配置']",
     "addDay": "2023/01/13",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0",
-    "imgPath": "/img/operators129.png"
+    "imgPath": "/img/operators/129.png"
   },
   {
     "id": 130,
@@ -1297,6 +1297,6 @@
     "tags": "['近距離', '火力', '牽制', '強制移動']",
     "addDay": "2023/05/23",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%82%A3%E3%83%BC%E3%83%87%E3%82%A3",
-    "imgPath": "/img/operators130.png"
+    "imgPath": "/img/operators/130.png"
   }
 ]
