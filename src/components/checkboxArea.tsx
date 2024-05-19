@@ -1,3 +1,4 @@
+import type { Tag, Type, Position } from "@/types/recruit";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -9,33 +10,75 @@ export default function CheckboxArea() {
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
     {}
   );
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
-    if (selectedCount === 7) {
-      toast.warning("タグの選択数が上限になりました", {
-        description: "タグの選択は6個までです",
+    // ページロード時にURLのクエリパラメータを解析し、初期状態を設定
+    const params = new URLSearchParams(window.location.search);
+    const items = params.get("selectedItems")?.split(",") || [];
+    const initialCheckedItems: { [key: string]: boolean } = {};
+
+    console.log(items);
+
+    items.forEach((item) => {
+      if (
+        tags.includes(item as Tag) ||
+        positions.includes(item as Position) ||
+        types.includes(item as Type)
+      ) {
+        initialCheckedItems[item] = true;
+      }
+    });
+
+    setCheckedItems(initialCheckedItems);
+    setSelectedItems(items);
+    setSelectedCount(items.length);
+  }, []);
+
+  useEffect(() => {
+    if (selectedCount >= 7) {
+      toast.warning("タグの選択数が上限になりました。<br>6個まで選択可能です", {
+        description: `選択中: <b>${selectedItems.join(", ")}</b>`,
       });
     }
-  }, [selectedCount]);
+  }, [selectedCount, selectedItems]);
 
   const handleCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    key: string
+    item: string
   ) => {
     if (e.target.checked) {
       if (selectedCount < 6) {
-        setCheckedItems((prev) => ({ ...prev, [key]: true }));
+        setCheckedItems((prev) => ({ ...prev, [item]: true }));
+        setSelectedItems((prev) => [...prev, item]);
         setSelectedCount(selectedCount + 1);
       } else {
-        toast.warning("タグの選択数が上限になりました", {
-          description: "タグの選択は6個までです",
-        });
+        toast.warning(
+          "タグの選択数が上限になりました。<br>6個まで選択可能です",
+          {
+            description: `選択中: <b>${selectedItems.join(", ")}</b>`,
+          }
+        );
       }
     } else {
-      setCheckedItems((prev) => ({ ...prev, [key]: false }));
+      setCheckedItems((prev) => ({ ...prev, [item]: false }));
+      setSelectedItems((prev) =>
+        prev.filter((selectedItem) => selectedItem !== item)
+      );
       setSelectedCount(selectedCount - 1);
     }
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (selectedItems.length > 0) {
+      params.set("selectedItems", selectedItems.join(","));
+    } else {
+      params.delete("selectedItems");
+    }
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }, [selectedItems]);
 
   if (isLoading) {
     console.table(recruitData);
@@ -64,11 +107,9 @@ export default function CheckboxArea() {
               type="checkbox"
               id={`${prefix}-${index + 1}`}
               className="hidden peer"
-              checked={!!checkedItems[`${prefix}-${index + 1}`]}
+              checked={!!checkedItems[item]}
               value={item}
-              onChange={(e) =>
-                handleCheckboxChange(e, `${prefix}-${index + 1}`)
-              }
+              onChange={(e) => handleCheckboxChange(e, item)}
             />
             <label
               htmlFor={`${prefix}-${index + 1}`}
