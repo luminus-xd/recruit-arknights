@@ -31,7 +31,7 @@ export default function CheckboxArea() {
     setCheckedItems,
     setSelectedItems,
     setSelectedCount
-  ); // 追加
+  );
 
   useEffect(() => {
     if (!isLoading) {
