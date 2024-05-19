@@ -1,45 +1,30 @@
-import type { Tag, Type, Position } from "@/types/recruit";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
 import { positions, tags, types } from "@/lib/utils";
+import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
+import { useLimitWarning } from "@/hooks/useLimitWarning";
+import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
 
-export default function Recruit() {
+export default function CheckboxArea() {
   const { recruitData, isLoading } = useRecruit();
-  const [selectedCount, setSelectedCount] = useState(0);
-  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
-    {}
-  );
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const {
+    checkedItems,
+    setCheckedItems,
+    selectedItems,
+    setSelectedItems,
+    selectedCount,
+    setSelectedCount,
+  } = useInitializeCheckboxes();
+
+  useLimitWarning(selectedCount, selectedItems);
+  useUpdateURLParams(selectedItems);
 
   useEffect(() => {
-    // ページロード時にURLのクエリパラメータを解析し、初期状態を設定
-    const params = new URLSearchParams(window.location.search);
-    const items = params.get("selectedItems")?.split(",") || [];
-    const initialCheckedItems: { [key: string]: boolean } = {};
-
-    items.forEach((item) => {
-      if (
-        tags.includes(item as Tag) ||
-        positions.includes(item as Position) ||
-        types.includes(item as Type)
-      ) {
-        initialCheckedItems[item] = true;
-      }
-    });
-
-    setCheckedItems(initialCheckedItems);
-    setSelectedItems(items);
-    setSelectedCount(items.length);
-  }, []);
-
-  useEffect(() => {
-    if (selectedCount >= 7) {
-      toast.warning("タグの選択数が上限になりました。<br>6個まで選択可能です", {
-        description: `選択中: <b>${selectedItems.join(", ")}</b>`,
-      });
+    if (!isLoading) {
+      toast.success("データの読み込みが完了しました");
     }
-  }, [selectedCount, selectedItems]);
+  }, [isLoading]);
 
   const handleCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -66,24 +51,6 @@ export default function Recruit() {
       setSelectedCount(selectedCount - 1);
     }
   };
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (selectedItems.length > 0) {
-      params.set("selectedItems", selectedItems.join(","));
-    } else {
-      params.delete("selectedItems");
-    }
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
-    window.history.replaceState({}, "", newUrl);
-  }, [selectedItems]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      toast.success("最新の公開求人データ読み込みが完了しました");
-      console.table(recruitData);
-    }
-  }, [isLoading]);
 
   const CheckboxGroup = ({
     title,
