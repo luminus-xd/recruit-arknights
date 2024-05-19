@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
+import Footer from "@/components/footer";
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
   title: "アークナイツ 公開求人",
@@ -69,6 +71,7 @@ export default function RootLayout({
           "min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans font-japanese antialiased" inter.variable,ZenKakuGothicNew.variable`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );
