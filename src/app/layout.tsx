@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     images: "/ogp-luminus.png",
     creator: "@midnight_dev2",
   },
-  manifest: "/manifest.json",
+  // manifest: "/manifest.json",
   alternates: {
     canonical: "/",
   },

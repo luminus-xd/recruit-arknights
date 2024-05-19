@@ -1,42 +1,10 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { useRecruit } from "@/contexts/RecruitContext";
+import { positions, tags, types } from "@/lib/utils";
 
 export default function CheckboxArea() {
-  const types = [
-    "先鋒",
-    "前衛",
-    "狙撃",
-    "術師",
-    "重装",
-    "医療",
-    "補助",
-    "特殊",
-  ];
-  const tags = [
-    "近距離",
-    "遠距離",
-    "初期",
-    "火力",
-    "生存",
-    "防御",
-    "治療",
-    "支援",
-    "範囲攻撃",
-    "減速",
-    "牽制",
-    "弱化",
-    "COST回復",
-    "強制移動",
-    "爆発力",
-    "召喚",
-    "高速再配置",
-    "ロボット",
-    "エリート",
-    "上級エリート",
-  ];
-
+  const { recruitData, isLoading } = useRecruit();
   const [selectedCount, setSelectedCount] = useState(0);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
     {}
@@ -44,7 +12,7 @@ export default function CheckboxArea() {
 
   useEffect(() => {
     if (selectedCount === 7) {
-      toast.info("タグの選択数が7個目になっています", {
+      toast.warning("タグの選択数が上限になりました", {
         description: "タグの選択は6個までです",
       });
     }
@@ -59,7 +27,7 @@ export default function CheckboxArea() {
         setCheckedItems((prev) => ({ ...prev, [key]: true }));
         setSelectedCount(selectedCount + 1);
       } else {
-        toast.info("タグの選択数が7個目になっています", {
+        toast.warning("タグの選択数が上限になりました", {
           description: "タグの選択は6個までです",
         });
       }
@@ -69,11 +37,15 @@ export default function CheckboxArea() {
     }
   };
 
+  if (recruitData) {
+    console.table(recruitData);
+  }
+
   return (
     <>
-      <hgroup className="items-center">
+      <hgroup className="flex items-center gap-3">
         <h2 className="text-2xl font-bold">Type</h2>
-        <p className="mt-1 text-gray-600">職分</p>
+        <p className="mt-1 text-gray-500 dark:text-gray-400">職分</p>
       </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
         {types.map((type, index) => (
@@ -83,12 +55,12 @@ export default function CheckboxArea() {
               id={`type-${index + 1}`}
               className="hidden peer"
               checked={!!checkedItems[`type-${index + 1}`]}
+              value={type}
               onChange={(e) => handleCheckboxChange(e, `type-${index + 1}`)}
             />
             <label
               htmlFor={`type-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200
-              py-3 px-9 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
+              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-9 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
             >
               <span>{type}</span>
             </label>
@@ -96,7 +68,35 @@ export default function CheckboxArea() {
         ))}
       </div>
 
-      <h2 className="text-2xl font-bold">Tags</h2>
+      <hgroup className="flex items-center gap-3">
+        <h2 className="text-2xl font-bold">Position</h2>
+        <p className="text-gray-500 dark:text-gray-400">位置</p>
+      </hgroup>
+      <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {positions.map((position, index) => (
+          <div key={index} className="flex w-full items-center gap-2">
+            <input
+              type="checkbox"
+              id={`position-${index + 1}`}
+              className="hidden peer"
+              checked={!!checkedItems[`position-${index + 1}`]}
+              value={position}
+              onChange={(e) => handleCheckboxChange(e, `position-${index + 1}`)}
+            />
+            <label
+              htmlFor={`position-${index + 1}`}
+              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
+            >
+              <span>{position}</span>
+            </label>
+          </div>
+        ))}
+      </div>
+
+      <hgroup className="flex items-center gap-3">
+        <h2 className="text-2xl font-bold">Tag</h2>
+        <p className="text-gray-500 dark:text-gray-400">タグ</p>
+      </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {tags.map((tag, index) => (
           <div key={index} className="flex w-full items-center gap-2">
@@ -109,8 +109,7 @@ export default function CheckboxArea() {
             />
             <label
               htmlFor={`tag-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200
-              py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
+              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
             >
               <span>{tag}</span>
             </label>
