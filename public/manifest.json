@@ -1,8 +1,8 @@
 {
+  "id": "/?homescreen=1",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/homescreen=1",
   "start_url": "/homescreen=1",
   "name": "AK公開求人",
   "short_name": "AK公開求人",
