@@ -7,7 +7,6 @@ import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
 import { useFilterOperators } from "@/hooks/useFilterOperators";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
 import type { Operator } from "@/types/recruit";
 
 export default function CheckboxArea() {

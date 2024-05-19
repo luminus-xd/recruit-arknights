@@ -1,15 +1,29 @@
 import type { Recruit, Operator } from "@/types/recruit";
 
+/**
+ * 選択された項目に基づいてリクルートデータをフィルタリングし、フィルタリングされた結果を返します
+ *
+ * @param recruitData - フィルタリングするデータ
+ * @param selectedItems - 選択されたタグ、タイプ、またはポジション
+ * @returns - 選択された項目の組み合わせごとにグループ化されたフィルタリング結果
+ */
 export const useFilterOperators = (
   recruitData: Recruit | null,
   selectedItems: string[]
-) => {
+): { [key: string]: Operator[] } => {
   if (!recruitData || selectedItems.length === 0) {
     return {};
   }
 
   const hasUpperElite = selectedItems.includes("上級エリート");
 
+  /**
+   * 選択された項目の組み合わせに基づいてオペレーターをフィルタリングします
+   *
+   * @param combination - 選択された項目の組み合わせ
+   * @param operators - フィルタリングするオペレーターのリスト
+   * @returns - フィルタリングされたオペレーター
+   */
   const filterByCombination = (
     combination: string[],
     operators: Operator[]
@@ -25,9 +39,14 @@ export const useFilterOperators = (
     });
   };
 
-  const combinations = (array: string[]) => {
+  /**
+   * 選択された項目のすべての非空の組み合わせを生成します
+   * @param array - 選択された項目の配列
+   * @returns - 組み合わせの配列
+   */
+  const combinations = (array: string[]): string[][] => {
     return array
-      .reduce((a, v) => a.concat(a.map((r) => [v].concat(r))), [[]])
+      .reduce<string[][]>((a, v) => a.concat(a.map((r) => [v, ...r])), [[]])
       .filter((c) => c.length > 0);
   };
 
