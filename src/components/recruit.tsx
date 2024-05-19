@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
 import { positions, tags, types } from "@/lib/utils";
 
-export default function CheckboxArea() {
+export default function Recruit() {
   const { recruitData, isLoading } = useRecruit();
   const [selectedCount, setSelectedCount] = useState(0);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
@@ -17,8 +17,6 @@ export default function CheckboxArea() {
     const params = new URLSearchParams(window.location.search);
     const items = params.get("selectedItems")?.split(",") || [];
     const initialCheckedItems: { [key: string]: boolean } = {};
-
-    console.log(items);
 
     items.forEach((item) => {
       if (
@@ -80,9 +78,12 @@ export default function CheckboxArea() {
     window.history.replaceState({}, "", newUrl);
   }, [selectedItems]);
 
-  if (isLoading) {
-    console.table(recruitData);
-  }
+  useEffect(() => {
+    if (!isLoading) {
+      toast.success("最新の公開求人データ読み込みが完了しました");
+      console.table(recruitData);
+    }
+  }, [isLoading]);
 
   const CheckboxGroup = ({
     title,

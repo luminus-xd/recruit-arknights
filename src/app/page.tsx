@@ -5,7 +5,7 @@ import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Toaster } from "@/components/ui/sonner";
 
-import CheckboxArea from "@/components/checkboxArea";
+import Recruit from "@/components/recruit";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
               絞り込みを行うタグを選択してください
             </p>
           </div>
-          <CheckboxArea />
+          <Recruit />
           <h2 className="text-2xl font-bold">Operators</h2>
           <div className="grid mt-2 gap-6">
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
