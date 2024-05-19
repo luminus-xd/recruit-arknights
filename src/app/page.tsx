@@ -19,7 +19,7 @@ export default function Home() {
             </p>
           </div>
           <Recruit />
-          <Operators />
+          {/* <Operators /> */}
         </article>
       </RecruitProvider>
       <Toaster richColors />

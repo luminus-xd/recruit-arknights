@@ -5,6 +5,10 @@ import { positions, tags, types } from "@/lib/utils";
 import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
+import { useFilterOperators } from "@/hooks/useFilterOperators";
+import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
+import type { Operator } from "@/types/recruit";
 
 export default function CheckboxArea() {
   const { recruitData, isLoading } = useRecruit();
@@ -16,6 +20,8 @@ export default function CheckboxArea() {
     selectedCount,
     setSelectedCount,
   } = useInitializeCheckboxes();
+
+  const filteredOperators = useFilterOperators(recruitData, selectedItems);
 
   useLimitWarning(selectedCount, selectedItems);
   useUpdateURLParams(selectedItems);
@@ -106,6 +112,46 @@ export default function CheckboxArea() {
         prefix="position"
       />
       <CheckboxGroup title="Tag" description="タグ" items={tags} prefix="tag" />
+
+      {/* 選択されたタグの表示 */}
+      <div className="mt-6">
+        <h3 className="text-xl font-bold">選択されたタグ:</h3>
+        <div className="flex flex-wrap gap-2 mt-2">
+          {selectedItems.map((item) => (
+            <span
+              key={item}
+              className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* フィルタリングされたオペレーターの表示 */}
+      <div className="grid mt-6 gap-6">
+        {Object.entries(filteredOperators).map(([combination, operators]) => (
+          <div key={combination}>
+            <h3 className="text-xl font-bold">{combination}</h3>
+            <ul className="flex flex-wrap mt-2 gap-1">
+              {(operators as Operator[]).map((operator) => (
+                <li key={operator.id}>
+                  <a
+                    href={operator.wiki}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Avatar>
+                      <AvatarImage alt={operator.name} src={operator.imgPath} />
+                      <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
