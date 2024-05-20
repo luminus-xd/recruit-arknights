@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import Recruit from "@/components/recruit";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
+import { ClipboardCopy } from "lucide-react";
 
 export default function Home() {
   const { isCopied, copyToClipboard } = useCopyToClipboard();
@@ -19,7 +20,8 @@ export default function Home() {
               絞り込みを行うタグを選択してください
             </p>
             <div className="mt-4">
-              <Button className="text-xs" onClick={copyToClipboard}>
+              <Button onClick={copyToClipboard}>
+                <ClipboardCopy className="mr-2 h-4 w-4" />
                 {isCopied
                   ? "URLがコピーされました"
                   : "クリップボードにURLをコピー"}
