@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
 import { positions, tags, types } from "@/lib/utils";
@@ -9,6 +9,7 @@ import { useFilterOperators } from "@/hooks/useFilterOperators";
 import { useResetCheckboxes } from "@/hooks/useResetCheckboxes";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import Checkbox from "@/components/checkbox";
 import type { Operator } from "@/types/recruit";
 
 export default function Recruit() {
@@ -33,39 +34,45 @@ export default function Recruit() {
     setSelectedCount
   );
 
-  const handleCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    item: string
-  ) => {
-    if (e.target.checked) {
-      if (selectedCount < 6) {
-        setCheckedItems((prev) => ({ ...prev, [item]: true }));
-        setSelectedItems((prev) => [...prev, item]);
-        setSelectedCount(selectedCount + 1);
-        if (item === "上級エリート" || item === "エリート") {
-          toast.info(
-            "上級、通常のエリートを選択した場合は、忘れずに9時間に設定しましょう"
+  const handleCheckboxChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>, item: string) => {
+      if (e.target.checked) {
+        if (selectedCount < 6) {
+          setCheckedItems((prev) => ({ ...prev, [item]: true }));
+          setSelectedItems((prev) => [...prev, item]);
+          setSelectedCount(selectedCount + 1);
+          if (item === "上級エリート" || item === "エリート") {
+            toast.info(
+              "上級、通常のエリートを選択した場合は、忘れずに9時間に設定しましょう"
+            );
+          }
+          if (item === "ロボット") {
+            toast.info("ロボットタグは3時間50分の設定が推奨されます");
+          }
+        } else {
+          toast.warning(
+            "タグの選択数が上限になりました。<br>6個まで選択可能です",
+            {
+              description: `選択中: <b>${selectedItems.join(", ")}</b>`,
+            }
           );
         }
-        if (item === "ロボット") {
-          toast.info("ロボットタグは3時間50分の設定が推奨されます");
-        }
       } else {
-        toast.warning(
-          "タグの選択数が上限になりました。<br>6個まで選択可能です",
-          {
-            description: `選択中: <b>${selectedItems.join(", ")}</b>`,
-          }
+        setCheckedItems((prev) => ({ ...prev, [item]: false }));
+        setSelectedItems((prev) =>
+          prev.filter((selectedItem) => selectedItem !== item)
         );
+        setSelectedCount(selectedCount - 1);
       }
-    } else {
-      setCheckedItems((prev) => ({ ...prev, [item]: false }));
-      setSelectedItems((prev) =>
-        prev.filter((selectedItem) => selectedItem !== item)
-      );
-      setSelectedCount(selectedCount - 1);
-    }
-  };
+    },
+    [
+      selectedCount,
+      selectedItems,
+      setCheckedItems,
+      setSelectedItems,
+      setSelectedCount,
+    ]
+  );
 
   const CheckboxGroup = ({
     title,
@@ -85,25 +92,13 @@ export default function Recruit() {
       </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {items.map((item, index) => (
-          <div
+          <Checkbox
             key={index}
-            className="flex w-full items-center gap-2 focus-within:ring-2 focus-within:ring-sky-400 rounded-lg"
-          >
-            <input
-              type="checkbox"
-              id={`${prefix}-${index + 1}`}
-              className="visually-hidden peer"
-              checked={!!checkedItems[item]}
-              value={item}
-              onChange={(e) => handleCheckboxChange(e, item)}
-            />
-            <label
-              htmlFor={`${prefix}-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 dark:border-gray-500 py-3 px-6 font-bold text-gray-700 dark:text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 dark:peer-checked:bg-secondary dark:peer-checked:text-secondary-foreground dark:peer-checked:border-secondary"
-            >
-              <span>{item}</span>
-            </label>
-          </div>
+            id={`${prefix}-${index + 1}`}
+            checked={!!checkedItems[item]}
+            onChange={(e) => handleCheckboxChange(e, item)}
+            label={item}
+          />
         ))}
       </div>
     </>
