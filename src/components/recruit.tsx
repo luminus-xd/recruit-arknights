@@ -33,12 +33,6 @@ export default function Recruit() {
     setSelectedCount
   );
 
-  useEffect(() => {
-    if (!isLoading) {
-      toast.success("データの読み込みが完了しました");
-    }
-  }, [isLoading]);
-
   const handleCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     item: string
