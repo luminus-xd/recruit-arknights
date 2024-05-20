@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
     description:
       "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするアプリケーションです",
-    images: "/img/ogp.png",
+    images: "/img/icon.png",
   },
   twitter: {
     card: "summary",
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
-    images: "/img/ogp.png",
+    images: "/img/icon.png",
     creator: "@midnight_dev2",
   },
   manifest: "/manifest.json",
