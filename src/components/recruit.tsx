@@ -6,12 +6,12 @@ import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
 import { useFilterOperators } from "@/hooks/useFilterOperators";
-import { useResetCheckboxes } from "@/hooks/useResetCheckboxes"; // 追加
+import { useResetCheckboxes } from "@/hooks/useResetCheckboxes";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button"; // 追加
+import { Button } from "@/components/ui/button";
 import type { Operator } from "@/types/recruit";
 
-export default function CheckboxArea() {
+export default function Recruit() {
   const { recruitData, isLoading } = useRecruit();
   const {
     checkedItems,
