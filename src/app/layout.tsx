@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
@@ -67,13 +68,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <body
         className={`
           "min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans font-japanese antialiased" inter.variable,ZenKakuGothicNew.variable`}
       >
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

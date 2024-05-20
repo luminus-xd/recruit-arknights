@@ -1,32 +1,40 @@
 "use client";
 
 import React from "react";
+import { ModeToggle } from "@/components/toggle-mode";
 
 export default function Footer() {
   return (
     <footer className="mt-8 bg-gray-100 dark:bg-gray-800 py-6 px-4 md:px-6">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <ModeToggle />
+        </div>
+        <p className="text-gray-400 dark:text-gray-400 text-sm">
           © 2024 luminus
         </p>
-        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="flex items-center space-x-4">
           <a
             className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
             href="https://github.com/luminus-xd/Recruit-Arknights"
             target="_blank"
             rel="noopener noreferrer"
+            tabIndex={0}
+            title="GitHub 公開求人ツールリポジトリ"
           >
-            <GithubIcon className="w-5 h-5" />
-            <span className="sr-only">GitHub</span>
+            <GithubIcon className="w-7 h-7" />
+            <span className="sr-only">GitHub 公開求人ツールリポジトリ</span>
           </a>
           <a
             className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
             href="https://x.com/Midnight_dev2"
             target="_blank"
             rel="noopener noreferrer"
+            tabIndex={0}
+            title="Twitter(X)"
           >
-            <TwitterIcon className="w-5 h-5" />
-            <span className="sr-only">Twitter</span>
+            <TwitterIcon className="w-7 h-7" />
+            <span className="sr-only">Twitter(X)</span>
           </a>
         </div>
       </div>

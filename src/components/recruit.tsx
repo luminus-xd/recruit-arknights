@@ -105,7 +105,7 @@ export default function Recruit() {
             />
             <label
               htmlFor={`${prefix}-${index + 1}`}
-              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 py-3 px-6 font-bold text-gray-700 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200"
+              className="select-none cursor-pointer w-full flex items-center justify-center rounded-lg border-2 border-gray-200 dark:border-gray-500 py-3 px-6 font-bold text-gray-700 dark:text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 dark:peer-checked:bg-secondary dark:peer-checked:text-secondary-foreground dark:peer-checked:border-secondary"
             >
               <span>{item}</span>
             </label>
@@ -152,7 +152,7 @@ export default function Recruit() {
             {selectedItems.map((item) => (
               <span
                 key={item}
-                className="inline-block text-xs bg-gray-200 text-gray-700 font-bold px-3 py-1 rounded-full"
+                className="inline-block text-xs bg-gray-200 dark:bg-gray-300 text-gray-700 dark:text-stone-950 font-bold px-3 py-1 rounded-full"
               >
                 {item}
               </span>
@@ -166,7 +166,7 @@ export default function Recruit() {
         {Object.entries(filteredOperators).map(([combination, operators]) => (
           <div key={combination}>
             <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
-            <ul className="flex flex-wrap mt-3 gap-1">
+            <ul className="flex flex-wrap mt-3 gap-2">
               {(operators as Operator[]).map((operator) => (
                 <li key={operator.id}>
                   <a
