@@ -69,6 +69,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="rcOOuqPq3L3ZCvMVn_xajAE0hxdH6pELLN4965CB_FM"
+        />
+      </head>
       <body
         className={`
           "min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans font-japanese antialiased" inter.variable,ZenKakuGothicNew.variable`}
