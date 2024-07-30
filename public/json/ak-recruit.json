@@ -370,6 +370,16 @@
     "imgPath": "/img/operators/37.png"
   },
   {
+    "id": 133,
+    "name": "アレーン",
+    "rarity": 4,
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2024/07/31",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%AC%E3%83%BC%E3%83%B3",
+    "imgPath": "/img/operators/133.png"
+  },
+  {
     "id": 38,
     "name": "クオーラ",
     "rarity": 4,
@@ -880,6 +890,16 @@
     "imgPath": "/img/operators/88.png"
   },
   {
+    "id": 132,
+    "name": "エイプリル",
+    "rarity": 5,
+    "type": "狙撃",
+    "tags": "['遠距離', '火力']",
+    "addDay": "2024/07/31",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%A4%E3%83%97%E3%83%AA%E3%83%AB",
+    "imgPath": "/img/operators/132.png"
+  },
+  {
     "id": 89,
     "name": "ナイトメア",
     "rarity": 5,
@@ -1138,6 +1158,16 @@
     "addDay": "2021/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%98%E3%83%A9%E3%82%B0",
     "imgPath": "/img/operators/114.png"
+  },
+  {
+    "id": 131,
+    "name": "スルト",
+    "rarity": 6,
+    "type": "前衛",
+    "tags": "['近距離', '火力']",
+    "addDay": "2024/07/31",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%AB%E3%83%88",
+    "imgPath": "/img/operators/131.png"
   },
   {
     "id": 115,
