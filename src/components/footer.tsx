@@ -10,7 +10,7 @@ export default function Footer() {
         <div>
           <ModeToggle />
         </div>
-        <p className="text-gray-400 dark:text-gray-400 text-sm">
+        <p className="text-gray-600 dark:text-gray-600 text-sm">
           © 2024 luminus
         </p>
         <div className="flex items-center space-x-4">
