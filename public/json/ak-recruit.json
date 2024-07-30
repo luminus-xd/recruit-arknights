@@ -1328,35 +1328,5 @@
     "addDay": "2023/05/23",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%82%A3%E3%83%BC%E3%83%87%E3%82%A3",
     "imgPath": "/img/operators/130.png"
-  },
-  {
-    "id": 131,
-    "name": "スルト",
-    "rarity": 6,
-    "type": "前衛",
-    "tags": "['近距離', '火力']",
-    "addDay": "2024/07/31",
-    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B9%E3%83%AB%E3%83%88",
-    "imgPath": "/img/operators/131.png"
-  },
-  {
-    "id": 132,
-    "name": "エイプリル",
-    "rarity": 5,
-    "type": "狙撃",
-    "tags": "['遠距離', '火力']",
-    "addDay": "2024/07/31",
-    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A8%E3%82%A4%E3%83%97%E3%83%AA%E3%83%AB",
-    "imgPath": "/img/operators/132.png"
-  },
-  {
-    "id": 133,
-    "name": "アレーン",
-    "rarity": 4,
-    "type": "前衛",
-    "tags": "['近距離', '火力']",
-    "addDay": "2024/07/31",
-    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%AC%E3%83%BC%E3%83%B3",
-    "imgPath": "/img/operators/133.png"
   }
 ]
