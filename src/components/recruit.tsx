@@ -9,6 +9,7 @@ import { useFilterOperators } from "@/hooks/useFilterOperators";
 import { useResetCheckboxes } from "@/hooks/useResetCheckboxes";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import Checkbox from "@/components/checkbox";
 import type { Operator } from "@/types/recruit";
 
@@ -125,6 +126,8 @@ export default function Recruit() {
           選択状態をリセット
         </Button>
       </div>
+
+      <Separator className="my-8" />
 
       {/* 選択されたタグの表示 */}
       <div className="mt-8">
