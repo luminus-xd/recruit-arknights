@@ -11,7 +11,7 @@ export default function Operators() {
     if (!isLoading) {
       console.log(recruitData);
     }
-  }, [isLoading]);
+  }, [isLoading, recruitData]);
 
   return (
     <>
