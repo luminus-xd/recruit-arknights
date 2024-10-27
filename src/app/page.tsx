@@ -32,7 +32,7 @@ export default function Home() {
               </p>
               <p className="mt-4 text-sm font-bold">
                 <time
-                  className="text-rose-500 dark:text-rose-600"
+                  className="text-rose-600 dark:text-rose-500"
                   dateTime="2024-07-31"
                 >
                   2024-07-31
