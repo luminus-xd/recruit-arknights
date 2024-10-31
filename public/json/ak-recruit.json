@@ -50,6 +50,16 @@
     "imgPath": "/img/operators/5.png"
   },
   {
+    "id": 134,
+    "name": "PhonoR-0",
+    "rarity": 1,
+    "type": "補助",
+    "tags": "['遠距離', '元素', 'ロボット']",
+    "addDay": "2024/10/31",
+    "wiki": "https://arknights.wikiru.jp/?PhonoR-0",
+    "imgPath": "/img/operators/134.png"
+  },
+  {
     "id": 6,
     "name": "ヤトウ",
     "rarity": 2,
@@ -388,6 +398,16 @@
     "addDay": "2020/01/16",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AF%E3%82%AA%E3%83%BC%E3%83%A9",
     "imgPath": "/img/operators/38.png"
+  },
+  {
+    "id": 135,
+    "name": "バブル",
+    "rarity": 4,
+    "type": "重装",
+    "tags": "['近距離', '防御']",
+    "addDay": "2024/10/31",
+    "wiki": "https://arknights.wikiru.jp/?%E3%83%90%E3%83%96%E3%83%AB",
+    "imgPath": "/img/operators/135.png"
   },
   {
     "id": 39,
@@ -900,6 +920,16 @@
     "imgPath": "/img/operators/132.png"
   },
   {
+    "id": 136,
+    "name": "アオスタ",
+    "rarity": 5,
+    "type": "狙撃",
+    "tags": "['遠距離', '範囲攻撃']",
+    "addDay": "2024/10/31",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%A2%E3%82%AA%E3%82%B9%E3%82%BF",
+    "imgPath": "/img/operators/136.png"
+  },
+  {
     "id": 89,
     "name": "ナイトメア",
     "rarity": 5,
@@ -1198,6 +1228,16 @@
     "addDay": "2024/04/30",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%A6%E3%83%BC%E3%83%8D%E3%82%AF%E3%83%86%E3%82%B9",
     "imgPath": "/img/operators/117.png"
+  },
+  {
+    "id": 137,
+    "name": "ブレミシャイン",
+    "rarity": 6,
+    "type": "重装",
+    "tags": "['近距離', '火力', '防御', '治療']",
+    "addDay": "2024/10/31",
+    "wiki": "https://arknights.wikiru.jp/?%E3%83%96%E3%83%AC%E3%83%9F%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3",
+    "imgPath": "/img/operators/137.png"
   },
   {
     "id": 118,
