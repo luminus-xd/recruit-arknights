@@ -35,10 +35,12 @@ export default function Home() {
                   className="text-rose-600 dark:text-rose-500"
                   dateTime="2024-07-31"
                 >
-                  2024-07-31
+                  2024-10-31
                 </time>
                 <br />
-                <span>スルト、エイプリル、アレーンを追加しました。</span>
+                <span>
+                  PhonoR-0、バブル、アオスタ、ブレミシャインを追加しました。
+                </span>
               </p>
             </div>
           </div>
