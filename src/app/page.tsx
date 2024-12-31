@@ -30,18 +30,32 @@ export default function Home() {
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 コピーされたURLを共有することで、タグの選択状態も共有できます。
               </p>
-              <p className="mt-4 text-sm font-bold">
-                <time
-                  className="text-rose-600 dark:text-rose-500"
-                  dateTime="2024-07-31"
-                >
-                  2024-10-31
-                </time>
-                <br />
-                <span>
-                  PhonoR-0、バブル、アオスタ、ブレミシャインを追加しました。
-                </span>
-              </p>
+              <ul className="flex flex-col mt-4 gap-2">
+                <li className="text-sm font-bold">
+                  <time
+                    className="text-rose-600 dark:text-rose-500"
+                    dateTime="2024-12-31"
+                  >
+                    2024-12-31
+                  </time>
+                  <br />
+                  <span>
+                    エリート、及び上級エリートを選択した場合に、優先してエリート系列のオペレーターを表示するようにロジックを変更しました。
+                  </span>
+                </li>
+                <li className="text-sm font-bold">
+                  <time
+                    className="text-rose-600 dark:text-rose-500"
+                    dateTime="2024-07-31"
+                  >
+                    2024-10-31
+                  </time>
+                  <br />
+                  <span>
+                    PhonoR-0、バブル、アオスタ、ブレミシャインを追加しました。
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
           <Separator className="my-8" />

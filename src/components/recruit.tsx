@@ -52,7 +52,7 @@ export default function Recruit() {
           }
         } else {
           toast.warning(
-            "タグの選択数が上限になりました。<br>6個まで選択可能です",
+            "タグの選択数が上限になりました。6個まで選択可能です",
             {
               description: `選択中: ${selectedItems.join(", ")}`,
             }
