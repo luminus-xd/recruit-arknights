@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import type { Tag, Type, Position } from "@/types/recruit";
 import { positions, tags, types } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ export const useInitializeCheckboxes = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [selectedCount, setSelectedCount] = useState(0);
 
-  useEffect(() => {
+  const initializeState = useCallback(() => {
     const params = new URLSearchParams(window.location.search);
     const items = params.get("selectedItems")?.split(",") || [];
     const initialCheckedItems: { [key: string]: boolean } = {};
@@ -32,6 +32,11 @@ export const useInitializeCheckboxes = () => {
     setSelectedItems(items);
     setSelectedCount(items.length);
   }, []);
+
+
+  useEffect(() => {
+    initializeState();
+  }, [initializeState]);
 
   return {
     checkedItems,
