@@ -54,7 +54,7 @@ export default function Recruit() {
           toast.warning(
             "タグの選択数が上限になりました。<br>6個まで選択可能です",
             {
-              description: `選択中: <b>${selectedItems.join(", ")}</b>`,
+              description: `選択中: ${selectedItems.join(", ")}`,
             }
           );
         }

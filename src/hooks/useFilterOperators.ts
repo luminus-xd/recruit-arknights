@@ -61,7 +61,22 @@ export const useFilterOperators = (
     }
   });
 
-  return Object.entries(filteredResults)
-    .sort((a, b) => b[0].split(" + ").length - a[0].split(" + ").length)
-    .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+  // ソートロジックの変更
+  const sortedResults = Object.entries(filteredResults).sort((a, b) => {
+    const aIncludesElite = a[0].includes("エリート") || a[0].includes("上級エリート");
+    const bIncludesElite = b[0].includes("エリート") || b[0].includes("上級エリート");
+
+    if (aIncludesElite && !bIncludesElite) {
+      return -1; // aを優先
+    }
+    if (!aIncludesElite && bIncludesElite) {
+      return 1; // bを優先
+    }
+
+    // エリート/上級エリートが含まれない場合は、タグの数でソート
+    return b[0].split(" + ").length - a[0].split(" + ").length;
+  });
+
+
+  return sortedResults.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 };
