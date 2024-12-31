@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useCallback,
 } from "react";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
@@ -11,32 +12,48 @@ import { toast } from "sonner";
 interface RecruitContextType {
   recruitData: Recruit | null;
   isLoading: boolean;
+  error: Error | null;
+  refreshData: () => void;
 }
 
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 
 export const RecruitProvider = ({ children }: { children: ReactNode }) => {
   const [recruitData, setRecruitData] = useState<Recruit | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/json/ak-recruit.json");
-        const data: Recruit = await response.json();
-        setRecruitData(data);
-      } catch (error) {
-        toast.error("公開求人データの取得に失敗しました");
-      } finally {
-        setIsLoading(false);
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch("/json/ak-recruit.json");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
-
-    fetchData();
+      const data: Recruit = await response.json();
+      setRecruitData(data);
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error("Failed to fetch recruit data");
+      setError(error);
+      toast.error("公開求人データの取得に失敗しました");
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+
+  const refreshData = () => {
+    fetchData();
+  };
+
   return (
-    <RecruitContext.Provider value={{ recruitData, isLoading }}>
+    <RecruitContext.Provider value={{ recruitData, isLoading, error, refreshData }}>
       {children}
     </RecruitContext.Provider>
   );
