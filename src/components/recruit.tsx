@@ -161,7 +161,7 @@ export default function Recruit() {
 
       {/* フィルタリングされたオペレーターの表示 */}
       <div className="grid mt-8 gap-8">
-        <TooltipProvider>
+        <TooltipProvider delayDuration={260}>
           {Object.entries(filteredOperators).map(([combination, operators]) => (
             <div key={combination}>
               <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
