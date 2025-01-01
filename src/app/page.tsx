@@ -34,6 +34,18 @@ export default function Home() {
                 <li className="text-sm font-bold">
                   <time
                     className="text-rose-600 dark:text-rose-500"
+                    dateTime="2025-01-01"
+                  >
+                    2025-01-01
+                  </time>
+                  <br />
+                  <span>
+                    オペレーターのアイコンをホバーする際に、オペレーター名を表示するよう仕様を追加しました。
+                  </span>
+                </li>
+                <li className="text-sm font-bold">
+                  <time
+                    className="text-rose-600 dark:text-rose-500"
                     dateTime="2024-12-31"
                   >
                     2024-12-31
