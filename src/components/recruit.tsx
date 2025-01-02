@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
 import { positions, tags, types } from "@/lib/utils";
@@ -11,6 +11,12 @@ import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Checkbox from "@/components/checkbox";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import type { Operator } from "@/types/recruit";
 
 export default function Recruit() {
@@ -52,9 +58,9 @@ export default function Recruit() {
           }
         } else {
           toast.warning(
-            "タグの選択数が上限になりました。<br>6個まで選択可能です",
+            "タグの選択数が上限になりました。6個まで選択可能です",
             {
-              description: `選択中: <b>${selectedItems.join(", ")}</b>`,
+              description: `選択中: ${selectedItems.join(", ")}`,
             }
           );
         }
@@ -155,27 +161,37 @@ export default function Recruit() {
 
       {/* フィルタリングされたオペレーターの表示 */}
       <div className="grid mt-8 gap-8">
-        {Object.entries(filteredOperators).map(([combination, operators]) => (
-          <div key={combination}>
-            <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
-            <ul className="flex flex-wrap mt-3 gap-2">
-              {(operators as Operator[]).map((operator) => (
-                <li key={operator.id}>
-                  <a
-                    href={operator.wiki}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <Avatar rarity={operator.rarity}>
-                      <AvatarImage alt={operator.name} src={operator.imgPath} />
-                      <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <TooltipProvider delayDuration={260}>
+          {Object.entries(filteredOperators).map(([combination, operators]) => (
+            <div key={combination}>
+              <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
+              <ul className="flex flex-wrap mt-3 gap-2">
+                {(operators as Operator[]).map((operator) => (
+                  <li key={operator.id}>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <a
+                          className="hover:scale-105"
+                          href={operator.wiki}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <Avatar rarity={operator.rarity}>
+                            <AvatarImage alt={operator.name} src={operator.imgPath} />
+                            <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{operator.name}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </TooltipProvider>
       </div>
     </>
   );

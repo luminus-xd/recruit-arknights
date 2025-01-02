@@ -11,7 +11,7 @@ export default function Footer() {
           <ModeToggle />
         </div>
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          © 2024 luminus
+          © 2025 luminus
         </p>
         <div className="flex items-center space-x-4">
           <a
@@ -42,8 +42,8 @@ export default function Footer() {
   );
 }
 
-interface GithubIconProps extends React.SVGProps<SVGSVGElement> {}
-interface TwitterIconProps extends React.SVGProps<SVGSVGElement> {}
+interface GithubIconProps extends React.SVGProps<SVGSVGElement> { }
+interface TwitterIconProps extends React.SVGProps<SVGSVGElement> { }
 
 function GithubIcon(props: GithubIconProps) {
   return (

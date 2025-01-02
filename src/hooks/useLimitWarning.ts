@@ -12,7 +12,7 @@ export const useLimitWarning = (
 ) => {
   useEffect(() => {
     if (selectedCount >= 7) {
-      toast.warning("タグの選択数が上限になりました。<br>6個まで選択可能です", {
+      toast.warning("タグの選択数が上限になりました。6個まで選択可能です", {
         description: `選択中: <b>${selectedItems.join(", ")}</b>`,
       });
     }
