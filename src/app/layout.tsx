@@ -4,6 +4,7 @@ import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/components/footer";
+import JsonLd from "@/components/json-ld";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
@@ -74,6 +75,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="rcOOuqPq3L3ZCvMVn_xajAE0hxdH6pELLN4965CB_FM"
         />
+        <JsonLd />
       </head>
       <body
         className={`
