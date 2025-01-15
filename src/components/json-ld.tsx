@@ -5,7 +5,7 @@ const JsonLd = () => {
     const JsonLdData: WithContext<SoftwareApplication> = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "Recruitment Arknights",
+        "name": "Arknights Recruitment",
         "operatingSystem": "Web",
         "offers": {
             "@type": "Offer",
