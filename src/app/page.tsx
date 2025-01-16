@@ -34,6 +34,18 @@ export default function Home() {
                 <li className="text-sm font-bold">
                   <time
                     className="text-rose-600 dark:text-rose-500"
+                    dateTime="2025-01-16"
+                  >
+                    2025-01-16
+                  </time>
+                  <br />
+                  <span>
+                    マドロック、ウィスパーレイン、ジャッキーを追加しました。
+                  </span>
+                </li>
+                <li className="text-sm font-bold">
+                  <time
+                    className="text-rose-600 dark:text-rose-500"
                     dateTime="2025-01-01"
                   >
                     2025-01-01
@@ -53,18 +65,6 @@ export default function Home() {
                   <br />
                   <span>
                     エリート、及び上級エリートを選択した場合に、優先してエリート系列のオペレーターを表示するようにロジックを変更しました。
-                  </span>
-                </li>
-                <li className="text-sm font-bold">
-                  <time
-                    className="text-rose-600 dark:text-rose-500"
-                    dateTime="2024-07-31"
-                  >
-                    2024-10-31
-                  </time>
-                  <br />
-                  <span>
-                    PhonoR-0、バブル、アオスタ、ブレミシャインを追加しました。
                   </span>
                 </li>
               </ul>
