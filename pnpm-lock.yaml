@@ -29,6 +29,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.6
         version: 1.1.6(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@vercel/analytics':
+        specifier: ^1.4.1
+        version: 1.4.1(next@15.0.1(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1573,6 +1576,32 @@ packages:
   '@typescript-eslint/visitor-keys@8.11.0':
     resolution: {integrity: sha512-EaewX6lxSjRJnc+99+dqzTeoDZUfyrA52d2/HRrkI830kgovWsmIiTfmr0NZorzqic7ga+1bS60lRBUgR3n/Bw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@vercel/analytics@1.4.1':
+    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==}
+    peerDependencies:
+      '@remix-run/react': ^2
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -5232,6 +5261,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.11.0
       eslint-visitor-keys: 3.4.3
+
+  '@vercel/analytics@1.4.1(next@15.0.1(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+    optionalDependencies:
+      next: 15.0.1(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
 
   '@webassemblyjs/ast@1.12.1':
     dependencies:

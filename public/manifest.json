@@ -1,9 +1,9 @@
 {
-  "id": "/?homescreen=1",
+  "id": "/?pwa=1",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/?homescreen=1",
+  "start_url": "/?pwa=1",
   "name": "AK公開求人",
   "short_name": "AK公開求人",
   "description": "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするアプリケーションです",
