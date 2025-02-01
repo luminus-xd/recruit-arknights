@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { toast } from "sonner";
 import { useRecruit } from "@/contexts/RecruitContext";
-import { positions, tags, types } from "@/lib/utils";
+import { rerityTags, positions, tags, types } from "@/lib/utils";
 import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
@@ -113,6 +113,12 @@ export default function Recruit() {
 
   return (
     <>
+      <CheckboxGroup
+        title="Rarity"
+        description="レアリティ"
+        items={rerityTags}
+        prefix="rerity"
+      />
       <CheckboxGroup
         title="Type"
         description="職分"

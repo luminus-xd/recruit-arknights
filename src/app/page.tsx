@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { Separator } from "@/components/ui/separator";
 import Recruit from "@/components/recruit";
+import DialogUpdateLog from "@/components/dialog-update-log";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { ClipboardCopy } from "lucide-react";
 
@@ -30,44 +31,9 @@ export default function Home() {
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 コピーされたURLを共有することで、タグの選択状態も共有できます。
               </p>
-              <ul className="flex flex-col mt-4 gap-2">
-                <li className="text-sm font-bold">
-                  <time
-                    className="text-rose-600 dark:text-rose-500"
-                    dateTime="2025-01-16"
-                  >
-                    2025-01-16
-                  </time>
-                  <br />
-                  <span>
-                    マドロック、ウィスパーレイン、ジャッキーを追加しました。
-                  </span>
-                </li>
-                <li className="text-sm font-bold">
-                  <time
-                    className="text-rose-600 dark:text-rose-500"
-                    dateTime="2025-01-01"
-                  >
-                    2025-01-01
-                  </time>
-                  <br />
-                  <span>
-                    オペレーターのアイコンをホバーする際に、オペレーター名を表示するよう仕様を追加しました。
-                  </span>
-                </li>
-                <li className="text-sm font-bold">
-                  <time
-                    className="text-rose-600 dark:text-rose-500"
-                    dateTime="2024-12-31"
-                  >
-                    2024-12-31
-                  </time>
-                  <br />
-                  <span>
-                    エリート、及び上級エリートを選択した場合に、優先してエリート系列のオペレーターを表示するようにロジックを変更しました。
-                  </span>
-                </li>
-              </ul>
+              <div className="mt-4">
+                <DialogUpdateLog />
+              </div>
             </div>
           </div>
           <Separator className="my-8" />

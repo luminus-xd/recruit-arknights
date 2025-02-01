@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import type { Tag, Type, Position } from "@/types/recruit";
-import { positions, tags, types } from "@/lib/utils";
+import type { Tag, RerityTag, Type, Position } from "@/types/recruit";
+import { rerityTags, positions, tags, types } from "@/lib/utils";
 
 /**
  * ページロード時にURLのクエリパラメータを解析し、初期状態を設定
@@ -20,6 +20,7 @@ export const useInitializeCheckboxes = () => {
 
     items.forEach((item) => {
       if (
+        rerityTags.includes(item as RerityTag) ||
         tags.includes(item as Tag) ||
         positions.includes(item as Position) ||
         types.includes(item as Type)
