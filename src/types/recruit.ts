@@ -9,6 +9,9 @@ export type Type =
   | "医療"
   | "補助"
   | "特殊";
+
+export type RerityTag = "ロボット" | "エリート" | "上級エリート";
+
 export type Tag =
   | "初期"
   | "火力"
@@ -25,10 +28,7 @@ export type Tag =
   | "爆発力"
   | "召喚"
   | "高速再配置"
-  | "元素"
-  | "ロボット"
-  | "エリート"
-  | "上級エリート";
+  | "元素";
 
 export type Recruit = Operator[];
 

@@ -1,7 +1,9 @@
-import type { Position, Tag, Type } from "@/types/recruit";
+import type { RerityTag, Position, Tag, Type } from "@/types/recruit";
 
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+
+export const rerityTags: RerityTag[] = ["ロボット", "エリート", "上級エリート"];
 
 export const positions: Position[] = ["近距離", "遠距離"];
 
@@ -32,10 +34,7 @@ export const tags: Tag[] = [
   "爆発力",
   "召喚",
   "高速再配置",
-  "元素",
-  "ロボット",
-  "エリート",
-  "上級エリート",
+  "元素"
 ];
 
 export function cn(...inputs: ClassValue[]) {
