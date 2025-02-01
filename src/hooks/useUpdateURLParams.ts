@@ -6,6 +6,9 @@ import { useEffect } from "react";
  */
 export const useUpdateURLParams = (selectedItems: string[]) => {
   useEffect(() => {
+    // ブラウザ環境でのみ実行
+    if (typeof window === "undefined") return;
+
     const params = new URLSearchParams(window.location.search);
     if (selectedItems.length > 0) {
       params.set("selectedItems", selectedItems.join(","));
