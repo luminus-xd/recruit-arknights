@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
   useCallback,
+  useMemo,
 } from "react";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
@@ -26,14 +27,18 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     try {
-      const response = await fetch("/json/ak-recruit.json");
+      const response = await fetch("/json/ak-recruit.json", { signal });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data: Recruit = await response.json();
       setRecruitData(data);
     } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
       const error = err instanceof Error ? err : new Error("Failed to fetch recruit data");
       setError(error);
       toast.error("公開求人データの取得に失敗しました");
@@ -42,18 +47,19 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-
-  const refreshData = () => {
-    fetchData();
-  };
+  const contextValue = useMemo(() => ({
+    recruitData,
+    isLoading,
+    error,
+    refreshData: fetchData,
+  }), [recruitData, isLoading, error, fetchData]);
 
   return (
-    <RecruitContext.Provider value={{ recruitData, isLoading, error, refreshData }}>
+    <RecruitContext.Provider value={contextValue}>
       {children}
     </RecruitContext.Provider>
   );
