@@ -9,9 +9,9 @@ const TAG_KEYWORDS = allTags;
 const FUZZY_THRESHOLD_RATIO = 0.3;
 
 /**
- * キーワードと対象テキストがファジーマッチするかどうかを判定する。
+ * キーワードと対象テキストがファジーマッチするかどうかを判定する
  * まずは正規表現による完全一致チェック（大文字小文字無視）、
- * その上で Levenshtein 距離による判定を行う。
+ * その上で Levenshtein 距離による判定を行う
  * @param target OCR 結果の行
  * @param keyword 比較対象のタグ
  */
@@ -39,7 +39,6 @@ export async function POST(req: NextRequest) {
         const buffer = Buffer.from(imageBase64, 'base64');
         const client = getVisionClient();
 
-        // OCR を実行
         const [result] = await client.documentTextDetection({
             image: { content: buffer },
             imageContext: {
@@ -56,15 +55,11 @@ export async function POST(req: NextRequest) {
         // 結果を格納する Set
         const foundTags = new Set<string>();
 
-        // 各行について処理
         for (const line of lines) {
-            // まず「上級エリート」と「エリート」について特別に処理
             if (isFuzzyMatch(line, "上級エリート")) {
-                // 行内に「上級エリート」が含まれる場合は必ず抽出
                 foundTags.add("上級エリート");
 
                 // 行内に「上級エリート」以外の独立した「エリート」が存在するかチェック
-                // 正規表現の lookbehind で「上級」に続かない「エリート」を探す
                 if (/(?<!上級)エリート/.test(line)) {
                     foundTags.add("エリート");
                 }
@@ -73,7 +68,6 @@ export async function POST(req: NextRequest) {
                 foundTags.add("エリート");
             }
 
-            // その他のタグについては通常の処理
             for (const keyword of TAG_KEYWORDS.filter(k => k !== "エリート" && k !== "上級エリート")) {
                 if (isFuzzyMatch(line, keyword)) {
                     foundTags.add(keyword);
