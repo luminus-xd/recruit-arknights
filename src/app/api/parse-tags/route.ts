@@ -1,9 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getVisionClient } from '@/lib/google-vision';
 import { allTags } from "@/lib/utils";
+import levenshtein from 'fast-levenshtein';
 
-// タグのキーワード例
 const TAG_KEYWORDS = allTags;
+
+// ファジーマッチングの許容割合（例：キーワード長の30%以内の差ならマッチとする）
+const FUZZY_THRESHOLD_RATIO = 0.3;
+
+/**
+ * キーワードと対象テキストがファジーマッチするかどうかを判定する。
+ * まずは正規表現による完全一致チェック（大文字小文字無視）、
+ * その上で Levenshtein 距離による判定を行う。
+ * @param target OCR 結果の行
+ * @param keyword 比較対象のタグ
+ */
+const isFuzzyMatch = (target: string, keyword: string): boolean => {
+    const regex = new RegExp(keyword, 'i');
+    if (regex.test(target)) return true;
+
+    const distance = levenshtein.get(target, keyword);
+    const threshold = Math.floor(keyword.length * FUZZY_THRESHOLD_RATIO);
+    return distance <= threshold;
+};
 
 export async function POST(req: NextRequest) {
     try {
@@ -18,11 +37,9 @@ export async function POST(req: NextRequest) {
         }
 
         const buffer = Buffer.from(imageBase64, 'base64');
-
-        // APIクライアント取得
         const client = getVisionClient();
 
-        // OCRを実行
+        // OCR を実行
         const [result] = await client.documentTextDetection({
             image: { content: buffer },
             imageContext: {
@@ -31,25 +48,43 @@ export async function POST(req: NextRequest) {
         });
 
         const detections = result.fullTextAnnotation?.text || '';
-
-        // 行ごとに分割
         const lines: string[] = detections
             .split('\n')
             .map(line => line.trim())
             .filter(Boolean);
 
-        // キーワードを含む行を抽出し、重複排除
-        const foundTags: string[] = [];
+        // 結果を格納する Set
+        const foundTags = new Set<string>();
+
+        // 各行について処理
         for (const line of lines) {
-            for (const keyword of TAG_KEYWORDS) {
-                if (line.includes(keyword)) {
-                    foundTags.push(keyword);
+            // まず「上級エリート」と「エリート」について特別に処理
+            if (isFuzzyMatch(line, "上級エリート")) {
+                // 行内に「上級エリート」が含まれる場合は必ず抽出
+                foundTags.add("上級エリート");
+
+                // 行内に「上級エリート」以外の独立した「エリート」が存在するかチェック
+                // 正規表現の lookbehind で「上級」に続かない「エリート」を探す
+                if (/(?<!上級)エリート/.test(line)) {
+                    foundTags.add("エリート");
+                }
+            } else if (isFuzzyMatch(line, "エリート")) {
+                // 「上級エリート」がない場合、単体で「エリート」があれば抽出
+                foundTags.add("エリート");
+            }
+
+            // その他のタグについては通常の処理
+            for (const keyword of TAG_KEYWORDS.filter(k => k !== "エリート" && k !== "上級エリート")) {
+                if (isFuzzyMatch(line, keyword)) {
+                    foundTags.add(keyword);
                 }
             }
         }
-        const uniqueTags = Array.from(new Set(foundTags));
 
-        console.log(lines);
+        const uniqueTags = Array.from(foundTags);
+
+        console.log("OCR取得結果の行:", lines);
+        console.log("抽出されたタグ:", uniqueTags);
 
         return NextResponse.json({ tags: uniqueTags });
     } catch (error) {

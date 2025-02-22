@@ -79,20 +79,33 @@ export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
                 <h2 className="text-3xl font-bold">Image Analysis</h2>
                 <p className="mt-1 text-gray-500 dark:text-gray-400">画像解析</p>
             </hgroup>
-            <div className="grid w-full max-w-sm items-center gap-2 mt-6">
-                <Label htmlFor="picture">公開求人画面のスクリーンショット</Label>
+            <p className='text-sm text-gray-500 dark:text-gray-400 mt-4'>
+                <span className='block'>公開求人画面のスクリーンショットを用いて、タグを抽出します</span>
+            </p>
+            <ul className="text-sm text-gray-500 list-disc list-inside mt-2 dark:text-gray-400">
+                <li>
+                    横幅1000px以上の画像サイズが推奨されます
+                </li>
+                <li>
+                    完璧にタグを抽出できない場合があります
+                </li>
+            </ul>
+            <div className="grid w-full max-w-sm items-center gap-2 mt-4">
+                <Label htmlFor="picture">
+                    スクリーンショット <span className='text-gray-500 dark:text-gray-400'>(.png, .jpg, .jpeg, .webp)</span>
+                </Label>
                 <Input
                     id="picture"
+                    className='mt-1 text-sm text-gray-500 dark:text-gray-400'
                     onChange={handleFileChange}
                     type="file"
-                    accept="image/*"
-                    placeholder=''
+                    accept="image/png, image/jpeg, image/webp"
                 />
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {ocrTags.length > 0 && (
-                <div className="mt-4">
-                    <h2>抽出されたタグ</h2>
+                <div className="mt-6">
+                    <h2 className='text-lg font-bold'>抽出されたタグ</h2>
                     <ul className="flex flex-wrap gap-2 mt-2">
                         {ocrTags.map((item, i) => (
                             <li
