@@ -1,19 +1,16 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { Tag, RerityTag, Type, Position } from "@/types/recruit";
 import { rerityTags, positions, tags, types } from "@/lib/utils";
 
-/**
- * ページロード時にURLのクエリパラメータを解析し、初期状態を設定
- * @returns
- */
-export const useInitializeCheckboxes = () => {
-  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+export const useCheckboxState = () => {
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [selectedCount, setSelectedCount] = useState(0);
 
-  const initializeState = useCallback(() => {
+  /**
+   * URLパラメータ(selectedItems=...) からチェック済みの項目を読み取る
+   */
+  const initializeFromUrl = useCallback(() => {
     const params = new URLSearchParams(window.location.search);
     const items = params.get("selectedItems")?.split(",") || [];
     const initialCheckedItems: { [key: string]: boolean } = {};
@@ -34,10 +31,9 @@ export const useInitializeCheckboxes = () => {
     setSelectedCount(items.length);
   }, []);
 
-
   useEffect(() => {
-    initializeState();
-  }, [initializeState]);
+    initializeFromUrl();
+  }, [initializeFromUrl]);
 
   return {
     checkedItems,
