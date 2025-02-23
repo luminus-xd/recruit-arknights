@@ -93,17 +93,17 @@ export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
     return (
         <>
             <hgroup className="flex items-center gap-3">
-                <h2 className="text-3xl font-bold">Image Analysis</h2>
+                <h2 className="text-3xl font-extrabold tracking-tight">Image Analysis</h2>
                 <p className="mt-1 text-gray-500 dark:text-gray-400">画像解析</p>
             </hgroup>
-            <p className='text-sm text-gray-700 dark:text-gray-200 mt-4'>
+            <p className='text-sm leading-6 text-gray-600 dark:text-gray-300 mt-4'>
                 <span className='block'>公開求人画面のスクリーンショットを用いて、タグを抽出します</span>
             </p>
-            <ul className="text-sm text-gray-500 list-disc list-inside mt-2 dark:text-gray-400">
+            <ul className="text-sm ml-0 text-gray-500 list-disc list-inside mt-2 dark:text-gray-400">
                 <li>横幅1000px以上の画像サイズが推奨されます</li>
                 <li>完璧にタグを抽出できない場合があります</li>
             </ul>
-            <div className="grid w-full max-w-sm items-center gap-2 mt-4">
+            <div className="grid w-full max-w-sm items-center gap-2 mt-6">
                 <Label htmlFor="picture">
                     スクリーンショット <span className='text-gray-500 dark:text-gray-400'>(.png, .jpg, .jpeg, .webp)</span>
                 </Label>

@@ -15,7 +15,7 @@ export default function Operators() {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mt-4">Operators</h2>
+      <h2 className="text-2xl font-bold tracking-tight mt-4">Operators</h2>
       <p className="text-gray-500 dark:text-gray-400">
         クリックすると白Wikiのページに遷移します
       </p>

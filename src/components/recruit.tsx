@@ -109,7 +109,7 @@ export default function Recruit() {
   }) => (
     <>
       <hgroup className="flex items-center gap-3">
-        <h2 className="text-3xl font-bold">{title}</h2>
+        <h2 className="text-3xl font-extrabold tracking-tight">{title}</h2>
         <p className="mt-1 text-gray-500 dark:text-gray-400">{description}</p>
       </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -173,7 +173,7 @@ export default function Recruit() {
       {/* 選択されたタグの表示 */}
       <div className="mt-8">
         <hgroup className="flex items-center gap-3">
-          <h2 className="text-3xl font-bold">Result</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight">Result</h2>
           <p className="mt-1 text-gray-500 dark:text-gray-400">結果</p>
         </hgroup>
         <p className="text-sm text-gray-500 dark:text-gray-400">
