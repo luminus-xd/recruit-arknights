@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 

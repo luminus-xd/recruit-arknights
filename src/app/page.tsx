@@ -40,7 +40,11 @@ export default function Home() {
           <Recruit />
         </article>
       </RecruitProvider>
-      <Toaster richColors />
+      <Toaster richColors toastOptions={{
+        classNames: {
+          description: 'text-gray-800'
+        },
+      }} />
     </main>
   );
 }
