@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
   title: "Arknights Recruitment | アークナイツ公開求人ツール",
   description:
-    "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするWebアプリケーション。最終タグ更新日時 2025年1月16日",
+    "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするWebアプリ。最終タグ更新日時 2025年1月16日",
   icons: {
     apple: "/apple-touch-icon.png",
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
     description:
-      "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするWebアプリケーション。最終タグ更新日時 2025年1月16日",
+      "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするWebアプリ。最終タグ更新日時 2025年1月16日",
     images: "/img/icon.png",
   },
   twitter: {

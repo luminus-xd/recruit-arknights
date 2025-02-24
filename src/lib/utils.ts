@@ -37,6 +37,8 @@ export const tags: Tag[] = [
   "元素"
 ];
 
+export const allTags = [...rerityTags, ...positions, ...types, ...tags];
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

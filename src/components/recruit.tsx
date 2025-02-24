@@ -1,12 +1,18 @@
 import { useCallback } from "react";
 import { toast } from "sonner";
+
 import { useRecruit } from "@/contexts/RecruitContext";
+
 import { rerityTags, positions, tags, types } from "@/lib/utils";
-import { useInitializeCheckboxes } from "@/hooks/useInitializeCheckboxes";
+
+import { useCheckboxState } from "@/hooks/useCheckboxState";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
 import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
+import { useOcrTagApplicator } from "@/hooks/useOcrTagApplicator";
 import { useFilterOperators } from "@/hooks/useFilterOperators";
 import { useResetCheckboxes } from "@/hooks/useResetCheckboxes";
+
+import ScreenshotAnalysis from "@/components/screenshot-analysis";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,6 +23,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+
 import type { Operator } from "@/types/recruit";
 
 export default function Recruit() {
@@ -28,7 +35,15 @@ export default function Recruit() {
     setSelectedItems,
     selectedCount,
     setSelectedCount,
-  } = useInitializeCheckboxes();
+  } = useCheckboxState();
+
+  const { applyOcrTags } = useOcrTagApplicator({
+    checkedItems,
+    setCheckedItems,
+    selectedItems,
+    setSelectedItems,
+    setSelectedCount,
+  });
 
   const filteredOperators = useFilterOperators(recruitData, selectedItems);
 
@@ -94,7 +109,7 @@ export default function Recruit() {
   }) => (
     <>
       <hgroup className="flex items-center gap-3">
-        <h2 className="text-3xl font-bold">{title}</h2>
+        <h2 className="text-3xl font-extrabold tracking-tight">{title}</h2>
         <p className="mt-1 text-gray-500 dark:text-gray-400">{description}</p>
       </hgroup>
       <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -113,25 +128,39 @@ export default function Recruit() {
 
   return (
     <>
-      <CheckboxGroup
-        title="Rarity"
-        description="レアリティ"
-        items={rerityTags}
-        prefix="rerity"
+      <ScreenshotAnalysis
+        checkedItems={checkedItems}
+        setCheckedItems={setCheckedItems}
+        selectedItems={selectedItems}
+        setSelectedItems={setSelectedItems}
+        selectedCount={selectedCount}
+        setSelectedCount={setSelectedCount}
+        applyOcrTags={applyOcrTags}
       />
-      <CheckboxGroup
-        title="Type"
-        description="職分"
-        items={types}
-        prefix="type"
-      />
-      <CheckboxGroup
-        title="Position"
-        description="位置"
-        items={positions}
-        prefix="position"
-      />
-      <CheckboxGroup title="Tag" description="タグ" items={tags} prefix="tag" />
+
+      <Separator className="my-8" />
+
+      <div className="mt-8">
+        <CheckboxGroup
+          title="Rarity"
+          description="レアリティ"
+          items={rerityTags}
+          prefix="rerity"
+        />
+        <CheckboxGroup
+          title="Type"
+          description="職分"
+          items={types}
+          prefix="type"
+        />
+        <CheckboxGroup
+          title="Position"
+          description="位置"
+          items={positions}
+          prefix="position"
+        />
+        <CheckboxGroup title="Tag" description="タグ" items={tags} prefix="tag" />
+      </div>
 
       <div className="mt-4">
         <Button className="text-sm" onClick={resetCheckboxes}>
@@ -144,7 +173,7 @@ export default function Recruit() {
       {/* 選択されたタグの表示 */}
       <div className="mt-8">
         <hgroup className="flex items-center gap-3">
-          <h2 className="text-3xl font-bold">Result</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight">Result</h2>
           <p className="mt-1 text-gray-500 dark:text-gray-400">結果</p>
         </hgroup>
         <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -152,16 +181,16 @@ export default function Recruit() {
         </p>
         <div className="mt-6">
           <h3 className="text-lg font-bold">選択されたタグ</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
+          <ul className="flex flex-wrap gap-2 mt-2">
             {selectedItems.map((item) => (
-              <span
+              <li
                 key={item}
                 className="inline-block text-xs bg-gray-200 dark:bg-gray-300 text-gray-700 dark:text-stone-950 font-bold px-3 py-1 rounded-full"
               >
                 {item}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 
