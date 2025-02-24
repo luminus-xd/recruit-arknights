@@ -42,6 +42,9 @@ const fetcherPost = async (
     return res.json();
 };
 
+/**
+ * スクリーンショット解析用のカスタムフック
+ */
 export function useScreenshotAnalysis() {
     const { trigger, data, error, isMutating } = useSWRMutation(
         "/api/parse-tags",
