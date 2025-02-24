@@ -1,8 +1,7 @@
 import type { Recruit, Operator } from "@/types/recruit";
 
 /**
- * 選択された項目に基づいてリクルートデータをフィルタリングし、フィルタリングされた結果を返します
- *
+ * 選択された項目に基づいてリクルートデータをフィルタリングし、フィルタリングされた結果を返す
  * @param recruitData - フィルタリングするデータ
  * @param selectedItems - 選択されたタグ、タイプ、またはポジション
  * @returns - 選択された項目の組み合わせごとにグループ化されたフィルタリング結果
@@ -18,8 +17,7 @@ export const useFilterOperators = (
   const hasUpperElite = selectedItems.includes("上級エリート");
 
   /**
-   * 選択された項目の組み合わせに基づいてオペレーターをフィルタリングします
-   *
+   * 選択された項目の組み合わせに基づいてオペレーターをフィルタリング
    * @param combination - 選択された項目の組み合わせ
    * @param operators - フィルタリングするオペレーターのリスト
    * @returns - フィルタリングされたオペレーター
@@ -40,7 +38,7 @@ export const useFilterOperators = (
   };
 
   /**
-   * 選択された項目のすべての非空の組み合わせを生成します
+   * 選択された項目のすべての非空の組み合わせを作成
    * @param array - 選択された項目の配列
    * @returns - 組み合わせの配列
    */
@@ -57,11 +55,12 @@ export const useFilterOperators = (
     const combinationKey = combination.join(" + ");
     const filtered = filterByCombination(combination, recruitData);
     if (filtered.length > 0) {
+      // rarityが低い順（昇順）に並び替え
+      filtered.sort((a, b) => a.rarity - b.rarity);
       filteredResults[combinationKey] = filtered;
     }
   });
 
-  // ソートロジックの変更
   const sortedResults = Object.entries(filteredResults).sort((a, b) => {
     const aIncludesUpperElite = a[0].includes("上級エリート");
     const bIncludesUpperElite = b[0].includes("上級エリート");
@@ -84,7 +83,6 @@ export const useFilterOperators = (
     // エリート/上級エリートが含まれない場合は、タグの数でソート
     return b[0].split(" + ").length - a[0].split(" + ").length;
   });
-
 
   return sortedResults.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 };
