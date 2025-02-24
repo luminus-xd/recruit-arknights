@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { toast } from "sonner";
 
 import { Label } from "@/components/ui/label";
@@ -16,79 +16,72 @@ interface ScreenshotAnalysisProps {
     applyOcrTags: (ocrTags: string[]) => void;
 }
 
+const readFileAsync = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (typeof reader.result === "string") {
+                resolve(reader.result);
+            } else {
+                reject("ファイル読み込み結果が文字列ではありません。");
+            }
+        };
+        reader.onerror = () => reject("ファイルの読み込みに失敗しました。");
+        reader.readAsDataURL(file);
+    });
+};
+
 export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
     const { applyOcrTags } = props;
-
     const [ocrTags, setOcrTags] = useState<string[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
+
         setError(null);
         setIsLoading(true);
 
         try {
-            const reader = new FileReader();
-            reader.onload = async () => {
-                if (typeof reader.result === "string") {
-                    const base64 = reader.result.split(",")[1];
+            const fileDataUrl = await readFileAsync(file);
+            const base64 = fileDataUrl.split(",")[1];
 
-                    try {
-                        const response = await fetch("/api/parse-tags", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ imageBase64: base64 }),
-                        });
+            const response = await fetch("/api/parse-tags", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ imageBase64: base64 }),
+            });
 
-                        if (!response.ok) {
-                            const { error } = await response.json();
-                            setError(error);
-                            return;
-                        }
+            if (!response.ok) {
+                const { error } = await response.json();
+                setError(error);
+                return;
+            }
 
-                        const data = await response.json();
-                        const extractedTags: string[] = data.tags || [];
+            const data = await response.json();
+            const extractedTags: string[] = data.tags || [];
 
-                        if (extractedTags.length === 0) {
-                            toast.error("タグの抽出に失敗しました", {
-                                description: "解像度や明るさなどにより、画像解析が困難な場合があります。",
-                            });
-                            return;
-                        }
+            if (extractedTags.length === 0) {
+                toast.error("タグの抽出に失敗しました", {
+                    description: "解像度や明るさなどにより、画像解析が困難な場合があります。",
+                });
+                return;
+            }
 
-                        setOcrTags(extractedTags);
-                        applyOcrTags(extractedTags);
-
-                        toast.success(
-                            "タグの抽出が完了しました",
-                            {
-                                description: `タグ: ${extractedTags.join(", ")}`,
-                            }
-                        );
-
-                    } catch (err) {
-                        console.error(err);
-                        setError("画像解析中にエラーが発生しました。");
-                    } finally {
-                        setIsLoading(false);
-                    }
-                }
-            };
-
-            reader.onerror = () => {
-                setError("ファイルの読み込みに失敗しました。");
-                setIsLoading(false);
-            };
-
-            reader.readAsDataURL(file);
+            setOcrTags(extractedTags);
+            applyOcrTags(extractedTags);
+            toast.success("タグの抽出が完了しました", {
+                description: `タグ: ${extractedTags.join(", ")}`,
+            });
         } catch (err) {
             console.error(err);
-            setError("ファイルの読み込みでエラーが発生しました。");
+            setError("画像解析中にエラーが発生しました。");
+        } finally {
             setIsLoading(false);
         }
-    };
+    }, [applyOcrTags]);
 
     return (
         <>
