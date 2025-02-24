@@ -1,12 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { createContext, useContext, ReactNode, useMemo, useEffect } from "react";
+import useSWR from "swr";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
 
@@ -14,49 +7,42 @@ interface RecruitContextType {
   recruitData: Recruit | null;
   isLoading: boolean;
   error: Error | null;
-  refreshData: () => void;
+  refreshData: () => Promise<Recruit | undefined>;
 }
 
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 
+const fetcher = async (url: string): Promise<Recruit> => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+  return res.json();
+};
+
 export const RecruitProvider = ({ children }: { children: ReactNode }) => {
-  const [recruitData, setRecruitData] = useState<Recruit | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    try {
-      const response = await fetch("/json/ak-recruit.json", { signal });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data: Recruit = await response.json();
-      setRecruitData(data);
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return;
-      const error = err instanceof Error ? err : new Error("Failed to fetch recruit data");
-      setError(error);
-      toast.error("公開求人データの取得に失敗しました");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const { data, error, mutate } = useSWR<Recruit>("/json/ak-recruit.json", fetcher);
+  const isLoading = !data && !error;
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if (error) {
+      toast.error("公開求人データの取得に失敗しました");
+    }
+  }, [error]);
 
-  const contextValue = useMemo(() => ({
-    recruitData,
-    isLoading,
-    error,
-    refreshData: fetchData,
-  }), [recruitData, isLoading, error, fetchData]);
+  const refreshData = async () => {
+    return mutate();
+  };
+
+  const contextValue = useMemo(
+    () => ({
+      recruitData: data ?? null,
+      isLoading,
+      error: error ?? null,
+      refreshData,
+    }),
+    [data, isLoading, error]
+  );
 
   return (
     <RecruitContext.Provider value={contextValue}>

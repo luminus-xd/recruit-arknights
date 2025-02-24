@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-
 import withPWA from "next-pwa";
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const pwaConfig = {
   dest: "public",
@@ -13,4 +13,6 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default withPWA(pwaConfig)(nextConfig);
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})(withPWA(pwaConfig)(nextConfig));
