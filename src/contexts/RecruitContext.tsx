@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useMemo, useEffect, useState } from "react";
+import React, { createContext, useContext, ReactNode, useMemo, useEffect, useState, useCallback } from "react";
 import useSWR from "swr";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
@@ -61,7 +61,7 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [error]);
 
-  const refreshData = async () => {
+  const refreshData = useCallback(async () => {
     try {
       return await mutate();
     } catch (refreshError) {
@@ -69,7 +69,7 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
       console.error("データ更新エラー:", refreshError);
       return undefined;
     }
-  };
+  }, [mutate]);
 
   const contextValue = useMemo(
     () => ({
@@ -78,7 +78,7 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
       error: error ?? null,
       refreshData,
     }),
-    [data, localCache, isLoading, error, refreshData]
+    [data, localCache, isLoading, error]
   );
 
   return (
