@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { Recruit, Operator } from "@/types/recruit";
 
 /**
@@ -10,79 +11,169 @@ export const useFilterOperators = (
   recruitData: Recruit | null,
   selectedItems: string[]
 ): { [key: string]: Operator[] } => {
-  if (!recruitData || selectedItems.length === 0) {
-    return {};
-  }
+  return useMemo(() => {
+    if (!recruitData || selectedItems.length === 0) {
+      return {};
+    }
 
-  const hasUpperElite = selectedItems.includes("上級エリート");
+    // 組み合わせ数の制限は不要
 
-  /**
-   * 選択された項目の組み合わせに基づいてオペレーターをフィルタリング
-   * @param combination - 選択された項目の組み合わせ
-   * @param operators - フィルタリングするオペレーターのリスト
-   * @returns - フィルタリングされたオペレーター
-   */
-  const filterByCombination = (
-    combination: string[],
-    operators: Operator[]
-  ): Operator[] => {
-    return operators.filter((operator: Operator) => {
-      return combination.every((item) => {
-        if (item === "エリート" && operator.rarity === 5) return true;
-        if (item === "上級エリート" && operator.rarity === 6) return true;
-        if (operator.rarity === 6 && !combination.includes("上級エリート"))
-          return false;
-        return operator.tags.includes(item as any) || operator.type === item;
+    /**
+     * 選択された項目の組み合わせに基づいてオペレーターをフィルタリング
+     * @param combination - 選択された項目の組み合わせ
+     * @returns - フィルタリングされたオペレーター
+     */
+    const filterByCombination = (combination: string[]): Operator[] => {
+      // 上級エリートタグの存在確認（頻繁に使用されるため事前計算）
+      const hasUpperElite = combination.includes("上級エリート");
+
+      // オペレーターのフィルタリングを最適化
+      return recruitData.filter((operator: Operator) => {
+        // 上級エリートとレアリティ6の処理
+        if (operator.rarity === 6 && !hasUpperElite) return false;
+
+        return combination.every((item) => {
+          // エリートタグとレアリティ5の処理
+          if (item === "エリート" && operator.rarity === 5) return true;
+
+          // 上級エリートタグとレアリティ6の処理
+          if (item === "上級エリート" && operator.rarity === 6) return true;
+
+          // タイプの確認
+          if (operator.type === item) return true;
+
+          // tagsが文字列の場合（"['近距離', '支援', 'ロボット']"のような形式）
+          if (typeof operator.tags === 'string') {
+            try {
+              const tagsStr = operator.tags as string;
+              const tagsArray = tagsStr
+                .replace(/'/g, '"')
+                .replace(/\[|\]/g, '')
+                .split(', ')
+                .map((tag: string) => tag.replace(/"/g, '').trim());
+
+              return tagsArray.includes(item);
+            } catch (e) {
+              console.error('タグの解析エラー:', e);
+              return false;
+            }
+          }
+
+          // 通常の配列の場合
+          return Array.isArray(operator.tags) && operator.tags.includes(item as any);
+        });
       });
+    };
+
+    /**
+     * 選択された項目のすべての組み合わせを生成
+     * 全ての可能な組み合わせを生成する
+     */
+    const generateCombinations = (items: string[]): string[][] => {
+      // 単一タグの組み合わせを先に追加
+      const result: string[][] = items.map(item => [item]);
+
+      // 2つのタグの組み合わせを生成
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          result.push([items[i], items[j]]);
+        }
+      }
+
+      // 3つのタグの組み合わせを生成
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          for (let k = j + 1; k < items.length; k++) {
+            result.push([items[i], items[j], items[k]]);
+          }
+        }
+      }
+
+      // 4つのタグの組み合わせを生成
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          for (let k = j + 1; k < items.length; k++) {
+            for (let l = k + 1; l < items.length; l++) {
+              result.push([items[i], items[j], items[k], items[l]]);
+            }
+          }
+        }
+      }
+
+      // 5つのタグの組み合わせを生成
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          for (let k = j + 1; k < items.length; k++) {
+            for (let l = k + 1; l < items.length; l++) {
+              for (let m = l + 1; m < items.length; m++) {
+                result.push([items[i], items[j], items[k], items[l], items[m]]);
+              }
+            }
+          }
+        }
+      }
+
+      // 6つのタグの組み合わせを生成（6件全て選択された場合）
+      if (items.length === 6) {
+        result.push([items[0], items[1], items[2], items[3], items[4], items[5]]);
+      }
+
+      return result;
+    };
+
+    const allCombinations = generateCombinations(selectedItems);
+    const filteredResults: { [key: string]: Operator[] } = {};
+
+    // Map を使用して結果をキャッシュ
+    const filteredCache = new Map<string, Operator[]>();
+
+    // 各組み合わせに対してフィルタリングを行う（ソートなし）
+    allCombinations.forEach((combination) => {
+      const combinationKey = combination.join(" + ");
+
+      // キャッシュから結果を取得するか、新たに計算
+      let filtered: Operator[];
+      if (filteredCache.has(combinationKey)) {
+        filtered = filteredCache.get(combinationKey)!;
+      } else {
+        // 直接フィルタリングを行う
+        filtered = filterByCombination(combination);
+
+        // 結果をキャッシュ
+        filteredCache.set(combinationKey, filtered);
+      }
+
+      if (filtered.length > 0) {
+        // rarityが低い順（昇順）に並び替え
+        filteredResults[combinationKey] = [...filtered].sort((a, b) => a.rarity - b.rarity);
+      }
     });
-  };
 
-  /**
-   * 選択された項目のすべての非空の組み合わせを作成
-   * @param array - 選択された項目の配列
-   * @returns - 組み合わせの配列
-   */
-  const combinations = (array: string[]): string[][] => {
-    return array
-      .reduce<string[][]>((a, v) => a.concat(a.map((r) => [v, ...r])), [[]])
-      .filter((c) => c.length > 0);
-  };
+    // 結果のソート処理を最適化
+    const sortedResults = Object.entries(filteredResults).sort((a, b) => {
+      const aKey = a[0];
+      const bKey = b[0];
 
-  const allCombinations = combinations(selectedItems);
-  const filteredResults: { [key: string]: Operator[] } = {};
+      // エリートタグの優先度チェックを最適化
+      const aHasUpperElite = aKey.includes("上級エリート");
+      const bHasUpperElite = bKey.includes("上級エリート");
 
-  allCombinations.forEach((combination) => {
-    const combinationKey = combination.join(" + ");
-    const filtered = filterByCombination(combination, recruitData);
-    if (filtered.length > 0) {
-      // rarityが低い順（昇順）に並び替え
-      filtered.sort((a, b) => a.rarity - b.rarity);
-      filteredResults[combinationKey] = filtered;
-    }
-  });
+      if (aHasUpperElite !== bHasUpperElite) {
+        return aHasUpperElite ? -1 : 1;
+      }
 
-  const sortedResults = Object.entries(filteredResults).sort((a, b) => {
-    const aIncludesUpperElite = a[0].includes("上級エリート");
-    const bIncludesUpperElite = b[0].includes("上級エリート");
-    const aIncludesElite = a[0].includes("エリート");
-    const bIncludesElite = b[0].includes("エリート");
+      const aHasElite = aKey.includes("エリート");
+      const bHasElite = bKey.includes("エリート");
 
-    if (aIncludesUpperElite && !bIncludesUpperElite) {
-      return -1; // aを優先（上級エリート）
-    }
-    if (!aIncludesUpperElite && bIncludesUpperElite) {
-      return 1; // bを優先（上級エリート）
-    }
-    if (aIncludesElite && !bIncludesElite) {
-      return -1; // aを優先（エリート）
-    }
-    if (!aIncludesElite && bIncludesElite) {
-      return 1; // bを優先（エリート）
-    }
+      if (aHasElite !== bHasElite) {
+        return aHasElite ? -1 : 1;
+      }
 
-    // エリート/上級エリートが含まれない場合は、タグの数でソート
-    return b[0].split(" + ").length - a[0].split(" + ").length;
-  });
+      // タグの数でソート
+      return bKey.split(" + ").length - aKey.split(" + ").length;
+    });
 
-  return sortedResults.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+    // 最終的な結果オブジェクトを構築
+    return Object.fromEntries(sortedResults);
+  }, [recruitData, selectedItems]); // 依存配列を明示的に指定
 };
