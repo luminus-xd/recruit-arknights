@@ -12,10 +12,8 @@ interface RecruitContextType {
 
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 
-// 最適化されたフェッチャー関数
 const fetcher = async (url: string): Promise<Recruit> => {
   try {
-    // キャッシュ制御を追加
     const res = await fetch(url, {
       cache: 'force-cache', // Next.js 13以降のキャッシュ戦略
       next: { revalidate: 3600 } // 1時間ごとに再検証
@@ -33,10 +31,8 @@ const fetcher = async (url: string): Promise<Recruit> => {
 };
 
 export const RecruitProvider = ({ children }: { children: ReactNode }) => {
-  // ローカルキャッシュを追加
   const [localCache, setLocalCache] = useState<Recruit | null>(null);
 
-  // SWR設定を最適化
   const { data, error, mutate } = useSWR<Recruit>(
     "/json/ak-recruit.json",
     fetcher,
@@ -53,10 +49,8 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   );
 
-  // ローディング状態の最適化
   const isLoading = !data && !error && !localCache;
 
-  // エラーハンドリングの改善
   useEffect(() => {
     if (error) {
       console.error("RecruitContext エラー:", error);
@@ -67,7 +61,6 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [error]);
 
-  // データ更新関数の最適化
   const refreshData = async () => {
     try {
       return await mutate();
@@ -78,7 +71,6 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // コンテキスト値の最適化
   const contextValue = useMemo(
     () => ({
       recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用

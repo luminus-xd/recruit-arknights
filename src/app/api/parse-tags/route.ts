@@ -14,7 +14,7 @@ const resultCache = new Map<string, string[]>();
 const CACHE_MAX_SIZE = 50; // キャッシュの最大サイズ
 
 /**
- * 最適化されたファジーマッチング関数
+ * ファジーマッチング関数
  * @param target OCR 結果の行
  * @param keyword 比較対象のタグ
  */
@@ -95,7 +95,6 @@ export async function POST(req: NextRequest) {
         const buffer = Buffer.from(imageBase64, 'base64');
         const client = getVisionClient();
 
-        // Vision APIリクエストにタイムアウト設定を追加
         const [result] = await Promise.race([
             client.documentTextDetection({
                 image: { content: buffer },
@@ -110,7 +109,6 @@ export async function POST(req: NextRequest) {
 
         const detections = result.fullTextAnnotation?.text || '';
 
-        // 行の分割と前処理を最適化
         const lines: string[] = detections
             .split('\n')
             .map((line: string) => line.trim())
@@ -148,7 +146,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        // 通常タグの処理（並列処理で高速化）
+        // 通常タグの処理
         const tagPromises = lines.map(async (line) => {
             const matchedTags = regularTags.filter(tag => isFuzzyMatch(line, tag));
             return matchedTags;

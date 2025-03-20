@@ -16,8 +16,6 @@ export const useFilterOperators = (
       return {};
     }
 
-    // 組み合わせ数の制限は不要
-
     /**
      * 選択された項目の組み合わせに基づいてオペレーターをフィルタリング
      * @param combination - 選択された項目の組み合わせ
@@ -27,7 +25,6 @@ export const useFilterOperators = (
       // 上級エリートタグの存在確認（頻繁に使用されるため事前計算）
       const hasUpperElite = combination.includes("上級エリート");
 
-      // オペレーターのフィルタリングを最適化
       return recruitData.filter((operator: Operator) => {
         // 上級エリートとレアリティ6の処理
         if (operator.rarity === 6 && !hasUpperElite) return false;
@@ -39,7 +36,6 @@ export const useFilterOperators = (
           // 上級エリートタグとレアリティ6の処理
           if (item === "上級エリート" && operator.rarity === 6) return true;
 
-          // タイプの確認
           if (operator.type === item) return true;
 
           // tagsが文字列の場合（"['近距離', '支援', 'ロボット']"のような形式）
@@ -66,8 +62,7 @@ export const useFilterOperators = (
     };
 
     /**
-     * 選択された項目のすべての組み合わせを生成
-     * 全ての可能な組み合わせを生成する
+     * 選択された項目のすべての可能な組み合わせを生成
      */
     const generateCombinations = (items: string[]): string[][] => {
       // 単一タグの組み合わせを先に追加
@@ -136,10 +131,7 @@ export const useFilterOperators = (
       if (filteredCache.has(combinationKey)) {
         filtered = filteredCache.get(combinationKey)!;
       } else {
-        // 直接フィルタリングを行う
         filtered = filterByCombination(combination);
-
-        // 結果をキャッシュ
         filteredCache.set(combinationKey, filtered);
       }
 
@@ -149,12 +141,10 @@ export const useFilterOperators = (
       }
     });
 
-    // 結果のソート処理を最適化
     const sortedResults = Object.entries(filteredResults).sort((a, b) => {
       const aKey = a[0];
       const bKey = b[0];
 
-      // エリートタグの優先度チェックを最適化
       const aHasUpperElite = aKey.includes("上級エリート");
       const bHasUpperElite = bKey.includes("上級エリート");
 
@@ -173,7 +163,6 @@ export const useFilterOperators = (
       return bKey.split(" + ").length - aKey.split(" + ").length;
     });
 
-    // 最終的な結果オブジェクトを構築
     return Object.fromEntries(sortedResults);
-  }, [recruitData, selectedItems]); // 依存配列を明示的に指定
+  }, [recruitData, selectedItems]);
 };

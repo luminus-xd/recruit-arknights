@@ -2,13 +2,11 @@
 import withPWA from "next-pwa";
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
-// PWA設定の最適化
 const pwaConfig = {
   dest: "public",
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-  // Service Workerのキャッシュ戦略を最適化
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
@@ -90,7 +88,6 @@ const pwaConfig = {
   ],
 };
 
-// Next.js設定の最適化
 const nextConfig = {
   reactStrictMode: true,
   // 画像最適化
@@ -108,7 +105,6 @@ const nextConfig = {
     // optimizeCss: true,
     // scrollRestoration: true,
   },
-  // キャッシュの最適化
   onDemandEntries: {
     // サーバーサイドのページキャッシュの保持時間
     maxInactiveAge: 25 * 1000,
@@ -125,5 +121,4 @@ const analyzerConfig = {
   openAnalyzer: true,
 };
 
-// 設定を組み合わせて最終的な設定を作成
 export default withBundleAnalyzer(analyzerConfig)(withPWA(pwaConfig)(nextConfig));

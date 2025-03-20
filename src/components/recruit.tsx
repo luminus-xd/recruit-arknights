@@ -26,10 +26,10 @@ import {
 
 import type { Operator } from "@/types/recruit";
 
-// メモ化されたチェックボックスコンポーネント
+// チェックボックスコンポーネント
 const MemoizedCheckbox = memo(Checkbox);
 
-// メモ化されたチェックボックスグループコンポーネント
+// チェックボックスグループコンポーネント
 const CheckboxGroup = memo(({
   title,
   description,
@@ -65,7 +65,7 @@ const CheckboxGroup = memo(({
 ));
 CheckboxGroup.displayName = "CheckboxGroup";
 
-// メモ化された選択タグ表示コンポーネント
+// 選択タグ表示コンポーネント
 const SelectedTags = memo(({ selectedItems }: { selectedItems: string[] }) => (
   <div className="mt-8">
     <hgroup className="flex items-center gap-3">
@@ -92,7 +92,7 @@ const SelectedTags = memo(({ selectedItems }: { selectedItems: string[] }) => (
 ));
 SelectedTags.displayName = "SelectedTags";
 
-// メモ化されたオペレーターアイテムコンポーネント
+// オペレーターアイテムコンポーネント
 const OperatorItem = memo(({ operator }: { operator: Operator }) => (
   <li>
     <Tooltip>
@@ -117,7 +117,7 @@ const OperatorItem = memo(({ operator }: { operator: Operator }) => (
 ));
 OperatorItem.displayName = "OperatorItem";
 
-// メモ化されたオペレーター組み合わせコンポーネント
+// オペレーター組み合わせコンポーネント
 const OperatorCombination = memo(({ combination, operators }: { combination: string, operators: Operator[] }) => (
   <div key={combination}>
     <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
@@ -130,7 +130,7 @@ const OperatorCombination = memo(({ combination, operators }: { combination: str
 ));
 OperatorCombination.displayName = "OperatorCombination";
 
-// メモ化されたフィルタリング結果コンポーネント
+// フィルタリング結果コンポーネント
 const FilteredResults = memo(({ filteredOperators }: { filteredOperators: { [key: string]: Operator[] } }) => (
   <div className="grid mt-8 gap-8">
     <TooltipProvider delayDuration={260}>

@@ -62,7 +62,6 @@ const preprocessImage = async (file: File): Promise<string> => {
             canvas.width = width;
             canvas.height = height;
 
-            // 画像を描画
             ctx.drawImage(img, 0, 0, width, height);
 
             // 画像をBase64に変換
@@ -85,7 +84,7 @@ const preprocessImage = async (file: File): Promise<string> => {
 };
 
 /**
- * 最適化されたPOSTリクエスト用のfetcher
+ * POSTリクエスト用のfetcher
  */
 const fetcherPost = async (
     url: string,
@@ -119,7 +118,7 @@ const fetcherPost = async (
 };
 
 /**
- * 最適化されたスクリーンショット解析用のカスタムフック
+ * スクリーンショット解析用のカスタムフック
  */
 export function useScreenshotAnalysis() {
     // 解析結果のキャッシュ
@@ -130,7 +129,6 @@ export function useScreenshotAnalysis() {
         fetcherPost
     );
 
-    // 成功時のキャッシュ保存処理を別途実装
     const saveToCache = useCallback((imageBase64: string, tags: string[]) => {
         const hash = btoa(imageBase64.substring(0, 100)); // 簡易ハッシュ
         setResultCache(prev => new Map(prev).set(hash, tags));
