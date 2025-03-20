@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from 'react';
 import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
@@ -94,18 +93,16 @@ export default function RootLayout({
       <body
         className={`min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans antialiased`}
       >
-        <Suspense fallback={<p>Loading...</p>}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Footer />
-          </ThemeProvider>
-          <Analytics />
-        </Suspense>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Footer />
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
