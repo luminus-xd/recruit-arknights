@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useMemo, useEffect } from "react";
+import React, { createContext, useContext, ReactNode, useMemo, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
@@ -13,35 +13,72 @@ interface RecruitContextType {
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 
 const fetcher = async (url: string): Promise<Recruit> => {
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`HTTP error! status: ${res.status}`);
+  try {
+    const res = await fetch(url, {
+      cache: 'force-cache', // Next.js 13以降のキャッシュ戦略
+      next: { revalidate: 3600 } // 1時間ごとに再検証
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("データフェッチエラー:", error);
+    throw error;
   }
-  return res.json();
 };
 
 export const RecruitProvider = ({ children }: { children: ReactNode }) => {
-  const { data, error, mutate } = useSWR<Recruit>("/json/ak-recruit.json", fetcher);
-  const isLoading = !data && !error;
+  const [localCache, setLocalCache] = useState<Recruit | null>(null);
+
+  const { data, error, mutate } = useSWR<Recruit>(
+    "/json/ak-recruit.json",
+    fetcher,
+    {
+      revalidateOnFocus: false, // フォーカス時の再検証を無効化
+      revalidateOnReconnect: true, // 再接続時に再検証
+      dedupingInterval: 3600000, // 1時間の重複排除間隔
+      focusThrottleInterval: 5000, // フォーカスイベントのスロットリング
+      errorRetryCount: 3, // エラー時の再試行回数
+      onSuccess: (data) => {
+        // 成功時にローカルキャッシュを更新
+        setLocalCache(data);
+      }
+    }
+  );
+
+  const isLoading = !data && !error && !localCache;
 
   useEffect(() => {
     if (error) {
-      toast.error("公開求人データの取得に失敗しました");
+      console.error("RecruitContext エラー:", error);
+      toast.error("公開求人データの取得に失敗しました", {
+        description: "ネットワーク接続を確認してください",
+        duration: 5000,
+      });
     }
   }, [error]);
 
   const refreshData = async () => {
-    return mutate();
+    try {
+      return await mutate();
+    } catch (refreshError) {
+      toast.error("データの更新に失敗しました");
+      console.error("データ更新エラー:", refreshError);
+      return undefined;
+    }
   };
 
   const contextValue = useMemo(
     () => ({
-      recruitData: data ?? null,
+      recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
       isLoading,
       error: error ?? null,
       refreshData,
     }),
-    [data, isLoading, error]
+    [data, localCache, isLoading, error, refreshData]
   );
 
   return (
