@@ -101,7 +101,7 @@ const nextConfig = {
   compress: true,
   // 実験的な最適化機能
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // crittersパッケージが必要なため無効化
     scrollRestoration: true,
   },
   onDemandEntries: {
