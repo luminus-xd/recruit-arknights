@@ -14,7 +14,7 @@ export default function Home() {
   const { isCopied, copyToClipboard } = useCopyToClipboard();
 
   return (
-    <main className="flex w-full min-h-screen container px-6 py-6 flex-col items-center justify-between">
+    <main className="flex w-full min-h-screen flex-col items-center justify-between">
       <RecruitProvider>
         <article key="1" className="w-full">
           <Header />

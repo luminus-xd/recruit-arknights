@@ -12,6 +12,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ArrowBigLeft } from 'lucide-react';
 
 interface RecommendTagsProps {
     recommendedTags: { [key: string]: Operator[] };
@@ -71,23 +72,20 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
 
     return (
         <div className="space-y-8">
-            {[5, 4].map(rarity => (
+            {[4, 5].map(rarity => (
                 <div key={rarity} className="space-y-4">
-                    <h2 className="text-xl font-bold border-b pb-2">
-                        最低レアリティ {rarity}★ のタグ組み合わせ
-                    </h2>
+                    <hgroup className="flex items-center gap-3">
+                        <h2 className="text-3xl font-extrabold tracking-tight">Rarity {rarity}+</h2>
+                        <p className="mt-1 text-gray-500 dark:text-gray-400">星{rarity}以上</p>
+                    </hgroup>
 
                     {groupedByRarity[rarity]?.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {groupedByRarity[rarity].map(({ tags, operators }) => (
                                 <div key={tags} className="border rounded-lg p-4">
                                     <h3 className="text-lg font-bold border-b-2 pb-1">{tags}</h3>
-                                    <div className="text-sm text-gray-600 mt-2 mb-3">
-                                        {operators.length}人のオペレーター
-                                    </div>
-
                                     <TooltipProvider>
-                                        <ul className="flex flex-wrap gap-2">
+                                        <ul className="flex flex-wrap gap-2 mt-3">
                                             {operators.map(operator => (
                                                 <OperatorItem key={operator.id} operator={operator} />
                                             ))}
@@ -106,17 +104,16 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
 
             <Separator />
 
-            <div className="mt-8 text-sm text-gray-600">
-                <p>※ 上級エリート・エリート・ロボットのタグは検出条件に含めていません。</p>
-                <p>※ タグの組み合わせは3つまでを検出対象としています。</p>
-                <p>※ 表示されているタグ組み合わせで確実に星4以上のオペレーターが出現します。</p>
-                <p>※ 星6のオペレーターは上級エリートタグがないと出現しないため、このページには表示されていません。</p>
-            </div>
+            <ul className="mt-8 text-sm text-muted-foreground list-disc list-outside pl-[1em] leading-6">
+                <li>タグの組み合わせは2つまでを対象としています。</li>
+                <li>星6のオペレーターは上級エリートタグがないと出現しないため、このページには表示されていません。</li>
+            </ul>
 
             <div className="mt-4">
                 <Button variant="outline" asChild>
-                    <Link href="/">
-                        ← 公開求人タグ検索に戻る
+                    <Link href="/" className="font-bold">
+                        <ArrowBigLeft className="mr-2 h-5 w-5" />
+                        公開求人タグ検索に戻る
                     </Link>
                 </Button>
             </div>

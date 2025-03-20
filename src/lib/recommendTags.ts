@@ -69,13 +69,13 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
     }
 
     // 3つのタグの組み合わせ
-    for (let i = 0; i < allTagsAndTypes.length; i++) {
-        for (let j = i + 1; j < allTagsAndTypes.length; j++) {
-            for (let k = j + 1; k < allTagsAndTypes.length; k++) {
-                combinations.push([allTagsAndTypes[i], allTagsAndTypes[j], allTagsAndTypes[k]]);
-            }
-        }
-    }
+    // for (let i = 0; i < allTagsAndTypes.length; i++) {
+    //     for (let j = i + 1; j < allTagsAndTypes.length; j++) {
+    //         for (let k = j + 1; k < allTagsAndTypes.length; k++) {
+    //             combinations.push([allTagsAndTypes[i], allTagsAndTypes[j], allTagsAndTypes[k]]);
+    //         }
+    //     }
+    // }
 
     // 各組み合わせに対して、星4以上のオペレーターのみを含む組み合わせを検出
     const recommendedCombinations: { [key: string]: Operator[] } = {};

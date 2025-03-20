@@ -1,6 +1,7 @@
 import RecommendTags from "@/components/recommend-tags";
 import { detectRecommendedTags } from "@/lib/recommendTags";
 import { Operator } from "@/types/recruit";
+import RecommendHeader from "@/components/recommend-header";
 import fs from "fs";
 import path from "path";
 
@@ -20,14 +21,11 @@ export default async function RecommendPage() {
     const recommendedTags = detectRecommendedTags(recruitData);
 
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-6">おすすめタグ組み合わせ</h1>
-            <p className="mb-6">
-                以下のタグ組み合わせを選択すると、星4以上のオペレーターを確実に入手できます。
-                星6のオペレーターは上級エリートタグがないと出現しないため、このページには表示されていません。
-            </p>
-
-            <RecommendTags recommendedTags={recommendedTags} />
-        </div>
+        <>
+            <RecommendHeader />
+            <div className="mt-6">
+                <RecommendTags recommendedTags={recommendedTags} />
+            </div>
+        </>
     );
 }
