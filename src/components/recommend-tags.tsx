@@ -113,7 +113,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
                 <Button variant="outline" asChild>
                     <Link href="/" className="font-bold">
                         <ArrowBigLeft className="mr-2 h-5 w-5" />
-                        公開求人タグ検索に戻る
+                        公開求人シミュレーターに戻る
                     </Link>
                 </Button>
             </div>
