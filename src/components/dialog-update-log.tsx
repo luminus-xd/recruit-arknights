@@ -15,6 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function DialogUpdateLog() {
     const updateLog = [
         {
+            date: "2025-03-20",
+            content: "おすすめタグページ、ページ遷移用ナビゲーションUIを追加しました。",
+        },
+        {
             date: "2025-02-24",
             content: "公開求人画面のスクリーンショットを用いて、タグを抽出する機能を追加しました。",
         },
