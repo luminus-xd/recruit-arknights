@@ -61,24 +61,27 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [error]);
 
-  const refreshData = useCallback(async () => {
-    try {
-      return await mutate();
-    } catch (refreshError) {
-      toast.error("データの更新に失敗しました");
-      console.error("データ更新エラー:", refreshError);
-      return undefined;
-    }
-  }, [mutate]);
-
   const contextValue = useMemo(
-    () => ({
-      recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
-      isLoading,
-      error: error ?? null,
-      refreshData,
-    }),
-    [data, localCache, isLoading, error]
+    () => {
+      // useMemoコールバック内でrefreshData関数を定義
+      const refreshData = async () => {
+        try {
+          return await mutate();
+        } catch (refreshError) {
+          toast.error("データの更新に失敗しました");
+          console.error("データ更新エラー:", refreshError);
+          return undefined;
+        }
+      };
+
+      return {
+        recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
+        isLoading,
+        error: error ?? null,
+        refreshData,
+      };
+    },
+    [data, localCache, isLoading, error, mutate]
   );
 
   return (
