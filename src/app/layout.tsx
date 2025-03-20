@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from 'react';
 import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
+
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
+import Navigation from "@/components/navigation";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
@@ -94,18 +95,19 @@ export default function RootLayout({
       <body
         className={`min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans antialiased`}
       >
-        <Suspense fallback={<p>Loading...</p>}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="container px-6 py-6">
+            <Navigation />
             {children}
-            <Footer />
-          </ThemeProvider>
-          <Analytics />
-        </Suspense>
+          </div>
+          <Footer />
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
