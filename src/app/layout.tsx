@@ -54,15 +54,17 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  preload: true,
 });
 /**
- * Google Fonts Zen Kaku Gothic New
+ * Google Fonts BIZ UDGothic
  */
 const biz = BIZ_UDGothic({
   weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-biz",
+  preload: true,
 });
 
 export default function RootLayout({
@@ -77,11 +79,20 @@ export default function RootLayout({
           name="google-site-verification"
           content="rcOOuqPq3L3ZCvMVn_xajAE0hxdH6pELLN4965CB_FM"
         />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <JsonLd />
       </head>
       <body
-        className={`
-          "min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans font-japanese antialiased" inter.variable,ZenKakuGothicNew.variable`}
+        className={`min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans antialiased`}
       >
         <Suspense fallback={<p>Loading...</p>}>
           <ThemeProvider

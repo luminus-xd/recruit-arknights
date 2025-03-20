@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useMemo, useEffect, useState } from "react";
+import React, { createContext, useContext, ReactNode, useMemo, useEffect, useState, useCallback } from "react";
 import useSWR from "swr";
 import { Recruit } from "@/types/recruit";
 import { toast } from "sonner";
@@ -61,24 +61,27 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [error]);
 
-  const refreshData = async () => {
-    try {
-      return await mutate();
-    } catch (refreshError) {
-      toast.error("データの更新に失敗しました");
-      console.error("データ更新エラー:", refreshError);
-      return undefined;
-    }
-  };
-
   const contextValue = useMemo(
-    () => ({
-      recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
-      isLoading,
-      error: error ?? null,
-      refreshData,
-    }),
-    [data, localCache, isLoading, error, refreshData]
+    () => {
+      // useMemoコールバック内でrefreshData関数を定義
+      const refreshData = async () => {
+        try {
+          return await mutate();
+        } catch (refreshError) {
+          toast.error("データの更新に失敗しました");
+          console.error("データ更新エラー:", refreshError);
+          return undefined;
+        }
+      };
+
+      return {
+        recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
+        isLoading,
+        error: error ?? null,
+        refreshData,
+      };
+    },
+    [data, localCache, isLoading, error, mutate]
   );
 
   return (

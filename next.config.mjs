@@ -101,9 +101,8 @@ const nextConfig = {
   compress: true,
   // 実験的な最適化機能
   experimental: {
-    // 必要に応じて有効化
-    // optimizeCss: true,
-    // scrollRestoration: true,
+    // optimizeCss: true, // crittersパッケージが必要なため無効化
+    scrollRestoration: true,
   },
   onDemandEntries: {
     // サーバーサイドのページキャッシュの保持時間
