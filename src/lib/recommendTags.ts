@@ -86,11 +86,33 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
         // 星6のオペレーターは上級エリートタグがないと出現しないため除外
         const validOperators = filteredOperators.filter(op => op.rarity !== 6);
 
+        // ロボットタグを持つオペレーターを除外
+        const operatorsWithoutRobots = validOperators.filter(op => {
+            // tagsが文字列の場合
+            if (typeof op.tags === 'string') {
+                try {
+                    const tagsStr = op.tags as string;
+                    const tagsArray = tagsStr
+                        .replace(/'/g, '"')
+                        .replace(/\[|\]/g, '')
+                        .split(', ')
+                        .map((tag: string) => tag.replace(/"/g, '').trim());
+
+                    return !tagsArray.includes('ロボット');
+                } catch (e) {
+                    console.error('タグの解析エラー:', e);
+                    return true;
+                }
+            }
+            // 配列の場合
+            return !(Array.isArray(op.tags) && op.tags.includes('ロボット' as any));
+        });
+
         // 星4以上のオペレーターのみを抽出
-        const highRarityOperators = validOperators.filter(op => op.rarity >= 4);
+        const highRarityOperators = operatorsWithoutRobots.filter(op => op.rarity >= 4);
 
         // 星4以上のオペレーターが存在し、かつ全てのオペレーターが星4以上の場合のみ追加
-        if (highRarityOperators.length > 0 && highRarityOperators.length === validOperators.length) {
+        if (highRarityOperators.length > 0 && highRarityOperators.length === operatorsWithoutRobots.length) {
             const combinationKey = combination.join(" + ");
             recommendedCombinations[combinationKey] = highRarityOperators.sort((a, b) => a.rarity - b.rarity);
         }
