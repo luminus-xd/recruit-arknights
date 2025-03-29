@@ -72,8 +72,8 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
 
     return (
         <div className="space-y-8">
-            {[4, 5].map(rarity => (
-                <div key={rarity} className="space-y-4">
+            {[5, 4].map(rarity => (
+                <div key={rarity} className="space-y-4" id={`rarity-${rarity}`}>
                     <hgroup className="flex items-center gap-3">
                         <h2 className="text-3xl font-extrabold tracking-tight">Rarity {rarity}+</h2>
                         <p className="mt-1 text-gray-500 dark:text-gray-400">星{rarity}以上</p>

@@ -23,7 +23,7 @@ export default async function RecommendPage() {
     return (
         <>
             <RecommendHeader />
-            <div className="mt-6">
+            <div className="mt-6 scroll-mt-20">
                 <RecommendTags recommendedTags={recommendedTags} />
             </div>
         </>
