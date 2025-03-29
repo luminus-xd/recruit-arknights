@@ -9,7 +9,7 @@ alwaysApply: true
 
 ### コマンド操作
 
-- GitHub CLIを利用出来ます。
+- GitHub CLIとMCPサーバーの `server-github` を利用出来ます。
 
 ### コミットの作成
 
