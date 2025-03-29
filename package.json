@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run optimize-images && npm run generate-image-components",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "optimize-images": "node tools/image-optimizer.js",
+    "generate-image-components": "node tools/generate-image-component.js"
   },
   "dependencies": {
     "@next/bundle-analyzer": "15.1.7",
@@ -43,9 +46,11 @@
     "eslint": "9.15.0",
     "eslint-config-next": "15.1.6",
     "fast-levenshtein": "^3.0.0",
+    "glob": "^10.3.10",
     "next-pwa": "5.6.0",
     "postcss": "8.4.49",
     "schema-dts": "1.1.2",
+    "sharp": "^0.33.3",
     "tailwindcss": "3.4.15",
     "typescript": "5.7.2"
   },

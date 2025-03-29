@@ -1,9 +1,9 @@
 import { Operator, Recruit } from "@/types/recruit";
 
 /**
- * 星4以上のオペレーターを特定できるタグ組み合わせを検出する
+ * 星4以上または星5確定のオペレーターを特定できるタグ組み合わせを検出する
  * @param recruitData - リクルートデータ
- * @returns - 検出されたタグ組み合わせとそれに対応するオペレーター
+ * @returns - 検出されたタグ組み合わせとそれに対応するオペレーター（星5確定と星4以上確定に分類）
  */
 export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Operator[] } {
     if (!recruitData || recruitData.length === 0) {
@@ -53,7 +53,7 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
     // タグと職業タイプを結合
     const allTagsAndTypes = [...Array.from(allTags), ...Array.from(allTypes)];
 
-    // タグの組み合わせを生成（1つ、2つ、3つの組み合わせ）
+    // タグの組み合わせを生成（1つ、2つの組み合わせ）
     const combinations: string[][] = [];
 
     // 1つのタグ
@@ -68,17 +68,9 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
         }
     }
 
-    // 3つのタグの組み合わせ
-    // for (let i = 0; i < allTagsAndTypes.length; i++) {
-    //     for (let j = i + 1; j < allTagsAndTypes.length; j++) {
-    //         for (let k = j + 1; k < allTagsAndTypes.length; k++) {
-    //             combinations.push([allTagsAndTypes[i], allTagsAndTypes[j], allTagsAndTypes[k]]);
-    //         }
-    //     }
-    // }
-
-    // 各組み合わせに対して、星4以上のオペレーターのみを含む組み合わせを検出
-    const recommendedCombinations: { [key: string]: Operator[] } = {};
+    // 各組み合わせに対して、条件に合うオペレーターを検出
+    const star5Combinations: { [key: string]: Operator[] } = {}; // 星5確定
+    const star4PlusCombinations: { [key: string]: Operator[] } = {}; // 星4以上確定（星5を含む可能性あり）
 
     combinations.forEach(combination => {
         const filteredOperators = filterByCombination(recruitData, combination);
@@ -108,27 +100,28 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
             return !(Array.isArray(op.tags) && op.tags.includes('ロボット' as any));
         });
 
-        // 星4以上のオペレーターのみを抽出
-        const highRarityOperators = operatorsWithoutRobots.filter(op => op.rarity >= 4);
+        // 星5のオペレーターのみを抽出
+        const star5Operators = operatorsWithoutRobots.filter(op => op.rarity === 5);
 
-        // 星4以上のオペレーターが存在し、かつ全てのオペレーターが星4以上の場合のみ追加
-        if (highRarityOperators.length > 0 && highRarityOperators.length === operatorsWithoutRobots.length) {
-            const combinationKey = combination.join(" + ");
-            recommendedCombinations[combinationKey] = highRarityOperators.sort((a, b) => a.rarity - b.rarity);
+        // 星4以上のオペレーターを抽出
+        const star4PlusOperators = operatorsWithoutRobots.filter(op => op.rarity >= 4);
+
+        const combinationKey = combination.join(" + ");
+
+        // 星5確定の組み合わせを検出（全てのオペレーターが星5）
+        if (star5Operators.length > 0 && operatorsWithoutRobots.every(op => op.rarity === 5)) {
+            star5Combinations[combinationKey] = star5Operators.sort((a, b) => a.rarity - b.rarity);
+        }
+
+        // 星4以上確定の組み合わせを検出（全てのオペレーターが星4以上）
+        else if (star4PlusOperators.length > 0 && operatorsWithoutRobots.every(op => op.rarity >= 4)) {
+            star4PlusCombinations[combinationKey] = star4PlusOperators.sort((a, b) => a.rarity - b.rarity);
         }
     });
 
-    // 結果をソート（オペレーターの最低レアリティが高い順）
-    const sortedResults = Object.entries(recommendedCombinations).sort((a, b) => {
-        // 最低レアリティを比較
-        const aMinRarity = Math.min(...a[1].map(op => op.rarity));
-        const bMinRarity = Math.min(...b[1].map(op => op.rarity));
-
-        if (bMinRarity !== aMinRarity) {
-            return bMinRarity - aMinRarity; // 最低レアリティが高い順
-        }
-
-        // 最低レアリティが同じ場合はタグの数で比較（少ない方が上）
+    // 星5確定の結果をソート
+    const sortedStar5Results = Object.entries(star5Combinations).sort((a, b) => {
+        // タグの数で比較（少ない方が上）
         const aTagCount = a[0].split(" + ").length;
         const bTagCount = b[0].split(" + ").length;
 
@@ -140,7 +133,89 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
         return a[1].length - b[1].length;
     });
 
-    return Object.fromEntries(sortedResults);
+    // 星4以上確定の結果をソート
+    const sortedStar4PlusResults = Object.entries(star4PlusCombinations).sort((a, b) => {
+        // タグの数で比較（少ない方が上）
+        const aTagCount = a[0].split(" + ").length;
+        const bTagCount = b[0].split(" + ").length;
+
+        if (aTagCount !== bTagCount) {
+            return aTagCount - bTagCount;
+        }
+
+        // タグの数も同じ場合はオペレーターの数で比較（少ない方が上）
+        return a[1].length - b[1].length;
+    });
+
+    // 星5確定の重複するオペレーター組み合わせを除外
+    const deduplicatedStar5Results: [string, Operator[]][] = [];
+    const seenStar5OperatorSets = new Map<string, number>();
+
+    for (const [tags, operators] of sortedStar5Results) {
+        // オペレーターのIDをソートしてキーを作成
+        const operatorKey = operators.map(op => op.id).sort((a, b) => a - b).join(',');
+
+        // この組み合わせが既に見つかっているか確認
+        if (seenStar5OperatorSets.has(operatorKey)) {
+            // 既存のタグ組み合わせのインデックスを取得
+            const existingIndex = seenStar5OperatorSets.get(operatorKey)!;
+            const existingEntry = deduplicatedStar5Results[existingIndex];
+            const existingTagsCount = existingEntry[0].split(" + ").length;
+            const currentTagsCount = tags.split(" + ").length;
+
+            // 現在のタグ数が少ない場合は既存のものを置き換える
+            if (currentTagsCount < existingTagsCount) {
+                deduplicatedStar5Results[existingIndex] = [tags, operators];
+            }
+            // タグ数が同じでオペレーター数が少ない場合も置き換える
+            else if (currentTagsCount === existingTagsCount && operators.length < existingEntry[1].length) {
+                deduplicatedStar5Results[existingIndex] = [tags, operators];
+            }
+        } else {
+            // 新しい組み合わせを追加
+            seenStar5OperatorSets.set(operatorKey, deduplicatedStar5Results.length);
+            deduplicatedStar5Results.push([tags, operators]);
+        }
+    }
+
+    // 星4以上確定の重複するオペレーター組み合わせを除外
+    const deduplicatedStar4PlusResults: [string, Operator[]][] = [];
+    const seenStar4PlusOperatorSets = new Map<string, number>();
+
+    for (const [tags, operators] of sortedStar4PlusResults) {
+        // オペレーターのIDをソートしてキーを作成
+        const operatorKey = operators.map(op => op.id).sort((a, b) => a - b).join(',');
+
+        // この組み合わせが既に見つかっているか確認
+        if (seenStar4PlusOperatorSets.has(operatorKey)) {
+            // 既存のタグ組み合わせのインデックスを取得
+            const existingIndex = seenStar4PlusOperatorSets.get(operatorKey)!;
+            const existingEntry = deduplicatedStar4PlusResults[existingIndex];
+            const existingTagsCount = existingEntry[0].split(" + ").length;
+            const currentTagsCount = tags.split(" + ").length;
+
+            // 現在のタグ数が少ない場合は既存のものを置き換える
+            if (currentTagsCount < existingTagsCount) {
+                deduplicatedStar4PlusResults[existingIndex] = [tags, operators];
+            }
+            // タグ数が同じでオペレーター数が少ない場合も置き換える
+            else if (currentTagsCount === existingTagsCount && operators.length < existingEntry[1].length) {
+                deduplicatedStar4PlusResults[existingIndex] = [tags, operators];
+            }
+        } else {
+            // 新しい組み合わせを追加
+            seenStar4PlusOperatorSets.set(operatorKey, deduplicatedStar4PlusResults.length);
+            deduplicatedStar4PlusResults.push([tags, operators]);
+        }
+    }
+
+    // 星5確定と星4以上確定の結果を結合し、各エントリーにレアリティ情報を追加
+    const finalResults: [string, Operator[]][] = [
+        ...deduplicatedStar5Results.map(([tags, operators]): [string, Operator[]] => [`${tags} [星5確定]`, operators]),
+        ...deduplicatedStar4PlusResults.map(([tags, operators]): [string, Operator[]] => [`${tags} [星4以上確定]`, operators])
+    ];
+
+    return Object.fromEntries(finalResults);
 }
 
 /**

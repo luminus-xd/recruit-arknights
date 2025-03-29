@@ -43,3 +43,9 @@ next-env.d.ts
 
 # env
 .env
+
+# 最適化された画像ファイル
+public/img/optimized/
+
+# 生成された画像コンポーネント
+src/components/generated/
