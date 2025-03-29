@@ -126,7 +126,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
     return (
         <div className="space-y-8">
             {/* 星5確定 */}
-            <div className="space-y-4" id="star5">
+            <div className="space-y-4" id="rarity-5">
                 <hgroup className="flex items-center gap-3">
                     <h2 className="text-3xl font-extrabold tracking-tight">Rarity 5</h2>
                     <p className="mt-1 text-gray-500 dark:text-gray-400">星5確定</p>
@@ -155,7 +155,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
             </div>
 
             {/* 星4以上確定 */}
-            <div className="space-y-4" id="star4plus">
+            <div className="space-y-4" id="rarity-4">
                 <hgroup className="flex items-center gap-3">
                     <h2 className="text-3xl font-extrabold tracking-tight">Rarity 4+</h2>
                     <p className="mt-1 text-gray-500 dark:text-gray-400">星4以上確定</p>
