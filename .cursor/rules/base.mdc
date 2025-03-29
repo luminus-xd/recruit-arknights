@@ -1,0 +1,291 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## AIエージェント向けコーディング規約
+
+このドキュメントでは、コーディングに関するベストプラクティスと規則を説明します。
+
+### 一般原則
+
+以下の原則に従ってコードを作成してください：
+
+1. ユーザーテスト重視
+   - 自動ブラウザチェックより実際のユーザーによる確認を優先
+   - 機能の動作確認は実際のユースケースで検証
+
+2. リンターエラー対応
+   ```bash
+   # リンターの実行
+   npm run lint
+
+   # リンターエラーの確認
+   npm run lint:check
+   ```
+
+3. エラー解決プロセス
+   - 数回修正を試みる
+   - 解決できない場合はユーザーに相談
+   - 必要に応じてリンタールールの無効化を提案
+
+### HTML 実装規則
+
+実装時は以下の規則に従います：
+
+1. 適切な要素選択
+   ```html
+   <!-- 良い例：適切な要素の使用 -->
+   <button class="action-button">実行する</button>
+
+   <!-- 悪い例：非リンク要素にa要素を使用 -->
+   <a class="action-button">実行する</a>
+   ```
+
+2. アクセシビリティ対応
+   - WAI-ARIAはARIA Authoring Practice Guideに準拠
+   - aria-currentはパンくずリストやフォームプロセスに適用
+   ```html
+   <!-- 良い例：パンくずリストでのaria-current使用 -->
+   <nav aria-label="パンくずリスト">
+     <ol>
+       <li><a href="/">ホーム</a></li>
+       <li><a href="/products">製品</a></li>
+       <li><a href="/products/1" aria-current="page">製品詳細</a></li>
+     </ol>
+   </nav>
+   ```
+
+3. data属性の適切な使用
+   ```html
+   <!-- 良い例：動的状態変化のためのdata属性 -->
+   <div data-state="active" class="panel">内容</div>
+
+   <!-- 悪い例：静的スタイル適用のためのdata属性 -->
+   <div data-color="red" class="panel">内容</div>
+   ```
+
+4. レイアウト処理
+   ```html
+   <!-- 良い例：span要素とCSSによる改行 -->
+   <p>
+     <span class="block-element">一行目</span>
+     <span class="block-element">二行目</span>
+   </p>
+
+   <!-- 悪い例：br要素による改行 -->
+   <p>
+     一行目<br>
+     二行目
+   </p>
+   ```
+
+### CSS 規則
+
+スタイリング時は以下の規則に従います：
+
+1. レスポンシブ設計
+   ```css
+   /* 良い例：レスポンシブ対応 */
+   .container {
+     width: 100%;
+     max-width: 1200px;
+     padding: 0 1rem;
+   }
+
+   /* 悪い例：固定幅による横スクロール発生 */
+   .container {
+     width: 1200px;
+   }
+   ```
+
+2. カラー管理
+   ```css
+   /* 良い例：カスタムプロパティによる色管理 */
+   :root {
+     --color-primary: #3366ff;
+     --color-secondary: #ff6633;
+     --color-background: #ffffff;
+   }
+
+   .button {
+     background-color: var(--color-primary);
+   }
+
+   /* 悪い例：直接的な色指定 */
+   .button {
+     background-color: #3366ff;
+   }
+   ```
+
+3. 無視可能なStylelint警告
+   - プロパティ順序
+   - 論理プロパティ
+   - カラーフォーマット
+
+### TypeScript 開発規則
+
+TypeScriptコード作成時は以下の規則に従います：
+
+1. 基本方針
+   ```typescript
+   // 良い例：関数型アプローチと早期return
+   function processUser(user: unknown): Result<User, Error> {
+     if (!isUser(user)) {
+       return err(new Error('無効なユーザーデータ'));
+     }
+     
+     return ok(user);
+   }
+
+   // 悪い例：深いネスト
+   function processUser(user: unknown): User | null {
+     if (isUser(user)) {
+       if (user.isActive) {
+         if (user.hasPermission) {
+           // 処理
+           return user;
+         }
+       }
+     }
+     return null;
+   }
+   ```
+
+2. 条件分岐の実装
+   ```typescript
+   // 良い例：ハッシュマップを使用
+   const handlers = {
+     'CREATE': () => createItem(),
+     'UPDATE': () => updateItem(),
+     'DELETE': () => deleteItem()
+   };
+   
+   const action = 'CREATE';
+   handlers[action]?.();
+
+   // 悪い例：連続したif文
+   if (action === 'CREATE') {
+     createItem();
+   } else if (action === 'UPDATE') {
+     updateItem();
+   } else if (action === 'DELETE') {
+     deleteItem();
+   }
+   ```
+
+3. 型安全性の確保
+   ```typescript
+   // 良い例：unknown型と型チェック
+   function processData(data: unknown): string {
+     if (typeof data === 'string') {
+       return data.trim();
+     }
+     
+     if (typeof data === 'number') {
+       return data.toString();
+     }
+     
+     return '';
+   }
+
+   // 悪い例：any型の使用
+   function processData(data: any): string {
+     return data.toString();
+   }
+   ```
+
+4. テストの実装
+   ```typescript
+   // *.spec.tsファイルでのテスト実装
+   import { describe, it, expect } from 'vitest';
+   import { processData } from './processData';
+
+   describe('processData', () => {
+     it('文字列を適切に処理する', () => {
+       expect(processData('  test  ')).toBe('test');
+     });
+
+     it('数値を文字列に変換する', () => {
+       expect(processData(123)).toBe('123');
+     });
+   });
+   ```
+
+### 重要な注意事項
+
+1. コード品質関連
+   - ESLintの警告レベルエラーも必ず修正
+   - 未使用の変数やインポートを残さない
+   - 不要なコメントやデバッグコードを削除
+
+2. パフォーマンス関連
+   - 不要なレンダリングを避ける
+   - 大きな計算処理は必要に応じてメモ化
+   - ネットワークリクエストの最適化
+
+3. 避けるべき実装
+   - インラインスタイルの過剰使用
+   - 直接的なDOMの操作（Reactの場合）
+   - 過度に複雑な型定義
+
+### 実装例
+
+```typescript
+// 良い実装例：Result型を使用したAPIリクエスト
+
+import { ok, err, Result } from 'neverthrow';
+import type { User, ApiError } from './types';
+
+/**
+ * ユーザー情報を取得する
+ * @param userId ユーザーID
+ * @returns 成功時はUser、失敗時はApiError
+ */
+export async function fetchUser(userId: string): Promise<Result<User, ApiError>> {
+  try {
+    const response = await fetch(`/api/users/${userId}`);
+    
+    if (!response.ok) {
+      return err({
+        code: response.status,
+        message: `ユーザー取得エラー: ${response.statusText}`
+      });
+    }
+    
+    const data = await response.json();
+    
+    if (!isValidUser(data)) {
+      return err({
+        code: 400,
+        message: 'ユーザーデータが無効です'
+      });
+    }
+    
+    return ok(data);
+  } catch (error) {
+    return err({
+      code: 500,
+      message: '予期せぬエラーが発生しました'
+    });
+  }
+}
+
+/**
+ * ユーザーデータの検証
+ * @param data 検証対象データ
+ */
+function isValidUser(data: unknown): data is User {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'id' in data &&
+    'name' in data
+  );
+}
+```
