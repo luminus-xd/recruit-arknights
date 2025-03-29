@@ -49,3 +49,7 @@ public/img/optimized/
 
 # 生成された画像コンポーネント
 src/components/generated/
+
+# 一時ファイル
+pr_description.md
+*.tmp
