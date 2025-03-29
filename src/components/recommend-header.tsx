@@ -12,13 +12,13 @@ export default function RecommendHeader() {
                 <Button variant="outline" asChild>
                     <a href="#rarity-5" className="font-bold">
                         <ArrowDown className="mr-2 h-5 w-5" />
-                        星5以上
+                        星5確定
                     </a>
                 </Button>
                 <Button variant="outline" asChild>
                     <a href="#rarity-4" className="font-bold">
                         <ArrowDown className="mr-2 h-5 w-5" />
-                        星4以上
+                        星4以上確定
                     </a>
                 </Button>
             </div>
