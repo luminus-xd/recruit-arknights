@@ -1,11 +1,12 @@
 "use client";
 
+import React from 'react';
 import { Operator } from "@/types/recruit";
 import Link from "next/link";
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { AvatarFallback, Avatar } from "@/components/ui/avatar";
 import {
     Tooltip,
     TooltipContent,
@@ -13,34 +14,78 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ArrowBigLeft } from 'lucide-react';
+// 最適化された画像コンポーネントをインポート
+import * as OptimizedImages from "@/components/generated";
 
 interface RecommendTagsProps {
     recommendedTags: { [key: string]: Operator[] };
 }
 
 // オペレーターアイテムコンポーネント
-const OperatorItem = ({ operator }: { operator: Operator }) => (
-    <li>
-        <Tooltip>
-            <TooltipTrigger>
-                <a
-                    className="hover:scale-105"
-                    href={operator.wiki}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    <Avatar rarity={operator.rarity}>
-                        <AvatarImage alt={operator.name} src={operator.imgPath} />
-                        <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                </a>
-            </TooltipTrigger>
-            <TooltipContent>
-                <p>{operator.name}</p>
-            </TooltipContent>
-        </Tooltip>
-    </li>
-);
+const OperatorItem = ({ operator }: { operator: Operator }) => {
+    // 画像IDを取得する関数
+    const getImageId = (operator: Operator) => {
+        // 例: "/img/operators/1.png" から "1" を取得
+        const match = operator.imgPath.match(/\/(\d+)\.png$/);
+        return match ? match[1] : null;
+    };
+
+    // 画像IDを取得
+    const imageId = getImageId(operator);
+    
+    // コンポーネント名を動的に生成（例: "Image1"）
+    const componentName = imageId ? `Image${imageId}` : null;
+    
+    // 最適化された画像コンポーネントがあるかチェック
+    const hasOptimizedImage = 
+        componentName && 
+        typeof OptimizedImages === 'object' && 
+        OptimizedImages !== null && 
+        componentName in OptimizedImages;
+
+    return (
+        <li>
+            <Tooltip>
+                <TooltipTrigger>
+                    <a
+                        className="hover:scale-105"
+                        href={operator.wiki}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <Avatar rarity={operator.rarity}>
+                            {hasOptimizedImage ? (
+                                // 最適化された画像コンポーネントを使用
+                                React.createElement(
+                                    OptimizedImages[componentName as keyof typeof OptimizedImages], 
+                                    {
+                                        alt: operator.name,
+                                        size: "80",
+                                        className: "h-full w-full object-cover"
+                                    }
+                                )
+                            ) : (
+                                // 最適化された画像がない場合は通常の画像を使用
+                                <img 
+                                    src={operator.imgPath} 
+                                    alt={operator.name} 
+                                    width="40" 
+                                    height="40" 
+                                    loading="lazy"
+                                    className="h-full w-full object-cover"
+                                />
+                            )}
+                            <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                    </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>{operator.name}</p>
+                </TooltipContent>
+            </Tooltip>
+        </li>
+    );
+};
 
 export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
     const groupedByRarity = useMemo(() => {
