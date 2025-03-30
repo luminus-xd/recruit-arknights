@@ -1,6 +1,6 @@
 # アークナイツの公開求人絞り込み
 
-![アークナイツ公開求人](https://i.imgur.com/5buMVlO.jpeg "Webページのサンプルスクリーンショット")
+![公開求人ツール スクリーンショット](https://github.com/user-attachments/assets/53bd16dc-a388-4276-ba51-29f0a92a1500)
 
 ## アプリについて
 
