@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "optimize-json": "node tools/optimize-json.js",
+    "optimize-json:pretty": "node tools/optimize-json.js --pretty --indent=2"
   },
   "dependencies": {
     "@next/bundle-analyzer": "15.1.7",
