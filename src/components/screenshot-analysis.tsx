@@ -72,7 +72,7 @@ export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
                 <Label htmlFor="picture">
                     スクリーンショット{" "}
                     <span className="text-gray-500 dark:text-gray-400">
-                        (.png, .jpg, .jpeg, .webp)
+                        (.png, .jpg, .jpeg)
                     </span>
                 </Label>
                 <Input
@@ -80,7 +80,7 @@ export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
                     className="h-15 mt-1 text-sm px-2.5 py-3.5 text-gray-500 dark:text-gray-400"
                     onChange={handleFileChange}
                     type="file"
-                    accept="image/png, image/jpeg, image/webp"
+                    accept="image/*;capture=camera"
                     disabled={isLoading}
                     onClick={(e) => {
                         const input = e.target as HTMLInputElement;
