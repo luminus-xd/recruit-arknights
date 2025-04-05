@@ -12,6 +12,12 @@ const IMAGE_QUALITY = 0.8;
  */
 const preprocessImage = async (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
+        // ファイルタイプの検証
+        if (!file.type.startsWith('image/')) {
+            reject("サポートされていない画像形式です。");
+            return;
+        }
+
         // ファイルサイズチェック
         if (file.size <= MAX_IMAGE_SIZE) {
             // サイズが小さい場合は直接読み込み
@@ -41,37 +47,49 @@ const preprocessImage = async (file: File): Promise<string> => {
         const url = URL.createObjectURL(file);
 
         img.onload = () => {
-            // 元の画像の比率を維持しながらサイズを調整
-            let width = img.width;
-            let height = img.height;
+            try {
+                // 元の画像の比率を維持しながらサイズを調整
+                let width = img.width;
+                let height = img.height;
 
-            // 最大幅/高さを設定（必要に応じて調整）
-            const MAX_WIDTH = 2400;
-            const MAX_HEIGHT = 1800;
+                // 最大幅/高さを設定（必要に応じて調整）
+                const MAX_WIDTH = 2400;
+                const MAX_HEIGHT = 1800;
 
-            if (width > MAX_WIDTH) {
-                height = Math.round(height * (MAX_WIDTH / width));
-                width = MAX_WIDTH;
+                if (width > MAX_WIDTH) {
+                    height = Math.round(height * (MAX_WIDTH / width));
+                    width = MAX_WIDTH;
+                }
+
+                if (height > MAX_HEIGHT) {
+                    width = Math.round(width * (MAX_HEIGHT / height));
+                    height = MAX_HEIGHT;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                // Androidの一部デバイスで画像描画に問題がある場合の対策
+                ctx.clearRect(0, 0, width, height);
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // 画像をBase64に変換
+                const dataUrl = canvas.toDataURL('image/jpeg', IMAGE_QUALITY);
+
+                // Base64データからプレフィックスを削除
+                const base64Data = dataUrl.split(",")[1];
+
+                if (!base64Data) {
+                    throw new Error("画像の変換に失敗しました");
+                }
+
+                resolve(base64Data);
+            } catch (err) {
+                reject("画像処理中にエラーが発生しました: " + (err instanceof Error ? err.message : String(err)));
+            } finally {
+                // URLオブジェクトを解放
+                URL.revokeObjectURL(url);
             }
-
-            if (height > MAX_HEIGHT) {
-                width = Math.round(width * (MAX_HEIGHT / height));
-                height = MAX_HEIGHT;
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-
-            ctx.drawImage(img, 0, 0, width, height);
-
-            // 画像をBase64に変換
-            const dataUrl = canvas.toDataURL('image/jpeg', IMAGE_QUALITY);
-
-            // URLオブジェクトを解放
-            URL.revokeObjectURL(url);
-
-            // Base64データからプレフィックスを削除
-            resolve(dataUrl.split(",")[1]);
         };
 
         img.onerror = () => {
@@ -138,6 +156,10 @@ export function useScreenshotAnalysis() {
     const analyzeImage = useCallback(
         async (file: File): Promise<string[]> => {
             try {
+                if (!file || !(file instanceof File)) {
+                    throw new Error("有効なファイルが選択されていません。");
+                }
+
                 // ファイルのハッシュを生成（簡易的な方法）
                 const fileHash = `${file.name}-${file.size}-${file.lastModified}`;
 
