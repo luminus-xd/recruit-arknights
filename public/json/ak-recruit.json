@@ -1920,5 +1920,47 @@
     "addDay": "2025/01/16",
     "wiki": "https://arknights.wikiru.jp/?%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AD%E3%83%BC",
     "imgPath": "/img/operators/140.png"
+  },
+  {
+    "id": 141,
+    "name": "マウンテン",
+    "rarity": 6,
+    "type": "前衛",
+    "tags": [
+      "近距離",
+      "火力",
+      "生存"
+    ],
+    "addDay": "2025/04/24",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%86%E3%83%B3",
+    "imgPath": "/img/operators/141.png"
+  },
+  {
+    "id": 142,
+    "name": "カフカ",
+    "rarity": 5,
+    "type": "特殊",
+    "tags": [
+      "近距離",
+      "高速再配置",
+      "牽制"
+    ],
+    "addDay": "2025/04/24",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%AB%E3%83%95%E3%82%AB",
+    "imgPath": "/img/operators/142.png"
+  },
+  {
+    "id": 143,
+    "name": "パインコーン",
+    "rarity": 4,
+    "type": "狙撃",
+    "tags": [
+      "遠距離",
+      "範囲攻撃",
+      "火力"
+    ],
+    "addDay": "2025/04/24",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%91%E3%82%A4%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%B3",
+    "imgPath": "/img/operators/143.png"
   }
 ]

@@ -15,6 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function DialogUpdateLog() {
     const updateLog = [
         {
+            date: "2025-04-24",
+            content: "マウンテン、カフカ、パインコーンを追加しました。",
+        },
+        {
             date: "2025-03-20",
             content: "おすすめタグページ、ページ遷移用ナビゲーションUIを追加しました。",
         },
