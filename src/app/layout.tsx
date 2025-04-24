@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
   title: "Arknights Recruitment | アークナイツ公開求人ツール",
   description:
-    "アークナイツの公開求人機能のタグ絞り込みをシミュレーションするWebアプリ。最終タグ更新日時 2025年1月16日",
+    "アークナイツの公開求人機能をシミュレーションするWebツール 追加は実装日の16時に反映されます",
   icons: {
     apple: "/apple-touch-icon.png",
   },
