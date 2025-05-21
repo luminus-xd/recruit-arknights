@@ -51,6 +51,7 @@ const ScrollToTopButton = () => {
           d="M4.5 15.75l7.5-7.5 7.5 7.5"
         />
       </svg>
+      <span className="visually-hidden">ページトップへ戻る</span>
     </button>
   );
 };
