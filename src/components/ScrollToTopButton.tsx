@@ -6,57 +6,114 @@ const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isFooterIntersecting, setIsFooterIntersecting] = useState(false);
   const [footerHeight, setFooterHeight] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false); // Default to false, useEffect will set initial state
+
   const footerRef = useRef<HTMLElement | null>(null);
+  const footerIntersectionObserverRef = useRef<IntersectionObserver | null>(null); // Ref for footer observer
+  const visibilityTargetObserverRef = useRef<IntersectionObserver | null>(null); // Ref for visibility observer
 
   const adjustmentMargin = 16; // 1rem, space between button and footer
 
-  // Effect for showing/hiding the button based on scroll position
+  // Effect for IntersectionObserver to control button visibility based on #scroll-visibility-target
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 400) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+    const visibilityTargetElement = document.getElementById('scroll-visibility-target');
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
-
-  // Effect for IntersectionObserver to detect footer visibility
-  useEffect(() => {
-    // Assign footerRef.current here, after component mounts
-    footerRef.current = document.getElementById("site-footer");
-
-    if (!footerRef.current) {
-      console.warn("ScrollToTopButton: Footer element #site-footer not found.");
-      return; // Do not proceed if footer element is not found
+    if (!visibilityTargetElement) {
+      console.warn("ScrollToTopButton: Visibility target element #scroll-visibility-target not found.");
+      return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsFooterIntersecting(entry.isIntersecting);
-        if (entry.isIntersecting) {
-          // Ensure footerRef.current is available before accessing offsetHeight
-          setFooterHeight(footerRef.current?.offsetHeight || 0);
+        if (entry.target.id === 'scroll-visibility-target') {
+          // Show button if target is NOT intersecting AND its top is above viewport's top
+          if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
         }
       },
       {
-        // Triggers when the top of the footer is 60px from the bottom of the viewport.
-        rootMargin: "0px 0px 60px 0px", // top right bottom left
+        // No specific rootMargin needed here, relying on isIntersecting and boundingClientRect
+        // threshold: [0] // Optional: trigger as soon as it starts to exit/enter
       }
     );
 
-    observer.observe(footerRef.current);
+    observer.observe(visibilityTargetElement);
+    visibilityTargetObserverRef.current = observer; // Store observer for cleanup
 
     return () => {
-      if (footerRef.current) {
-        observer.unobserve(footerRef.current);
-      }
+      observer.unobserve(visibilityTargetElement);
       observer.disconnect();
+      visibilityTargetObserverRef.current = null;
     };
-  }, []); // Empty dependency array ensures this runs once on mount and cleans up on unmount
+  }, []); // Runs once on mount
+
+  // Effect for determining if the screen is desktop size
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+      const mediaQuery = window.matchMedia("(min-width: 769px)");
+      setIsDesktop(mediaQuery.matches); // Set initial state
+
+      const handleChange = (event: MediaQueryListEvent) => {
+        setIsDesktop(event.matches);
+      };
+
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+  }, []);
+
+  // Effect for IntersectionObserver to detect footer visibility, conditional on isDesktop
+  useEffect(() => {
+    if (!isDesktop) {
+      // Not on desktop, disconnect any existing footer observer and reset footer intersection state
+      if (footerIntersectionObserverRef.current) {
+        footerIntersectionObserverRef.current.disconnect();
+        footerIntersectionObserverRef.current = null;
+      }
+      setIsFooterIntersecting(false);
+      return;
+    }
+
+    // On desktop, setup the IntersectionObserver for the footer
+    footerRef.current = document.getElementById("site-footer");
+
+    if (!footerRef.current) {
+      console.warn("ScrollToTopButton: Footer element #site-footer not found.");
+      return;
+    }
+
+    if (!footerIntersectionObserverRef.current) {
+      footerIntersectionObserverRef.current = new IntersectionObserver(
+        ([entry]) => {
+          setIsFooterIntersecting(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            setFooterHeight(footerRef.current?.offsetHeight || 0);
+          }
+        },
+        {
+          rootMargin: "0px 0px 60px 0px",
+        }
+      );
+    }
+    
+    footerIntersectionObserverRef.current.observe(footerRef.current);
+    const currentFooterRef = footerRef.current; // Capture for cleanup
+
+    return () => {
+      if (currentFooterRef && footerIntersectionObserverRef.current) {
+        footerIntersectionObserverRef.current.unobserve(currentFooterRef);
+      }
+      // If isDesktop becomes false, the observer is disconnected at the start of this effect.
+      // If component unmounts while isDesktop is true, disconnect here.
+      if (footerIntersectionObserverRef.current && !isDesktop) { 
+          footerIntersectionObserverRef.current.disconnect();
+          footerIntersectionObserverRef.current = null;
+      }
+    };
+  }, [isDesktop]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -69,33 +126,25 @@ const ScrollToTopButton = () => {
     return null;
   }
 
-  // Base classes from the button's current styling, excluding 'bottom-4' and 'md:bottom-8'.
-  // This preserves: fixed, right positioning, rounding, background, padding, text color,
-  // shadow, transition, hover, and focus states.
-  // Actual classes from previous file read:
-  // "fixed right-4 rounded-full bg-gray-800 p-3 text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 md:right-8"
   const baseClasses =
     "fixed right-4 md:right-8 rounded-full bg-gray-800 p-3 text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50";
 
-  let positionClasses = "bottom-4 md:bottom-8"; // Default Tailwind classes for bottom positioning
+  let positionClasses = "bottom-4 md:bottom-8";
   let dynamicBottomStyle: React.CSSProperties = {};
 
-  if (isFooterIntersecting && footerHeight > 0) {
-    // Footer is intersecting, calculate dynamic bottom style
-    // The button's bottom edge should be `adjustmentMargin` above the footer's top edge.
+  if (isDesktop && isFooterIntersecting && footerHeight > 0) {
     dynamicBottomStyle = { bottom: `${footerHeight + adjustmentMargin}px` };
-    positionClasses = ""; // Remove Tailwind bottom classes to prevent conflict, inline style will take over.
+    positionClasses = ""; 
   }
 
   return (
     <button
       type="button"
       onClick={scrollToTop}
-      className={`${baseClasses} ${positionClasses}`.trim()} // .trim() to remove trailing space if positionClasses is empty
+      className={`${baseClasses} ${positionClasses}`.trim()}
       style={dynamicBottomStyle}
-      aria-label="ページトップへ戻る" // Matches the visually-hidden span for accessibility
+      aria-label="ページトップへ戻る"
     >
-      {/* Existing inline SVG icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

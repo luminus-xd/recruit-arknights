@@ -102,6 +102,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <div id="scroll-visibility-target" style={{ position: 'absolute', top: '400px' }}></div>
           <div className="container px-6 py-6">
             <Navigation />
             {children}
