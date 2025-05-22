@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 import Navigation from "@/components/navigation";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
@@ -101,11 +102,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <div id="scroll-visibility-target" style={{ position: 'absolute', top: '400px' }}></div>
           <div className="container px-6 py-6">
             <Navigation />
             {children}
           </div>
           <Footer />
+          <ScrollToTopButton />
         </ThemeProvider>
         <Analytics />
       </body>
