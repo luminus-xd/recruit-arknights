@@ -65,12 +65,12 @@ const pwaConfig = {
     },
     {
       urlPattern: /\/json\/.*\.json$/i,
-      handler: 'NetworkFirst',
+      handler: 'StaleWhileRevalidate',
       options: {
         cacheName: 'json-data',
         expiration: {
           maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24時間
+          maxAgeSeconds: 6 * 60 * 60, // 6時間に短縮
         },
       },
     },
