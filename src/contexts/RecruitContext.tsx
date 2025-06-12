@@ -16,6 +16,7 @@ interface RecruitContextType {
 	isLoading: boolean;
 	error: Error | null;
 	refreshData: () => Promise<Recruit | undefined>;
+	clearCache: () => Promise<void>;
 }
 
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
@@ -23,8 +24,8 @@ const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 const fetcher = async (url: string): Promise<Recruit> => {
 	try {
 		const res = await fetch(url, {
-			cache: "force-cache", // Next.js 13以降のキャッシュ戦略
-			next: { revalidate: 3600 }, // 1時間ごとに再検証
+			cache: "no-cache", // 常に最新データを取得
+			next: { revalidate: 1800 }, // 30分ごとに再検証
 		});
 
 		if (!res.ok) {
@@ -45,9 +46,9 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
 		"/json/ak-recruit.min.json",
 		fetcher,
 		{
-			revalidateOnFocus: false, // フォーカス時の再検証を無効化
+			revalidateOnFocus: true, // フォーカス時の再検証を有効化
 			revalidateOnReconnect: true, // 再接続時に再検証
-			dedupingInterval: 3600000, // 1時間の重複排除間隔
+			dedupingInterval: 1800000, // 30分の重複排除間隔
 			focusThrottleInterval: 5000, // フォーカスイベントのスロットリング
 			errorRetryCount: 3, // エラー時の再試行回数
 			onSuccess: (data) => {
@@ -81,11 +82,36 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
 			}
 		};
 
+		// PWAキャッシュクリア機能
+		const clearCache = async () => {
+			try {
+				// Service Workerキャッシュをクリア
+				if ('caches' in window) {
+					const cache = await caches.open('json-data');
+					await cache.delete('/json/ak-recruit.min.json');
+				}
+				
+				// SWRキャッシュもクリア
+				await mutate(undefined, { revalidate: true });
+				
+				// ローカルキャッシュもクリア
+				setLocalCache(null);
+				
+				toast.success("キャッシュをクリアしました", {
+					description: "最新データを取得しています...",
+				});
+			} catch (cacheError) {
+				toast.error("キャッシュのクリアに失敗しました");
+				console.error("キャッシュクリアエラー:", cacheError);
+			}
+		};
+
 		return {
 			recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
 			isLoading,
 			error: error ?? null,
 			refreshData,
+			clearCache,
 		};
 	}, [data, localCache, isLoading, error, mutate]);
 
