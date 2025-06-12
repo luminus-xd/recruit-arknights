@@ -102,10 +102,10 @@ export async function POST(req: NextRequest) {
                     languageHints: ["ja", "en"],
                 }
             }),
-            new Promise((_, reject) =>
+            new Promise<never>((_, reject) =>
                 setTimeout(() => reject(new Error('Vision API request timeout')), 15000)
             )
-        ]) as any;
+        ]);
 
         const detections = result.fullTextAnnotation?.text || '';
 
