@@ -1,9 +1,9 @@
-import type { RerityTag, Position, Tag, Type } from "@/types/recruit";
+import type { RarityTag, Position, Tag, Type } from "@/types/recruit";
 
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export const rerityTags: RerityTag[] = ["ロボット", "エリート", "上級エリート"];
+export const rarityTags: RarityTag[] = ["ロボット", "エリート", "上級エリート"];
 
 export const positions: Position[] = ["近距離", "遠距離"];
 
@@ -37,7 +37,19 @@ export const tags: Tag[] = [
   "元素"
 ];
 
-export const allTags = [...rerityTags, ...positions, ...types, ...tags];
+export const allTags = [...rarityTags, ...positions, ...types, ...tags];
+
+export type AllTag = RarityTag | Position | Type | Tag;
+
+export const isValidTag = (item: string): item is AllTag => {
+  return allTags.includes(item as AllTag);
+};
+
+// 定数定義
+export const RECRUIT_LIMITS = {
+  MAX_SELECTED_TAGS: 6,
+  WARNING_THRESHOLD: 7,
+} as const;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

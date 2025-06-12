@@ -1,5 +1,6 @@
-import { useMemo } from "react";
-import type { Recruit, Operator } from "@/types/recruit";
+import { useMemo, useCallback } from "react";
+import type { Recruit, Operator, Tag, RarityTag, Type, Position } from "@/types/recruit";
+import { isValidTag, type AllTag } from "@/lib/utils";
 
 /**
  * 選択された項目に基づいてリクルートデータをフィルタリングし、フィルタリングされた結果を返す
@@ -7,11 +8,31 @@ import type { Recruit, Operator } from "@/types/recruit";
  * @param selectedItems - 選択されたタグ、タイプ、またはポジション
  * @returns - 選択された項目の組み合わせごとにグループ化されたフィルタリング結果
  */
+// 組み合わせ生成関数（フック外で定義）
+const generateCombinations = (items: string[]): string[][] => {
+  const result: string[][] = [];
+  const n = items.length;
+  
+  // ビット演算を使用してより効率的に組み合わせを生成
+  for (let i = 1; i < (1 << n); i++) {
+    const combination: string[] = [];
+    for (let j = 0; j < n; j++) {
+      if (i & (1 << j)) {
+        combination.push(items[j]);
+      }
+    }
+    result.push(combination);
+  }
+  
+  return result;
+};
+
 export const useFilterOperators = (
   recruitData: Recruit | null,
   selectedItems: string[]
 ): { [key: string]: Operator[] } => {
-  return useMemo(() => {
+  // フィルタリング処理をメモ化
+  const filteredResults = useMemo(() => {
     if (!recruitData || selectedItems.length === 0) {
       return {};
     }
@@ -55,93 +76,41 @@ export const useFilterOperators = (
             }
           }
 
-          // 通常の配列の場合
-          return Array.isArray(operator.tags) && operator.tags.includes(item as any);
+          // 通常の配列の場合（適切な型ガード）
+          if (Array.isArray(operator.tags) && isValidTag(item)) {
+            // タイプと一致するかチェック
+            if (item === operator.type) {
+              return true;
+            }
+            // タグ配列内に含まれるかチェック
+            return (operator.tags as (Tag | RarityTag)[]).includes(item as Tag | RarityTag);
+          }
+          return false;
         });
       });
     };
 
-    /**
-     * 選択された項目のすべての可能な組み合わせを生成
-     */
-    const generateCombinations = (items: string[]): string[][] => {
-      // 単一タグの組み合わせを先に追加
-      const result: string[][] = items.map(item => [item]);
-
-      // 2つのタグの組み合わせを生成
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          result.push([items[i], items[j]]);
-        }
-      }
-
-      // 3つのタグの組み合わせを生成
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          for (let k = j + 1; k < items.length; k++) {
-            result.push([items[i], items[j], items[k]]);
-          }
-        }
-      }
-
-      // 4つのタグの組み合わせを生成
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          for (let k = j + 1; k < items.length; k++) {
-            for (let l = k + 1; l < items.length; l++) {
-              result.push([items[i], items[j], items[k], items[l]]);
-            }
-          }
-        }
-      }
-
-      // 5つのタグの組み合わせを生成
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          for (let k = j + 1; k < items.length; k++) {
-            for (let l = k + 1; l < items.length; l++) {
-              for (let m = l + 1; m < items.length; m++) {
-                result.push([items[i], items[j], items[k], items[l], items[m]]);
-              }
-            }
-          }
-        }
-      }
-
-      // 6つのタグの組み合わせを生成（6件全て選択された場合）
-      if (items.length === 6) {
-        result.push([items[0], items[1], items[2], items[3], items[4], items[5]]);
-      }
-
-      return result;
-    };
-
+    // 組み合わせ生成とフィルタリング処理
     const allCombinations = generateCombinations(selectedItems);
-    const filteredResults: { [key: string]: Operator[] } = {};
+    const results: { [key: string]: Operator[] } = {};
 
-    // Map を使用して結果をキャッシュ
-    const filteredCache = new Map<string, Operator[]>();
-
-    // 各組み合わせに対してフィルタリングを行う（ソートなし）
+    // 各組み合わせに対してフィルタリングを行う
     allCombinations.forEach((combination) => {
       const combinationKey = combination.join(" + ");
+      const filtered = filterByCombination(combination);
 
-      // キャッシュから結果を取得するか、新たに計算
-      let filtered: Operator[];
-      if (filteredCache.has(combinationKey)) {
-        filtered = filteredCache.get(combinationKey)!;
-      } else {
-        filtered = filterByCombination(combination);
-        filteredCache.set(combinationKey, filtered);
-      }
-
+      // 結果が空でない場合のみ保存
       if (filtered.length > 0) {
-        // rarityが低い順（昇順）に並び替え
-        filteredResults[combinationKey] = [...filtered].sort((a, b) => a.rarity - b.rarity);
+        results[combinationKey] = filtered;
       }
     });
 
-    const sortedResults = Object.entries(filteredResults).sort((a, b) => {
+    return results;
+  }, [selectedItems, recruitData]);
+
+  // ソート処理をメモ化
+  const sortedResults = useMemo(() => {
+    return Object.entries(filteredResults).sort((a, b) => {
       const aKey = a[0];
       const bKey = b[0];
 
@@ -162,7 +131,7 @@ export const useFilterOperators = (
       // タグの数でソート
       return bKey.split(" + ").length - aKey.split(" + ").length;
     });
+  }, [filteredResults]);
 
-    return Object.fromEntries(sortedResults);
-  }, [recruitData, selectedItems]);
+  return Object.fromEntries(sortedResults);
 };

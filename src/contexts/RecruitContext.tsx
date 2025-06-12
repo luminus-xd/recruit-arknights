@@ -70,50 +70,48 @@ export const RecruitProvider = ({ children }: { children: ReactNode }) => {
 		}
 	}, [error]);
 
-	const contextValue = useMemo(() => {
-		// useMemoコールバック内でrefreshData関数を定義
-		const refreshData = async () => {
-			try {
-				return await mutate();
-			} catch (refreshError) {
-				toast.error("データの更新に失敗しました");
-				console.error("データ更新エラー:", refreshError);
-				return undefined;
-			}
-		};
+	// refreshData関数をuseCallbackで最適化
+	const refreshData = useCallback(async () => {
+		try {
+			return await mutate();
+		} catch (refreshError) {
+			toast.error("データの更新に失敗しました");
+			console.error("データ更新エラー:", refreshError);
+			return undefined;
+		}
+	}, [mutate]);
 
-		// PWAキャッシュクリア機能
-		const clearCache = async () => {
-			try {
-				// Service Workerキャッシュをクリア
-				if ('caches' in window) {
-					const cache = await caches.open('json-data');
-					await cache.delete('/json/ak-recruit.min.json');
-				}
-				
-				// SWRキャッシュもクリア
-				await mutate(undefined, { revalidate: true });
-				
-				// ローカルキャッシュもクリア
-				setLocalCache(null);
-				
-				toast.success("キャッシュをクリアしました", {
-					description: "最新データを取得しています...",
-				});
-			} catch (cacheError) {
-				toast.error("キャッシュのクリアに失敗しました");
-				console.error("キャッシュクリアエラー:", cacheError);
+	// clearCache関数をuseCallbackで最適化
+	const clearCache = useCallback(async () => {
+		try {
+			// Service Workerキャッシュをクリア
+			if ('caches' in window) {
+				const cache = await caches.open('json-data');
+				await cache.delete('/json/ak-recruit.min.json');
 			}
-		};
+			
+			// SWRキャッシュもクリア
+			await mutate(undefined, { revalidate: true });
+			
+			// ローカルキャッシュもクリア
+			setLocalCache(null);
+			
+			toast.success("キャッシュをクリアしました", {
+				description: "最新データを取得しています...",
+			});
+		} catch (cacheError) {
+			toast.error("キャッシュのクリアに失敗しました");
+			console.error("キャッシュクリアエラー:", cacheError);
+		}
+	}, [mutate, setLocalCache]);
 
-		return {
-			recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
-			isLoading,
-			error: error ?? null,
-			refreshData,
-			clearCache,
-		};
-	}, [data, localCache, isLoading, error, mutate]);
+	const contextValue = useMemo(() => ({
+		recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
+		isLoading,
+		error: error ?? null,
+		refreshData,
+		clearCache,
+	}), [data, localCache, isLoading, error, refreshData, clearCache]);
 
 	return (
 		<RecruitContext.Provider value={contextValue}>

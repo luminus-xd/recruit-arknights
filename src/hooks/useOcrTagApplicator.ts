@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import type { Tag, Type, Position } from "@/types/recruit";
-import { rerityTags, positions, tags, types } from "@/lib/utils";
+import { rarityTags, positions, tags, types } from "@/lib/utils";
 
 interface UseOcrTagApplicatorProps {
     checkedItems: { [key: string]: boolean };

@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
 
-import { rerityTags, positions, tags, types } from "@/lib/utils";
+import { rarityTags, positions, tags, types, RECRUIT_LIMITS } from "@/lib/utils";
 
 import { useCheckboxState } from "@/hooks/useCheckboxState";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
@@ -179,7 +179,7 @@ export default function Recruit() {
   const handleCheckboxChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, item: string) => {
       if (e.target.checked) {
-        if (selectedCount < 6) {
+        if (selectedCount < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
           setCheckedItems((prev) => ({ ...prev, [item]: true }));
           setSelectedItems((prev) => [...prev, item]);
           setSelectedCount(selectedCount + 1);
@@ -234,7 +234,7 @@ export default function Recruit() {
         <CheckboxGroup
           title="Rarity"
           description="レアリティ"
-          items={rerityTags}
+          items={rarityTags}
           prefix="rerity"
           checkedItems={checkedItems}
           onCheckboxChange={handleCheckboxChange}

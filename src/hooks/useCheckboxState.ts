@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import type { Tag, RerityTag, Type, Position } from "@/types/recruit";
-import { rerityTags, positions, tags, types } from "@/lib/utils";
+import type { Tag, RarityTag, Type, Position } from "@/types/recruit";
+import { rarityTags, positions, tags, types } from "@/lib/utils";
 
 export const useCheckboxState = () => {
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
@@ -17,7 +17,7 @@ export const useCheckboxState = () => {
 
     items.forEach((item) => {
       if (
-        rerityTags.includes(item as RerityTag) ||
+        rarityTags.includes(item as RarityTag) ||
         tags.includes(item as Tag) ||
         positions.includes(item as Position) ||
         types.includes(item as Type)

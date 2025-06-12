@@ -1,4 +1,5 @@
-import { Operator, Recruit } from "@/types/recruit";
+import { Operator, Recruit, Tag, RarityTag } from "@/types/recruit";
+import { isValidTag, type AllTag } from "@/lib/utils";
 
 /**
  * 星4以上または星5確定のオペレーターを特定できるタグ組み合わせを検出する
@@ -97,7 +98,7 @@ export function detectRecommendedTags(recruitData: Recruit): { [key: string]: Op
                 }
             }
             // 配列の場合
-            return !(Array.isArray(op.tags) && op.tags.includes('ロボット' as any));
+            return !(Array.isArray(op.tags) && op.tags.includes('ロボット'));
         });
 
         // 星5のオペレーターのみを抽出
@@ -247,7 +248,15 @@ function filterByCombination(recruitData: Recruit, combination: string[]): Opera
             }
 
             // 通常の配列の場合
-            return Array.isArray(operator.tags) && operator.tags.includes(item as any);
+            if (Array.isArray(operator.tags) && isValidTag(item)) {
+                // タイプと一致するかチェック
+                if (item === operator.type) {
+                    return true;
+                }
+                // タグ配列内に含まれるかチェック
+                return operator.tags.includes(item as Tag | RarityTag);
+            }
+            return false;
         });
     });
 }

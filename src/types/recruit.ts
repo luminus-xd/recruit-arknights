@@ -10,7 +10,7 @@ export type Type =
   | "補助"
   | "特殊";
 
-export type RerityTag = "ロボット" | "エリート" | "上級エリート";
+export type RarityTag = "ロボット" | "エリート" | "上級エリート";
 
 export type Tag =
   | "初期"
@@ -37,7 +37,7 @@ export type Operator = {
   name: string;
   rarity: Rarity;
   type: Type;
-  tags: Tag[];
+  tags: (Tag | RarityTag)[];
   addDay: string;
   wiki: string;
   imgPath: string;
