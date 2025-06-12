@@ -72,7 +72,6 @@ const pwaConfig = {
           maxEntries: 32,
           maxAgeSeconds: 6 * 60 * 60, // 6時間に短縮
         },
-        networkTimeoutSeconds: 10, // ネットワークタイムアウト設定
       },
     },
     {
