@@ -8,6 +8,9 @@ import { isValidTag, type AllTag } from "@/lib/utils";
  * @param selectedItems - 選択されたタグ、タイプ、またはポジション
  * @returns - 選択された項目の組み合わせごとにグループ化されたフィルタリング結果
  */
+// type（職分）の並び順を定義
+const TYPE_ORDER = ["先鋒", "前衛", "重装", "狙撃", "術師", "医療", "補助", "特殊"];
+
 // 組み合わせ生成関数（フック外で定義）
 const generateCombinations = (items: string[]): string[][] => {
   const result: string[][] = [];
@@ -99,9 +102,18 @@ export const useFilterOperators = (
       const combinationKey = combination.join(" + ");
       const filtered = filterByCombination(combination);
 
-      // 結果が空でない場合のみ保存
+      // 結果が空でない場合のみ保存（レアリティ優先、次にtype順でソート）
       if (filtered.length > 0) {
-        results[combinationKey] = filtered;
+        results[combinationKey] = filtered.sort((a, b) => {
+          // レアリティで比較（優先）
+          if (a.rarity !== b.rarity) {
+            return a.rarity - b.rarity;
+          }
+          // レアリティが同じ場合はtype順で比較
+          const aTypeIndex = TYPE_ORDER.indexOf(a.type);
+          const bTypeIndex = TYPE_ORDER.indexOf(b.type);
+          return aTypeIndex - bTypeIndex;
+        });
       }
     });
 
