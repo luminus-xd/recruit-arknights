@@ -1962,5 +1962,45 @@
     "addDay": "2025/04/24",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%91%E3%82%A4%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%B3",
     "imgPath": "/img/operators/143.png"
+  },
+  {
+    "id": 144,
+    "name": "アルケット",
+    "rarity": 6,
+    "type": "狙撃",
+    "tags": [
+      "遠距離",
+      "火力"
+    ],
+    "addDay": "2025/07/17",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%83%AB%E3%82%B1%E3%83%83%E3%83%88",
+    "imgPath": "/img/operators/144.png"
+  },
+  {
+    "id": 145,
+    "name": "アイリス",
+    "rarity": 5,
+    "type": "術師",
+    "tags": [
+      "遠距離",
+      "火力"
+    ],
+    "addDay": "2025/07/17",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A2%E3%82%A4%E3%83%AA%E3%82%B9",
+    "imgPath": "/img/operators/145.png"
+  },
+  {
+    "id": 146,
+    "name": "ビーンストーク",
+    "rarity": 4,
+    "type": "先鋒",
+    "tags": [
+      "遠距離",
+      "COST回復",
+      "召喚"
+    ],
+    "addDay": "2025/07/17",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF",
+    "imgPath": "/img/operators/146.png"
   }
 ]
