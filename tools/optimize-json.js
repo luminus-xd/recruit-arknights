@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Arknightsリクルートデータ最適化ツール
+ * 公開求人データ最適化
  *
  * 元のJSON形式を保持しながら余分な空白を除去して最適化します。
  * 元のファイルは保持され、最適化されたファイルは別名で保存されます。
@@ -24,7 +24,6 @@
  */
 
 const fs = require("node:fs");
-const path = require("node:path");
 
 // デフォルトのファイルパス
 const DEFAULT_INPUT_PATH = "./public/json/ak-recruit.json";
@@ -130,8 +129,6 @@ function parseArguments() {
 	};
 }
 
-// コマンドライン引数を処理
 const { inputPath, outputPath, options } = parseArguments();
 
-// 実行
 optimizeJson(inputPath, outputPath, options);
