@@ -1,18 +1,22 @@
 #!/usr/bin/env node
 
 /**
- * Arknightsリクルートデータ最適化ツール
+ * 公開求人データ最適化
  *
  * 元のJSON形式を保持しながら余分な空白を除去して最適化します。
  * 元のファイルは保持され、最適化されたファイルは別名で保存されます。
  *
  * 使用方法:
- * 1. 実行権限を付与: chmod +x scripts/optimize-json.js
- * 2. 実行: ./scripts/optimize-json.js [入力ファイル] [出力ファイル] [オプション]
+ * 1. 実行権限を付与: chmod +x tools/optimize-json.js
+ * 2. 直接実行: ./tools/optimize-json.js [入力ファイル] [出力ファイル] [オプション]
  *
  * 例:
- * ./scripts/optimize-json.js ./public/json/ak-recruit.json ./public/json/ak-recruit.min.json
- * ./scripts/optimize-json.js --pretty --indent=2
+ * ./tools/optimize-json.js ./public/json/ak-recruit.json ./public/json/ak-recruit.min.json
+ * ./tools/optimize-json.js --pretty --indent=2
+ *
+ * npm scripts からの実行例:
+ * npm run optimize-json
+ * npm run optimize-json:pretty
  *
  * オプション:
  * --pretty: 出力JSONに適切な改行とインデントを含めます
@@ -20,7 +24,6 @@
  */
 
 const fs = require("node:fs");
-const path = require("node:path");
 
 // デフォルトのファイルパス
 const DEFAULT_INPUT_PATH = "./public/json/ak-recruit.json";
@@ -126,8 +129,6 @@ function parseArguments() {
 	};
 }
 
-// コマンドライン引数を処理
 const { inputPath, outputPath, options } = parseArguments();
 
-// 実行
 optimizeJson(inputPath, outputPath, options);
