@@ -1,4 +1,5 @@
 import { usePathname } from "next/navigation";
+import { LineShadowText } from "@/components/magicui/line-shadow-text";
 
 export default function Header() {
     const pathname = usePathname();
@@ -17,7 +18,7 @@ export default function Header() {
     return (
         <hgroup className="scroll-mt-16">
             <h1 className="text-5xl font-extrabold tracking-tight">
-                {title}
+                <LineShadowText>{title}</LineShadowText>
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
                 {description}
