@@ -48,7 +48,7 @@ const CheckboxGroup = memo(({
   <>
     <hgroup className="flex items-center gap-3">
       <h2 className="text-3xl font-extrabold tracking-tight">{title}</h2>
-      <p className="mt-1 text-gray-500 dark:text-gray-400">{description}</p>
+      <p className="mt-1 text-gray-500 dark:text-gray-400 font-bold tracking-tight">{description}</p>
     </hgroup>
     <div className="mt-2 mb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {items.map((item, index) => (
@@ -70,7 +70,7 @@ const SelectedTags = memo(({ selectedItems }: { selectedItems: string[] }) => (
   <div className="mt-8">
     <hgroup className="flex items-center gap-3">
       <h2 className="text-3xl font-extrabold tracking-tight">Result</h2>
-      <p className="mt-1 text-gray-500 dark:text-gray-400">結果</p>
+      <p className="mt-1 text-gray-500 dark:text-gray-400 font-bold tracking-tight">結果</p>
     </hgroup>
     <p className="text-sm text-gray-500 dark:text-gray-400">
       オペレーターのアイコンクリックで白Wikiに遷移します
@@ -119,9 +119,9 @@ OperatorItem.displayName = "OperatorItem";
 
 // オペレーター組み合わせコンポーネント
 const OperatorCombination = memo(({ combination, operators }: { combination: string, operators: Operator[] }) => (
-  <div key={combination}>
-    <h3 className="text-lg font-bold border-b-2 pb-1">{combination}</h3>
-    <ul className="flex flex-wrap mt-3 gap-2">
+  <div className="relative p-4 border-2 rounded-md" key={combination}>
+    <h3 className="absolute inline-block text-lg font-bold -top-[0.92rem] left-[0.55rem] px-2 bg-background">{combination}</h3>
+    <ul className="flex flex-wrap mt-2 gap-2">
       {operators.map((operator) => (
         <OperatorItem key={operator.id} operator={operator} />
       ))}

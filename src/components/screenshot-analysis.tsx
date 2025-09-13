@@ -57,7 +57,7 @@ export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
         <>
             <hgroup className="flex items-center gap-3">
                 <h2 className="text-3xl font-extrabold tracking-tight">Image Analysis</h2>
-                <p className="mt-1 text-gray-500 dark:text-gray-400">画像解析</p>
+                <p className="mt-1 text-gray-500 dark:text-gray-400 font-bold tracking-tight">画像解析</p>
             </hgroup>
             <p className="text-sm leading-6 text-gray-600 dark:text-gray-300 mt-4">
                 <span className="block">

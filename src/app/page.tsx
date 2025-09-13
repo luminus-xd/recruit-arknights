@@ -25,7 +25,7 @@ export default function Home() {
                 ? "URLがコピーされました"
                 : "クリップボードにURLをコピー"}
             </Button>
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
               コピーされたURLを共有することで、タグの選択状態も共有できます。
             </p>
             <div className="mt-4">
