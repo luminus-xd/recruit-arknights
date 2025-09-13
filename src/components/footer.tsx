@@ -1,15 +1,13 @@
 "use client";
 
 import React from "react";
-import { ModeToggle } from "@/components/toggle-mode";
+import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 
 export default function Footer() {
   return (
     <footer id="site-footer" className="mt-8 bg-gray-100 dark:bg-gray-800 py-6 px-4 md:px-6">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-        <div>
-          <ModeToggle />
-        </div>
+        <AnimatedThemeToggler />
         <p className="text-gray-600 dark:text-gray-400 text-sm">
           © 2025 luminus
         </p>

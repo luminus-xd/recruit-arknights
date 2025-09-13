@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 import Navigation from "@/components/navigation";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export const metadata: Metadata = {
@@ -96,6 +97,7 @@ export default function RootLayout({
       <body
         className={`min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans antialiased`}
       >
+        <ScrollProgress />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
