@@ -7,7 +7,6 @@ import { rarityTags, positions, tags, types, RECRUIT_LIMITS } from "@/lib/utils"
 
 import { useCheckboxState } from "@/hooks/useCheckboxState";
 import { useLimitWarning } from "@/hooks/useLimitWarning";
-import { useUpdateURLParams } from "@/hooks/useUpdateURLParams";
 import { useOcrTagApplicator } from "@/hooks/useOcrTagApplicator";
 import { useFilterOperators } from "@/hooks/useFilterOperators";
 import { useResetCheckboxes } from "@/hooks/useResetCheckboxes";
@@ -40,7 +39,7 @@ const CheckboxGroup = memo(({
 }: {
   title: string;
   description: string;
-  items: string[];
+  items: readonly string[];
   prefix: string;
   checkedItems: { [key: string]: boolean };
   onCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>, item: string) => void;
@@ -150,39 +149,34 @@ export default function Recruit() {
   const { recruitData, isLoading } = useRecruit();
   const {
     checkedItems,
-    setCheckedItems,
     selectedItems,
     setSelectedItems,
+    clearSelectedItems,
     selectedCount,
-    setSelectedCount,
   } = useCheckboxState();
 
   const { applyOcrTags } = useOcrTagApplicator({
-    checkedItems,
-    setCheckedItems,
-    selectedItems,
     setSelectedItems,
-    setSelectedCount,
   });
 
   const filteredOperators = useFilterOperators(recruitData, selectedItems);
 
   useLimitWarning(selectedCount, selectedItems);
-  useUpdateURLParams(selectedItems);
 
-  const { resetCheckboxes } = useResetCheckboxes(
-    setCheckedItems,
-    setSelectedItems,
-    setSelectedCount
-  );
+  const { resetCheckboxes } = useResetCheckboxes({
+    clearSelectedItems,
+  });
 
   const handleCheckboxChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, item: string) => {
       if (e.target.checked) {
-        if (selectedCount < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
-          setCheckedItems((prev) => ({ ...prev, [item]: true }));
-          setSelectedItems((prev) => [...prev, item]);
-          setSelectedCount(selectedCount + 1);
+        if (selectedItems.length < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
+          setSelectedItems((prev) => {
+            if (prev.includes(item)) {
+              return prev;
+            }
+            return [...prev, item];
+          });
           if (item === "上級エリート" || item === "エリート") {
             toast.info(
               "上級、通常のエリートを選択した場合は、忘れずに9時間に設定しましょう"
@@ -200,33 +194,20 @@ export default function Recruit() {
           );
         }
       } else {
-        setCheckedItems((prev) => ({ ...prev, [item]: false }));
         setSelectedItems((prev) =>
           prev.filter((selectedItem) => selectedItem !== item)
         );
-        setSelectedCount(selectedCount - 1);
       }
     },
     [
-      selectedCount,
       selectedItems,
-      setCheckedItems,
       setSelectedItems,
-      setSelectedCount,
     ]
   );
 
   return (
     <>
-      <ScreenshotAnalysis
-        checkedItems={checkedItems}
-        setCheckedItems={setCheckedItems}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        selectedCount={selectedCount}
-        setSelectedCount={setSelectedCount}
-        applyOcrTags={applyOcrTags}
-      />
+      <ScreenshotAnalysis applyOcrTags={applyOcrTags} />
 
       <Separator className="my-8" />
 

@@ -10,6 +10,7 @@ import JsonLd from "@/components/json-ld";
 import Navigation from "@/components/navigation";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
@@ -97,22 +98,24 @@ export default function RootLayout({
       <body
         className={`min-h-screen ${inter.variable} ${biz.variable} bg-background font-sans antialiased`}
       >
-        <ScrollProgress />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div id="scroll-visibility-target" style={{ position: 'absolute', top: '400px' }}></div>
-          <div className="container p-4 sm:p-6">
-            <Navigation />
-            {children}
-          </div>
-          <Footer />
-          <ScrollToTopButton />
-        </ThemeProvider>
-        <Analytics />
+        <NuqsAdapter>
+          <ScrollProgress />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div id="scroll-visibility-target" style={{ position: "absolute", top: "400px" }}></div>
+            <div className="container p-4 sm:p-6">
+              <Navigation />
+              {children}
+            </div>
+            <Footer />
+            <ScrollToTopButton />
+          </ThemeProvider>
+          <Analytics />
+        </NuqsAdapter>
       </body>
     </html>
   );
