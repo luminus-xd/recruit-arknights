@@ -9,17 +9,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
 interface ScreenshotAnalysisProps {
-    checkedItems: { [key: string]: boolean };
-    setCheckedItems: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
-    selectedItems: string[];
-    setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
-    selectedCount: number;
-    setSelectedCount: React.Dispatch<React.SetStateAction<number>>;
     applyOcrTags: (ocrTags: string[]) => void;
 }
 
-export default function ScreenshotAnalysis(props: ScreenshotAnalysisProps) {
-    const { applyOcrTags } = props;
+export default function ScreenshotAnalysis({ applyOcrTags }: ScreenshotAnalysisProps) {
     const [ocrTags, setOcrTags] = useState<string[]>([]);
     const [error, setError] = useState<string | null>(null);
 

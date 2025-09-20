@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { RecruitProvider } from "@/contexts/RecruitContext";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
@@ -33,7 +34,9 @@ export default function Home() {
             </div>
           </div>
           <Separator className="my-8" />
-          <Recruit />
+          <Suspense fallback={null}>
+            <Recruit />
+          </Suspense>
         </article>
       </RecruitProvider>
       <Toaster richColors toastOptions={{

@@ -1,46 +1,60 @@
-import { useState, useEffect, useCallback } from "react";
-import type { Tag, RarityTag, Type, Position } from "@/types/recruit";
-import { rarityTags, positions, tags, types } from "@/lib/utils";
+import { useCallback, useMemo } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import type { AllTag } from "@/lib/utils";
+import { allTags, isValidTag } from "@/lib/utils";
+import { parseAsArrayOf, parseAsStringLiteral, useQueryState } from "nuqs";
+
+const selectedItemsParser = parseAsArrayOf(
+  parseAsStringLiteral(allTags)
+).withDefault([] as AllTag[]);
 
 export const useCheckboxState = () => {
-  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [selectedCount, setSelectedCount] = useState(0);
+  const [selectedItemsRaw, setSelectedItemsRaw] = useQueryState(
+    "selectedItems",
+    selectedItemsParser
+  );
 
-  /**
-   * URLパラメータ(selectedItems=...) からチェック済みの項目を読み取る
-   */
-  const initializeFromUrl = useCallback(() => {
-    const params = new URLSearchParams(window.location.search);
-    const items = params.get("selectedItems")?.split(",") || [];
-    const initialCheckedItems: { [key: string]: boolean } = {};
+  const selectedItems = useMemo(() => selectedItemsRaw ?? [], [selectedItemsRaw]);
 
-    items.forEach((item) => {
-      if (
-        rarityTags.includes(item as RarityTag) ||
-        tags.includes(item as Tag) ||
-        positions.includes(item as Position) ||
-        types.includes(item as Type)
-      ) {
-        initialCheckedItems[item] = true;
-      }
-    });
+  const checkedItems = useMemo(() => {
+    return selectedItems.reduce<Record<string, boolean>>((acc, item) => {
+      acc[item] = true;
+      return acc;
+    }, {});
+  }, [selectedItems]);
 
-    setCheckedItems(initialCheckedItems);
-    setSelectedItems(items);
-    setSelectedCount(items.length);
-  }, []);
+  const setSelectedItems = useCallback<Dispatch<SetStateAction<string[]>>>(
+    (valueOrUpdater) => {
+      setSelectedItemsRaw((prev) => {
+        const base = prev ?? [];
+        const next =
+          typeof valueOrUpdater === "function"
+            ? valueOrUpdater([...base])
+            : valueOrUpdater;
 
-  useEffect(() => {
-    initializeFromUrl();
-  }, [initializeFromUrl]);
+        const sanitized = next
+          .filter((item): item is AllTag => isValidTag(item))
+          .filter((item, index, array) => array.indexOf(item) === index);
+
+        if (sanitized.length === 0) {
+          return null;
+        }
+
+        return sanitized;
+      });
+    },
+    [setSelectedItemsRaw]
+  );
+
+  const clearSelectedItems = useCallback(() => {
+    setSelectedItemsRaw(null);
+  }, [setSelectedItemsRaw]);
 
   return {
     checkedItems,
-    setCheckedItems,
     selectedItems,
     setSelectedItems,
-    selectedCount,
-    setSelectedCount,
-  };
+    clearSelectedItems,
+    selectedCount: selectedItems.length,
+  } as const;
 };
