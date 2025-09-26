@@ -316,7 +316,7 @@ export default function Recruit() {
 
             {isStar14Mode && (
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                星2と星3のオペレーターは非表示になります。ロボットと星4以上のオペレーターだけを確認できます。
+                星2と星3のオペレーターは非表示になります。ロボットと星4以上のオペレーターのみ確認できます。
               </p>
             )}
           </>
@@ -326,7 +326,7 @@ export default function Recruit() {
       {/* フィルタリングされたオペレーターの表示 */}
       {isStar14Mode && !hasFilteredOperators ? (
         <p className="mt-8 text-sm text-gray-500 dark:text-gray-400">
-          指定されたタグではロボットまたは星4以上のオペレーターが見つかりませんでした。
+          指定されたタグでは、ロボットまたは星4以上のオペレーターが見つかりませんでした。
         </p>
       ) : (
         <FilteredResults filteredOperators={filteredOperatorsByMode} />
