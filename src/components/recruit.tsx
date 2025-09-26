@@ -310,13 +310,13 @@ export default function Recruit() {
                 variant={filterMode === "star14Plus" ? "default" : "outline"}
                 onClick={() => setFilterMode("star14Plus")}
               >
-                ★1 & ★4以上
+                ロボット & 星4以上
               </Button>
             </div>
 
             {isStar14Mode && (
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                星2と星3のオペレーターは非表示になります。星1と星4以上のオペレーターだけを確認できます。
+                星2と星3のオペレーターは非表示になります。ロボットと星4以上のオペレーターだけを確認できます。
               </p>
             )}
           </>
