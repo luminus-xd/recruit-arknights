@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useMemo } from "react";
 import type { Recruit, Operator, Tag, RarityTag, Type, Position } from "@/types/recruit";
 import { isValidTag, type AllTag } from "@/lib/utils";
 
