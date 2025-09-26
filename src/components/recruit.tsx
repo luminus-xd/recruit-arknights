@@ -1,4 +1,4 @@
-import { useCallback, memo, useMemo, useState, type ReactNode } from "react";
+import { useCallback, memo, useEffect, useMemo, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -26,6 +26,8 @@ import {
 import type { Operator } from "@/types/recruit";
 
 type FilterMode = "default" | "star14Plus";
+
+const FILTER_MODE_STORAGE_KEY = "recruit-filter-mode";
 
 // チェックボックスコンポーネント
 const MemoizedCheckbox = memo(Checkbox);
@@ -83,19 +85,21 @@ const SelectedTags = memo(({
       オペレーターのアイコンクリックで白Wikiに遷移します
     </p>
     {modeControls}
-    <div className="mt-6">
-      <h3 className="text-lg font-bold">選択されたタグ</h3>
-      <ul className="flex flex-wrap gap-2 mt-2">
-        {selectedItems.map((item) => (
-          <li
-            key={item}
-            className="inline-block text-xs bg-gray-200 dark:bg-gray-300 text-gray-700 dark:text-stone-950 font-bold px-3 py-1 rounded-full"
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
+    {selectedItems.length > 0 && (
+      <div className="mt-6">
+        <h3 className="text-lg font-bold">選択されたタグ</h3>
+        <ul className="flex flex-wrap gap-2 mt-2">
+          {selectedItems.map((item) => (
+            <li
+              key={item}
+              className="inline-block text-xs bg-gray-200 dark:bg-gray-300 text-gray-700 dark:text-stone-950 font-bold px-3 py-1 rounded-full"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
 ));
 SelectedTags.displayName = "SelectedTags";
@@ -169,6 +173,24 @@ export default function Recruit() {
   });
 
   const [filterMode, setFilterMode] = useState<FilterMode>("default");
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const storedMode = window.localStorage.getItem(FILTER_MODE_STORAGE_KEY);
+    if (storedMode === "default" || storedMode === "star14Plus") {
+      setFilterMode(storedMode);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.localStorage.setItem(FILTER_MODE_STORAGE_KEY, filterMode);
+  }, [filterMode]);
 
   const filteredOperators = useFilterOperators(recruitData, selectedItems);
   const filteredOperatorsByMode = useMemo(() => {
@@ -316,7 +338,7 @@ export default function Recruit() {
 
             {isStar14Mode && (
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                星2と星3のオペレーターは非表示になります。ロボットと星4以上のオペレーターのみ確認できます。
+                星2と星3のオペレーターは非表示になります。
               </p>
             )}
           </>
@@ -324,7 +346,7 @@ export default function Recruit() {
       />
 
       {/* フィルタリングされたオペレーターの表示 */}
-      {isStar14Mode && !hasFilteredOperators ? (
+      {isStar14Mode && selectedItems.length > 0 && !hasFilteredOperators ? (
         <p className="mt-8 text-sm text-gray-500 dark:text-gray-400">
           指定されたタグでは、ロボットまたは星4以上のオペレーターが見つかりませんでした。
         </p>
