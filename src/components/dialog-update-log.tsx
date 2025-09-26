@@ -15,6 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function DialogUpdateLog() {
     const updateLog = [
         {
+            date: "2025-09-26",
+            content: "表示結果のフィルターモード機能を追加しました。"
+        },
+        {
             date: "2025-07-17",
             content: "アルケット、アイリス、ビーンストークを追加しました。",
         },

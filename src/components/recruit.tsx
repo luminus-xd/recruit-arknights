@@ -1,4 +1,4 @@
-import { useCallback, memo } from "react";
+import { useCallback, memo, useMemo, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/tooltip"
 
 import type { Operator } from "@/types/recruit";
+
+type FilterMode = "default" | "star14Plus";
 
 // チェックボックスコンポーネント
 const MemoizedCheckbox = memo(Checkbox);
@@ -65,7 +67,13 @@ const CheckboxGroup = memo(({
 CheckboxGroup.displayName = "CheckboxGroup";
 
 // 選択タグ表示コンポーネント
-const SelectedTags = memo(({ selectedItems }: { selectedItems: string[] }) => (
+const SelectedTags = memo(({
+  selectedItems,
+  modeControls,
+}: {
+  selectedItems: string[];
+  modeControls?: ReactNode;
+}) => (
   <div className="mt-8">
     <hgroup className="flex items-center gap-3">
       <h2 className="text-3xl font-extrabold tracking-tight">Result</h2>
@@ -74,6 +82,7 @@ const SelectedTags = memo(({ selectedItems }: { selectedItems: string[] }) => (
     <p className="text-sm text-gray-500 dark:text-gray-400">
       オペレーターのアイコンクリックで白Wikiに遷移します
     </p>
+    {modeControls}
     <div className="mt-6">
       <h3 className="text-lg font-bold">選択されたタグ</h3>
       <ul className="flex flex-wrap gap-2 mt-2">
@@ -146,7 +155,7 @@ const FilteredResults = memo(({ filteredOperators }: { filteredOperators: { [key
 FilteredResults.displayName = "FilteredResults";
 
 export default function Recruit() {
-  const { recruitData, isLoading } = useRecruit();
+  const { recruitData } = useRecruit();
   const {
     checkedItems,
     selectedItems,
@@ -159,7 +168,33 @@ export default function Recruit() {
     setSelectedItems,
   });
 
+  const [filterMode, setFilterMode] = useState<FilterMode>("default");
+
   const filteredOperators = useFilterOperators(recruitData, selectedItems);
+  const filteredOperatorsByMode = useMemo(() => {
+    if (filterMode !== "star14Plus") {
+      return filteredOperators;
+    }
+
+    const reducedEntries = Object.entries(filteredOperators).reduce<
+      Record<string, Operator[]>
+    >((acc, [combination, operators]) => {
+      const visibleOperators = operators.filter(
+        (operator) => operator.rarity === 1 || operator.rarity >= 4,
+      );
+
+      if (visibleOperators.length > 0) {
+        acc[combination] = visibleOperators;
+      }
+
+      return acc;
+    }, {});
+
+    return reducedEntries;
+  }, [filteredOperators, filterMode]);
+
+  const hasFilteredOperators = Object.keys(filteredOperatorsByMode).length > 0;
+  const isStar14Mode = filterMode === "star14Plus";
 
   useLimitWarning(selectedCount, selectedItems);
 
@@ -255,10 +290,47 @@ export default function Recruit() {
       <Separator className="my-8" />
 
       {/* 選択されたタグの表示 */}
-      <SelectedTags selectedItems={selectedItems} />
+      <SelectedTags
+        selectedItems={selectedItems}
+        modeControls={
+          <>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                表示モード
+              </span>
+              <Button
+                size="sm"
+                variant={filterMode === "default" ? "default" : "outline"}
+                onClick={() => setFilterMode("default")}
+              >
+                通常
+              </Button>
+              <Button
+                size="sm"
+                variant={filterMode === "star14Plus" ? "default" : "outline"}
+                onClick={() => setFilterMode("star14Plus")}
+              >
+                ロボット & 星4以上
+              </Button>
+            </div>
+
+            {isStar14Mode && (
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                星2と星3のオペレーターは非表示になります。ロボットと星4以上のオペレーターのみ確認できます。
+              </p>
+            )}
+          </>
+        }
+      />
 
       {/* フィルタリングされたオペレーターの表示 */}
-      <FilteredResults filteredOperators={filteredOperators} />
+      {isStar14Mode && !hasFilteredOperators ? (
+        <p className="mt-8 text-sm text-gray-500 dark:text-gray-400">
+          指定されたタグでは、ロボットまたは星4以上のオペレーターが見つかりませんでした。
+        </p>
+      ) : (
+        <FilteredResults filteredOperators={filteredOperatorsByMode} />
+      )}
     </>
   );
 }
