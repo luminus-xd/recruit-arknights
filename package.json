@@ -9,7 +9,8 @@
     "lint": "next lint",
     "analyze": "ANALYZE=true npm run build",
     "optimize-json": "node tools/optimize-json.js",
-    "optimize-json:pretty": "node tools/optimize-json.js --pretty --indent=2"
+    "optimize-json:pretty": "node tools/optimize-json.js --pretty --indent=2",
+    "generate-icons": "node tools/generate-icons.js"
   },
   "dependencies": {
     "@google-cloud/vision": "4.3.2",
@@ -48,8 +49,10 @@
     "eslint": "9.15.0",
     "eslint-config-next": "15.1.6",
     "next-pwa": "5.6.0",
+    "png-to-ico": "3.0.1",
     "postcss": "8.4.49",
     "schema-dts": "1.1.2",
+    "sharp": "0.34.4",
     "tailwindcss": "3.4.15",
     "typescript": "5.7.2"
   },
