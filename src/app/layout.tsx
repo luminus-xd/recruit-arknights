@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "アークナイツの公開求人機能をシミュレーションするWebツール 追加は実装日の16時に反映されます",
   icons: {
-    apple: "/apple-touch-icon.png",
+    apple: "/apple-touch-icon.png?v=20251005",
   },
   appleWebApp: {
     capable: true,
@@ -33,12 +33,12 @@ export const metadata: Metadata = {
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
     description:
       "アークナイツの公開求人機能をシミュレーションするWebツール 追加は実装日の16時に反映されます",
-    images: "/img/icon.png",
+    images: "/img/icon.png?v=20251005",
   },
   twitter: {
     card: "summary",
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
-    images: "/img/icon.png",
+    images: "/img/icon.png?v=20251005",
     creator: "@midnight_dev2",
   },
   manifest: "/manifest.json",
