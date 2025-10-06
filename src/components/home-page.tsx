@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import { RecruitProvider } from "@/contexts/RecruitContext";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
@@ -39,9 +38,7 @@ export default function HomePage({ initialRecruitData }: HomePageProps) {
 						</div>
 					</div>
 					<Separator className="my-8" />
-					<Suspense fallback={null}>
-						<Recruit />
-					</Suspense>
+					<Recruit />
 				</article>
 			</RecruitProvider>
 			<Toaster
