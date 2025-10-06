@@ -59,6 +59,7 @@ const inter = Inter({
   display: "swap",
   variable: "--font-inter",
   preload: true,
+  fallback: ["system-ui", "sans-serif"]
 });
 /**
  * Google Fonts BIZ UDGothic
@@ -68,7 +69,9 @@ const biz = BIZ_UDGothic({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-biz",
-  preload: true,
+  preload: false,
+  fallback: ["Hiragino Sans", "Noto Sans JP", "system-ui", "Yu Gothic", "Meiryo", "sans-serif"],
+  adjustFontFallback: false
 });
 
 export default function RootLayout({
