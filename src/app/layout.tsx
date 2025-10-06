@@ -33,6 +33,8 @@ export const metadata: Metadata = {
     title: "Arknights Recruitment | アークナイツ公開求人ツール",
     description:
       "アークナイツの公開求人機能をシミュレーションするWebツール 追加は実装日の16時に反映されます",
+    url: "/",
+    siteName: "Arknights Recruitment",
     images: "/img/icon.png?v=20251005-2",
   },
   twitter: {
