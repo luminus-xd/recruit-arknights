@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { AllTag } from "@/lib/utils";
 import { allTags, isValidTag } from "@/lib/utils";
@@ -14,7 +14,19 @@ export const useCheckboxState = () => {
     selectedItemsParser
   );
 
-  const selectedItems = useMemo(() => selectedItemsRaw ?? [], [selectedItemsRaw]);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const selectedItems = useMemo(() => {
+    if (!isHydrated) {
+      return [] as AllTag[];
+    }
+
+    return selectedItemsRaw ?? [];
+  }, [isHydrated, selectedItemsRaw]);
 
   const checkedItems = useMemo(() => {
     return selectedItems.reduce<Record<string, boolean>>((acc, item) => {
