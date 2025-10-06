@@ -1,117 +1,33 @@
-import React, {
+"use client";
+
+import {
 	createContext,
 	useContext,
 	ReactNode,
 	useMemo,
-	useEffect,
-	useState,
-	useCallback,
 } from "react";
-import useSWR from "swr";
-import { Recruit } from "@/types/recruit";
-import { toast } from "sonner";
+import type { Recruit } from "@/types/recruit";
 
 interface RecruitContextType {
-	recruitData: Recruit | null;
+	recruitData: Recruit;
 	isLoading: boolean;
-	error: Error | null;
-	refreshData: () => Promise<Recruit | undefined>;
-	clearCache: () => Promise<void>;
 }
 
 const RecruitContext = createContext<RecruitContextType | undefined>(undefined);
 
-const fetcher = async (url: string): Promise<Recruit> => {
-	try {
-		const res = await fetch(url, {
-			cache: "no-cache", // 常に最新データを取得
-			next: { revalidate: 1800 }, // 30分ごとに再検証
-		});
-
-		if (!res.ok) {
-			throw new Error(`HTTP error! status: ${res.status}`);
-		}
-
-		return res.json();
-	} catch (error) {
-		console.error("データフェッチエラー:", error);
-		throw error;
-	}
+type RecruitProviderProps = {
+	children: ReactNode;
+	initialData: Recruit;
 };
 
-export const RecruitProvider = ({ children }: { children: ReactNode }) => {
-	const [localCache, setLocalCache] = useState<Recruit | null>(null);
-
-	const { data, error, mutate } = useSWR<Recruit>(
-		"/json/ak-recruit.min.json",
-		fetcher,
-		{
-			revalidateOnFocus: true, // フォーカス時の再検証を有効化
-			revalidateOnReconnect: true, // 再接続時に再検証
-			dedupingInterval: 1800000, // 30分の重複排除間隔
-			focusThrottleInterval: 5000, // フォーカスイベントのスロットリング
-			errorRetryCount: 3, // エラー時の再試行回数
-			onSuccess: (data) => {
-				// 成功時にローカルキャッシュを更新
-				setLocalCache(data);
-			},
-		},
+export const RecruitProvider = ({ children, initialData }: RecruitProviderProps) => {
+	const contextValue = useMemo(
+		() => ({
+			recruitData: initialData,
+			isLoading: false,
+		}),
+		[initialData],
 	);
-
-	const isLoading = !data && !error && !localCache;
-
-	useEffect(() => {
-		if (error) {
-			console.error("RecruitContext エラー:", error);
-			toast.error("公開求人データの取得に失敗しました", {
-				description: "ネットワーク接続を確認してください",
-				duration: 5000,
-			});
-		}
-	}, [error]);
-
-	// refreshData関数をuseCallbackで最適化
-	const refreshData = useCallback(async () => {
-		try {
-			return await mutate();
-		} catch (refreshError) {
-			toast.error("データの更新に失敗しました");
-			console.error("データ更新エラー:", refreshError);
-			return undefined;
-		}
-	}, [mutate]);
-
-	// clearCache関数をuseCallbackで最適化
-	const clearCache = useCallback(async () => {
-		try {
-			// Service Workerキャッシュをクリア
-			if ('caches' in window) {
-				const cache = await caches.open('json-data');
-				await cache.delete('/json/ak-recruit.min.json');
-			}
-			
-			// SWRキャッシュもクリア
-			await mutate(undefined, { revalidate: true });
-			
-			// ローカルキャッシュもクリア
-			setLocalCache(null);
-			
-			toast.success("キャッシュをクリアしました", {
-				description: "最新データを取得しています...",
-			});
-		} catch (cacheError) {
-			toast.error("キャッシュのクリアに失敗しました");
-			console.error("キャッシュクリアエラー:", cacheError);
-		}
-	}, [mutate, setLocalCache]);
-
-	const contextValue = useMemo(() => ({
-		recruitData: data || localCache, // ローカルキャッシュをフォールバックとして使用
-		isLoading,
-		error: error ?? null,
-		refreshData,
-		clearCache,
-	}), [data, localCache, isLoading, error, refreshData, clearCache]);
 
 	return (
 		<RecruitContext.Provider value={contextValue}>
