@@ -34,46 +34,41 @@ const DEFAULT_OUTPUT_PATH = "./public/json/ak-recruit.min.json";
  * @param {string} inputPath - 入力ファイルのパス
  * @param {string} outputPath - 出力ファイルのパス
  * @param {Object} options - 最適化オプション
+ * @param {(data: any) => any} transform - 出力前にデータへ適用する変換関数
  */
-function optimizeJson(inputPath, outputPath, options = {}) {
-	try {
-		// ファイルの存在確認
-		if (!fs.existsSync(inputPath)) {
-			console.error(`エラー: ファイル "${inputPath}" が見つかりません。`);
-			process.exit(1);
-		}
+function optimizeJson(inputPath, outputPath, options = {}, transform = (data) => data) {
+  if (!fs.existsSync(inputPath)) {
+    throw new Error(`ファイル "${inputPath}" が見つかりません。`);
+  }
 
-		console.log(`JSONファイルを読み込み中... (${inputPath})`);
-		const jsonData = fs.readFileSync(inputPath, "utf8");
+  console.log(`JSONファイルを読み込み中... (${inputPath})`);
+  const jsonData = fs.readFileSync(inputPath, "utf8");
 
-		// ファイルサイズを記録
-		const originalSize = Buffer.byteLength(jsonData, "utf8");
-		console.log(`元のファイルサイズ: ${formatFileSize(originalSize)}`);
+  const originalSize = Buffer.byteLength(jsonData, "utf8");
+  console.log(`元のファイルサイズ: ${formatFileSize(originalSize)}`);
 
-		// JSONをパースして最適化
-		const data = JSON.parse(jsonData);
+  const data = JSON.parse(jsonData);
+  const transformedData = transform(data);
 
-		// 改行を保持するかどうかに基づいてJSONを生成
-		const optimizedJson = options.pretty
-			? JSON.stringify(data, null, options.indent)
-			: JSON.stringify(data);
+  const optimizedJson = options.pretty
+    ? JSON.stringify(transformedData, null, options.indent)
+    : JSON.stringify(transformedData);
 
-		// 最適化されたJSONを保存
-		fs.writeFileSync(outputPath, optimizedJson, "utf8");
+  fs.writeFileSync(outputPath, optimizedJson, "utf8");
 
-		// 最適化後のファイルサイズを記録
-		const optimizedSize = Buffer.byteLength(optimizedJson, "utf8");
-		console.log(`最適化後のファイルサイズ: ${formatFileSize(optimizedSize)}`);
+  const optimizedSize = Buffer.byteLength(optimizedJson, "utf8");
+  console.log(`最適化後のファイルサイズ: ${formatFileSize(optimizedSize)}`);
 
-		// 削減率を計算
-		const reductionRate = ((originalSize - optimizedSize) / originalSize) * 100;
-		console.log(`削減率: ${reductionRate.toFixed(2)}%`);
+  const reductionRate = originalSize === 0 ? 0 : ((originalSize - optimizedSize) / originalSize) * 100;
+  console.log(`削減率: ${reductionRate.toFixed(2)}%`);
 
-		console.log(`最適化されたJSONを保存しました: ${outputPath}`);
-	} catch (error) {
-		console.error("エラーが発生しました:", error.message);
-		process.exit(1);
-	}
+  console.log(`最適化されたJSONを保存しました: ${outputPath}`);
+
+  return {
+    data: transformedData,
+    originalSize,
+    optimizedSize,
+  };
 }
 
 /**
@@ -82,53 +77,70 @@ function optimizeJson(inputPath, outputPath, options = {}) {
  * @returns {string} - 読みやすい形式のファイルサイズ
  */
 function formatFileSize(bytes) {
-	if (bytes < 1024) {
-		return `${bytes} バイト`;
-	}
+  if (bytes < 1024) {
+    return `${bytes} バイト`;
+  }
 
-	if (bytes < 1024 * 1024) {
-		return `${(bytes / 1024).toFixed(2)} KB`;
-	}
+  if (bytes < 1024 * 1024) {
+    return `${(bytes / 1024).toFixed(2)} KB`;
+  }
 
-	return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
 /**
  * コマンドライン引数をパースする関数
  * @returns {Object} - パースされた引数とオプション
  */
-function parseArguments() {
-	const args = process.argv.slice(2);
-	const options = {
-		pretty: false,
-		indent: 2,
-	};
-	const paths = [];
+function parseArguments(argv = process.argv.slice(2)) {
+  const options = {
+    pretty: false,
+    indent: 2,
+  };
+  const paths = [];
 
-	for (const arg of args) {
-		if (arg === "--pretty") {
-			options.pretty = true;
-			continue;
-		}
+  for (const arg of argv) {
+    if (arg === "--pretty") {
+      options.pretty = true;
+      continue;
+    }
 
-		if (arg.startsWith("--indent=")) {
-			const indentValue = Number.parseInt(arg.split("=")[1], 10);
-			if (!Number.isNaN(indentValue) && indentValue >= 0) {
-				options.indent = indentValue;
-			}
-			continue;
-		}
+    if (arg.startsWith("--indent=")) {
+      const indentValue = Number.parseInt(arg.split("=")[1], 10);
+      if (!Number.isNaN(indentValue) && indentValue >= 0) {
+        options.indent = indentValue;
+      }
+      continue;
+    }
 
-		paths.push(arg);
-	}
+    paths.push(arg);
+  }
 
-	return {
-		inputPath: paths[0] || DEFAULT_INPUT_PATH,
-		outputPath: paths[1] || DEFAULT_OUTPUT_PATH,
-		options,
-	};
+  return {
+    inputPath: paths[0] || DEFAULT_INPUT_PATH,
+    outputPath: paths[1] || DEFAULT_OUTPUT_PATH,
+    options,
+  };
 }
 
-const { inputPath, outputPath, options } = parseArguments();
+function runCli() {
+  try {
+    const { inputPath, outputPath, options } = parseArguments();
+    optimizeJson(inputPath, outputPath, options);
+  } catch (error) {
+    console.error("エラーが発生しました:", error.message);
+    process.exit(1);
+  }
+}
 
-optimizeJson(inputPath, outputPath, options);
+if (require.main === module) {
+  runCli();
+}
+
+module.exports = {
+  optimizeJson,
+  parseArguments,
+  formatFileSize,
+  DEFAULT_INPUT_PATH,
+  DEFAULT_OUTPUT_PATH,
+};
