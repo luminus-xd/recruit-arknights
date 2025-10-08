@@ -103,6 +103,7 @@ const nextConfig = {
   experimental: {
     // optimizeCss: true, // crittersパッケージが必要なため無効化
     scrollRestoration: true,
+    reactCompiler: true,
   },
   onDemandEntries: {
     // サーバーサイドのページキャッシュの保持時間
