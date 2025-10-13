@@ -15,6 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function DialogUpdateLog() {
     const updateLog = [
         {
+            date: "2025-10-16",
+            content: "サガ、ウユウ、CONFESS-47を追加しました。"
+        },
+        {
             date: "2025-10-05",
             content: "アプリアイコンを刷新しました。アプリとして追加している方は、一度削除いただき再度アプリをインストールしていただくと反映されます。"
         },
