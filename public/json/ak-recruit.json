@@ -2002,5 +2002,47 @@
     "addDay": "2025/07/17",
     "wiki": "https://arknights.wikiru.jp/index.php?%E3%83%93%E3%83%BC%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF",
     "imgPath": "/img/operators/146.png"
+  },
+  {
+    "id": 147,
+    "name": "サガ",
+    "rarity": 6,
+    "type": "先鋒",
+    "tags": [
+      "近距離",
+      "COST回復",
+      "火力"
+    ],
+    "addDay": "2025/10/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%B5%E3%82%AC",
+    "imgPath": "/img/operators/147.png"
+  },
+  {
+    "id": 148,
+    "name": "ウユウ",
+    "rarity": 5,
+    "type": "特殊",
+    "tags": [
+      "近距離",
+      "高速再配置",
+      "火力"
+    ],
+    "addDay": "2025/10/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?%E3%82%A6%E3%83%A6%E3%82%A6",
+    "imgPath": "/img/operators/148.png"
+  },
+  {
+    "id": 149,
+    "name": "CONFESS-47",
+    "rarity": 1,
+    "type": "先鋒",
+    "tags": [
+      "近距離",
+      "ロボット",
+      "牽制"
+    ],
+    "addDay": "2025/10/14",
+    "wiki": "https://arknights.wikiru.jp/index.php?CONFESS-47",
+    "imgPath": "/img/operators/149.png"
   }
 ]
