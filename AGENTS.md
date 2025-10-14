@@ -16,3 +16,5 @@ There is no dedicated unit test suite yet; treat linting as the minimum gate and
 
 ## Commit & Pull Request Guidelines
 Commits follow a Conventional Commit flavor (`feat:`, `refactor:`, `chore:`) as seen in recent history; scope prefixes are optional but encouraged for larger modules. Keep commits focused and include Japanese context in the body when it clarifies user-facing changes. PRs should link issues, summarize user impact, attach UI screenshots or recordings for visual tweaks, and list any data or tooling scripts executed. Ensure lint and build commands pass before requesting review.
+
+Use the GitHub CLI `gh pr create` command when opening pull requests (and rely on flags like `--fill` as needed).

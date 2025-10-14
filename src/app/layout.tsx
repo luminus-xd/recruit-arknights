@@ -9,7 +9,7 @@ import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 import Navigation from "@/components/navigation";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
+import ScrollToTopButton from "@/components/scroll-to-top-button";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
@@ -111,7 +111,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div id="scroll-visibility-target" style={{ position: "absolute", top: "400px" }}></div>
             <div className="container p-4 sm:p-6">
               <Navigation />
               {children}
