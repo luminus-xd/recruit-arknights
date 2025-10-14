@@ -15,7 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function DialogUpdateLog() {
     const updateLog = [
         {
-            date: "2025-10-16",
+            date: "2025-10-14",
             content: "サガ、ウユウ、CONFESS-47を追加しました。"
         },
         {
