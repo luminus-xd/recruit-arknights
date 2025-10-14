@@ -1,4 +1,6 @@
 import { CircleX } from "lucide-react";
+import { updateLog } from "@/data/update-log";
+import { toJapaneseDateLabel } from "@/lib/date";
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -13,61 +15,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function DialogUpdateLog() {
-    const updateLog = [
-        {
-            date: "2025-10-14",
-            content: "サガ、ウユウ、CONFESS-47を追加しました。"
-        },
-        {
-            date: "2025-10-05",
-            content: "アプリアイコンを刷新しました。アプリとして追加している方は、一度削除いただき再度アプリをインストールしていただくと反映されます。"
-        },
-        {
-            date: "2025-09-26",
-            content: "表示結果のフィルターモード機能を追加しました。"
-        },
-        {
-            date: "2025-07-17",
-            content: "アルケット、アイリス、ビーンストークを追加しました。",
-        },
-        {
-            date: "2025-04-24",
-            content: "マウンテン、カフカ、パインコーンを追加しました。",
-        },
-        {
-            date: "2025-03-20",
-            content: "おすすめタグページ、ページ遷移用ナビゲーションUIを追加しました。",
-        },
-        {
-            date: "2025-02-24",
-            content: "公開求人画面のスクリーンショットを用いて、タグを抽出する機能を追加しました。",
-        },
-        {
-            date: "2025-02-01",
-            content: "ロボット、エリート、上級エリートのタグを「Rerity」の欄に移行しました。",
-        },
-        {
-            date: "2025-01-16",
-            content: "マドロック、ウィスパーレイン、ジャッキーを追加しました。",
-        },
-        {
-            date: "2025-01-01",
-            content: "オペレーターのアイコンをホバーする際に、オペレーター名を表示するよう仕様を追加しました。",
-        },
-        {
-            date: "2024-12-31",
-            content: "エリート、及び上級エリートを選択した場合に、優先してエリート系列のオペレーターを表示するようにロジックを変更しました。",
-        },
-        {
-            date: "2024-10-31",
-            content: "PhonoR-0、バブル、アオスタ、ブレミシャインを追加しました。",
-        },
-        {
-            date: "2024-07-31",
-            content: "スルト、エイプリル、アレーンを追加しました。",
-        }
-    ]
-
     return (
         <>
             <Dialog>
@@ -91,7 +38,7 @@ export default function DialogUpdateLog() {
                                         className="text-rose-600 dark:text-rose-500 font-semibold"
                                         dateTime={log.date}
                                     >
-                                        {log.date}
+                                        {toJapaneseDateLabel(log.date)}
                                     </time>
                                     <p>{log.content}</p>
                                 </li>
