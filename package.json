@@ -32,7 +32,7 @@
     "fast-levenshtein": "^3.0.0",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.12",
-    "next": "15.5.7",
+    "next": "15.5.9",
     "next-themes": "0.3.0",
     "nuqs": "2.6.0",
     "react": "18.3.1",
@@ -48,7 +48,7 @@
     "@types/node": "22.9.3",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "eslint": "9.15.0",
+    "eslint": "9.28.0",
     "eslint-config-next": "15.1.6",
     "next-pwa": "5.6.0",
     "png-to-ico": "3.0.1",
@@ -60,5 +60,16 @@
   },
   "volta": {
     "node": "22.20.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "brace-expansion": "^2.0.2",
+      "webpack": "^5.97.0",
+      "cross-spawn": "^7.0.6",
+      "path-to-regexp": "^0.1.12",
+      "cookie": "^0.7.0",
+      "micromatch": "^4.0.8",
+      "braces": "^3.0.3"
+    }
   }
 }
