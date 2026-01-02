@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <AnimatedThemeToggler />
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          © 2025 luminus
+          © 2026 luminus
         </p>
         <div className="flex items-center space-x-4">
           <a
