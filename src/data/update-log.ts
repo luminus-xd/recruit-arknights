@@ -2,6 +2,10 @@ import type { UpdateLogEntry } from "@/types/update-log";
 
 export const updateLog = [
     {
+        date: "2026-01-16",
+        content: "パッセンジャー、トギフォンスを追加しました。",
+    },
+    {
         date: "2025-10-14",
         content: "サガ、ウユウ、CONFESS-47を追加しました。",
     },
