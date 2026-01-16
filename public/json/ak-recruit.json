@@ -2044,5 +2044,31 @@
     "addDay": "2025/10/14",
     "wiki": "https://arknights.wikiru.jp/index.php?CONFESS-47",
     "imgPath": "/img/operators/149.png"
+  },
+  {
+    "id": 150,
+    "name": "パッセンジャー",
+    "rarity": 6,
+    "type": "術師",
+    "tags": [
+      "遠距離",
+      "火力"
+    ],
+    "addDay": "2026/01/16",
+    "wiki": "https://arknights.wikiru.jp/?%E3%83%91%E3%83%83%E3%82%BB%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC",
+    "imgPath": "/img/operators/150.png"
+  },
+  {
+    "id": 151,
+    "name": "トギフォンス",
+    "rarity": 5,
+    "type": "狙撃",
+    "tags": [
+      "遠距離",
+      "火力"
+    ],
+    "addDay": "2026/01/16",
+    "wiki": "https://arknights.wikiru.jp/?%E3%83%88%E3%82%AE%E3%83%95%E3%82%A9%E3%83%B3%E3%82%B9",
+    "imgPath": "/img/operators/151.png"
   }
 ]
