@@ -1,4 +1,4 @@
-import { useCallback, memo, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, memo, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -220,6 +220,11 @@ export default function Recruit() {
 
   useLimitWarning(selectedCount, selectedItems);
 
+  const selectedItemsRef = useRef(selectedItems);
+  useEffect(() => {
+    selectedItemsRef.current = selectedItems;
+  }, [selectedItems]);
+
   const { resetCheckboxes } = useResetCheckboxes({
     clearSelectedItems,
   });
@@ -243,14 +248,10 @@ export default function Recruit() {
             toast.info("ロボットタグは3時間50分の設定が推奨されます");
           }
         } else {
-          // 上限超過時の警告（descriptionはsetSelectedItems内のprevで取得し参照変更を避ける）
-          setSelectedItems((prev) => {
-            toast.warning(
-              "タグの選択数が上限になりました。6個まで選択可能です",
-              { description: `選択中: ${prev.join(", ")}` }
-            );
-            return prev;
-          });
+          toast.warning(
+            "タグの選択数が上限になりました。6個まで選択可能です",
+            { description: `選択中: ${selectedItemsRef.current.join(", ")}` }
+          );
         }
       } else {
         setSelectedItems((prev) =>
@@ -258,7 +259,6 @@ export default function Recruit() {
         );
       }
     },
-    // selectedItemsの配列参照ではなくselectedCount(数値)を依存に使い不要な再生成を防ぐ
     [selectedCount, setSelectedItems]
   );
 
