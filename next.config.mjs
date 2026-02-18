@@ -76,7 +76,7 @@ const pwaConfig = {
     },
     {
       urlPattern: /.*/i,
-      handler: 'NetworkFirst',
+      handler: 'StaleWhileRevalidate',
       options: {
         cacheName: 'others',
         expiration: {
@@ -93,7 +93,7 @@ const nextConfig = {
   // 画像最適化
   images: {
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30日
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 80, 96, 128, 256],
   },
@@ -101,14 +101,11 @@ const nextConfig = {
   compress: true,
   // 実験的な最適化機能
   experimental: {
-    // optimizeCss: true, // crittersパッケージが必要なため無効化
     scrollRestoration: true,
     reactCompiler: true,
   },
   onDemandEntries: {
-    // サーバーサイドのページキャッシュの保持時間
     maxInactiveAge: 25 * 1000,
-    // 同時にキャッシュするページ数
     pagesBufferLength: 4,
   },
   // 本番環境でのソースマップ無効化

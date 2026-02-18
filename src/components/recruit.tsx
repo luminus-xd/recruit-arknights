@@ -1,4 +1,4 @@
-import { useCallback, memo, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, memo, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -220,6 +220,11 @@ export default function Recruit() {
 
   useLimitWarning(selectedCount, selectedItems);
 
+  const selectedItemsRef = useRef(selectedItems);
+  useEffect(() => {
+    selectedItemsRef.current = selectedItems;
+  }, [selectedItems]);
+
   const { resetCheckboxes } = useResetCheckboxes({
     clearSelectedItems,
   });
@@ -227,7 +232,7 @@ export default function Recruit() {
   const handleCheckboxChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, item: string) => {
       if (e.target.checked) {
-        if (selectedItems.length < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
+        if (selectedCount < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
           setSelectedItems((prev) => {
             if (prev.includes(item)) {
               return prev;
@@ -245,9 +250,7 @@ export default function Recruit() {
         } else {
           toast.warning(
             "タグの選択数が上限になりました。6個まで選択可能です",
-            {
-              description: `選択中: ${selectedItems.join(", ")}`,
-            }
+            { description: `選択中: ${selectedItemsRef.current.join(", ")}` }
           );
         }
       } else {
@@ -256,10 +259,7 @@ export default function Recruit() {
         );
       }
     },
-    [
-      selectedItems,
-      setSelectedItems,
-    ]
+    [selectedCount, setSelectedItems]
   );
 
   return (
