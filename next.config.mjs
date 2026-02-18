@@ -76,7 +76,7 @@ const pwaConfig = {
     },
     {
       urlPattern: /.*/i,
-      handler: 'NetworkFirst',
+      handler: 'StaleWhileRevalidate', // NetworkFirstはEdgeを常に叩くため変更
       options: {
         cacheName: 'others',
         expiration: {
@@ -93,7 +93,7 @@ const nextConfig = {
   // 画像最適化
   images: {
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30日（オペレーター画像は静的）
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 80, 96, 128, 256],
   },

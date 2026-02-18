@@ -227,7 +227,7 @@ export default function Recruit() {
   const handleCheckboxChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, item: string) => {
       if (e.target.checked) {
-        if (selectedItems.length < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
+        if (selectedCount < RECRUIT_LIMITS.MAX_SELECTED_TAGS) {
           setSelectedItems((prev) => {
             if (prev.includes(item)) {
               return prev;
@@ -243,12 +243,14 @@ export default function Recruit() {
             toast.info("ロボットタグは3時間50分の設定が推奨されます");
           }
         } else {
-          toast.warning(
-            "タグの選択数が上限になりました。6個まで選択可能です",
-            {
-              description: `選択中: ${selectedItems.join(", ")}`,
-            }
-          );
+          // 上限超過時の警告（descriptionはsetSelectedItems内のprevで取得し参照変更を避ける）
+          setSelectedItems((prev) => {
+            toast.warning(
+              "タグの選択数が上限になりました。6個まで選択可能です",
+              { description: `選択中: ${prev.join(", ")}` }
+            );
+            return prev;
+          });
         }
       } else {
         setSelectedItems((prev) =>
@@ -256,10 +258,8 @@ export default function Recruit() {
         );
       }
     },
-    [
-      selectedItems,
-      setSelectedItems,
-    ]
+    // selectedItemsの配列参照ではなくselectedCount(数値)を依存に使い不要な再生成を防ぐ
+    [selectedCount, setSelectedItems]
   );
 
   return (

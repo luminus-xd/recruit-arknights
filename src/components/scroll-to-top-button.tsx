@@ -48,8 +48,14 @@ const ScrollToTopButton = () => {
 
     updateButtonState();
 
+    // requestAnimationFrameでスクロールイベントをスロットル（60fps上限）
+    let rafId: number | null = null;
     const handleScroll = () => {
-      updateButtonState();
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        updateButtonState();
+        rafId = null;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -58,6 +64,7 @@ const ScrollToTopButton = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", updateButtonState);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 

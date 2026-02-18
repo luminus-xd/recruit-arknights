@@ -12,10 +12,13 @@ export const useLimitWarning = (
   selectedItems: string[]
 ) => {
   useEffect(() => {
-    if (selectedCount >= RECRUIT_LIMITS.WARNING_THRESHOLD) {
+    // selectedCountが閾値に達したタイミング（到達した瞬間）のみ表示
+    if (selectedCount === RECRUIT_LIMITS.WARNING_THRESHOLD) {
       toast.warning("タグの選択数が上限になりました。6個まで選択可能です", {
         description: `選択中: <b>${selectedItems.join(", ")}</b>`,
       });
     }
-  }, [selectedCount, selectedItems]);
+  // selectedItemsは参照が毎回変わるため依存配列に含めない
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCount]);
 };
