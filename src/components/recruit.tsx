@@ -26,7 +26,7 @@ import {
 import type { Operator } from "@/types/recruit";
 
 type FilterMode = "default" | "star14Plus";
-type DisplayMode = "icon" | "name" | "card";
+type DisplayMode = "icon" | "card";
 
 const FILTER_MODE_STORAGE_KEY = "recruit-filter-mode";
 const DISPLAY_MODE_STORAGE_KEY = "recruit-display-mode";
@@ -133,6 +133,7 @@ const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; disp
           </Avatar>
           <div className="min-w-0">
             <p className="text-sm font-semibold leading-tight">{operator.name}</p>
+            <p className="text-xs leading-tight text-muted-foreground">{operator.type}</p>
             <p className={`text-xs leading-tight ${rarityTextColors[operator.rarity]}`}>
               {"★".repeat(operator.rarity)}
             </p>
@@ -142,37 +143,28 @@ const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; disp
     );
   }
 
-  const content = (
-    <a
-      className="flex items-center gap-1.5 hover:scale-105 transition-transform"
-      href={operator.wiki}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <Avatar rarity={operator.rarity}>
-        <AvatarImage alt={operator.name} src={operator.imgPath} />
-        <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
-      </Avatar>
-      {displayMode === "name" && (
-        <span className="text-sm font-medium whitespace-nowrap">{operator.name}</span>
-      )}
-    </a>
+  return (
+    <li>
+      <Tooltip>
+        <TooltipTrigger>
+          <a
+            className="hover:scale-105 transition-transform"
+            href={operator.wiki}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Avatar rarity={operator.rarity}>
+              <AvatarImage alt={operator.name} src={operator.imgPath} />
+              <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+            </Avatar>
+          </a>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{operator.name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </li>
   );
-
-  if (displayMode === "icon") {
-    return (
-      <li>
-        <Tooltip>
-          <TooltipTrigger>{content}</TooltipTrigger>
-          <TooltipContent>
-            <p>{operator.name}</p>
-          </TooltipContent>
-        </Tooltip>
-      </li>
-    );
-  }
-
-  return <li>{content}</li>;
 });
 OperatorItem.displayName = "OperatorItem";
 
@@ -234,7 +226,7 @@ export default function Recruit() {
     }
 
     const storedDisplayMode = window.localStorage.getItem(DISPLAY_MODE_STORAGE_KEY);
-    if (storedDisplayMode === "icon" || storedDisplayMode === "name" || storedDisplayMode === "card") {
+    if (storedDisplayMode === "icon" || storedDisplayMode === "card") {
       setDisplayMode(storedDisplayMode);
     }
   }, []);
@@ -410,17 +402,10 @@ export default function Recruit() {
               </Button>
               <Button
                 size="sm"
-                variant={displayMode === "name" ? "default" : "outline"}
-                onClick={() => setDisplayMode("name")}
-              >
-                アイコン + 名前
-              </Button>
-              <Button
-                size="sm"
                 variant={displayMode === "card" ? "default" : "outline"}
                 onClick={() => setDisplayMode("card")}
               >
-                カード
+                詳細
               </Button>
             </div>
 
