@@ -2,6 +2,10 @@ import type { UpdateLogEntry } from "@/types/update-log";
 
 export const updateLog = [
     {
+        date: "2026-02-22",
+        content: "オペレーター表示形式の切り替え機能を追加しました。「アイコンのみ」と「詳細」の2つの表示形式から選択できます。",
+    },
+    {
         date: "2026-01-16",
         content: "パッセンジャー、トギフォンスを追加しました。",
     },

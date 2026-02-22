@@ -26,8 +26,10 @@ import {
 import type { Operator } from "@/types/recruit";
 
 type FilterMode = "default" | "star14Plus";
+type DisplayMode = "icon" | "card";
 
 const FILTER_MODE_STORAGE_KEY = "recruit-filter-mode";
+const DISPLAY_MODE_STORAGE_KEY = "recruit-display-mode";
 
 // チェックボックスコンポーネント
 const MemoizedCheckbox = memo(Checkbox);
@@ -104,38 +106,75 @@ const SelectedTags = memo(({
 ));
 SelectedTags.displayName = "SelectedTags";
 
+// レアリティに応じたテキスト色
+const rarityTextColors: { [key: number]: string } = {
+  1: "text-gray-400",
+  2: "text-green-400",
+  3: "text-blue-400",
+  4: "text-purple-400",
+  5: "text-orange-400",
+  6: "text-red-400",
+};
+
 // オペレーターアイテムコンポーネント
-const OperatorItem = memo(({ operator }: { operator: Operator }) => (
-  <li>
-    <Tooltip>
-      <TooltipTrigger>
+const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; displayMode: DisplayMode }) => {
+  if (displayMode === "card") {
+    return (
+      <li>
         <a
-          className="hover:scale-105"
+          className="flex items-center gap-2.5 rounded-lg border bg-card px-3 py-2 shadow-sm transition-all hover:shadow-md hover:scale-[1.02]"
           href={operator.wiki}
           rel="noopener noreferrer"
           target="_blank"
         >
-          <Avatar rarity={operator.rarity}>
+          <Avatar rarity={operator.rarity} className="h-10 w-10">
             <AvatarImage alt={operator.name} src={operator.imgPath} />
             <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
           </Avatar>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold leading-tight">{operator.name}</p>
+            <p className="text-xs leading-tight text-muted-foreground">{operator.type}</p>
+            <p className={`text-xs leading-tight ${rarityTextColors[operator.rarity]}`}>
+              {"★".repeat(operator.rarity)}
+            </p>
+          </div>
         </a>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>{operator.name}</p>
-      </TooltipContent>
-    </Tooltip>
-  </li>
-));
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <Tooltip>
+        <TooltipTrigger>
+          <a
+            className="hover:scale-105 transition-transform"
+            href={operator.wiki}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Avatar rarity={operator.rarity}>
+              <AvatarImage alt={operator.name} src={operator.imgPath} />
+              <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+            </Avatar>
+          </a>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{operator.name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </li>
+  );
+});
 OperatorItem.displayName = "OperatorItem";
 
 // オペレーター組み合わせコンポーネント
-const OperatorCombination = memo(({ combination, operators }: { combination: string, operators: Operator[] }) => (
+const OperatorCombination = memo(({ combination, operators, displayMode }: { combination: string, operators: Operator[], displayMode: DisplayMode }) => (
   <div className="relative p-4 border-2 rounded-md" key={combination}>
     <h3 className="absolute inline-block text-lg font-bold -top-[0.92rem] left-[0.55rem] px-2 bg-background">{combination}</h3>
-    <ul className="flex flex-wrap mt-2 gap-2">
+    <ul className={`flex flex-wrap mt-2 ${displayMode === "icon" ? "gap-2" : "gap-3"}`}>
       {operators.map((operator) => (
-        <OperatorItem key={operator.id} operator={operator} />
+        <OperatorItem key={operator.id} operator={operator} displayMode={displayMode} />
       ))}
     </ul>
   </div>
@@ -143,7 +182,7 @@ const OperatorCombination = memo(({ combination, operators }: { combination: str
 OperatorCombination.displayName = "OperatorCombination";
 
 // フィルタリング結果コンポーネント
-const FilteredResults = memo(({ filteredOperators }: { filteredOperators: { [key: string]: Operator[] } }) => (
+const FilteredResults = memo(({ filteredOperators, displayMode }: { filteredOperators: { [key: string]: Operator[] }, displayMode: DisplayMode }) => (
   <div className="grid mt-8 gap-8">
     <TooltipProvider delayDuration={260}>
       {Object.entries(filteredOperators).map(([combination, operators]) => (
@@ -151,6 +190,7 @@ const FilteredResults = memo(({ filteredOperators }: { filteredOperators: { [key
           key={combination}
           combination={combination}
           operators={operators as Operator[]}
+          displayMode={displayMode}
         />
       ))}
     </TooltipProvider>
@@ -173,6 +213,7 @@ export default function Recruit() {
   });
 
   const [filterMode, setFilterMode] = useState<FilterMode>("default");
+  const [displayMode, setDisplayMode] = useState<DisplayMode>("icon");
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -183,6 +224,11 @@ export default function Recruit() {
     if (storedMode === "default" || storedMode === "star14Plus") {
       setFilterMode(storedMode);
     }
+
+    const storedDisplayMode = window.localStorage.getItem(DISPLAY_MODE_STORAGE_KEY);
+    if (storedDisplayMode === "icon" || storedDisplayMode === "card") {
+      setDisplayMode(storedDisplayMode);
+    }
   }, []);
 
   useEffect(() => {
@@ -191,6 +237,13 @@ export default function Recruit() {
     }
     window.localStorage.setItem(FILTER_MODE_STORAGE_KEY, filterMode);
   }, [filterMode]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.localStorage.setItem(DISPLAY_MODE_STORAGE_KEY, displayMode);
+  }, [displayMode]);
 
   const filteredOperators = useFilterOperators(recruitData, selectedItems);
   const filteredOperatorsByMode = useMemo(() => {
@@ -336,6 +389,26 @@ export default function Recruit() {
               </Button>
             </div>
 
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                表示形式
+              </span>
+              <Button
+                size="sm"
+                variant={displayMode === "icon" ? "default" : "outline"}
+                onClick={() => setDisplayMode("icon")}
+              >
+                アイコンのみ
+              </Button>
+              <Button
+                size="sm"
+                variant={displayMode === "card" ? "default" : "outline"}
+                onClick={() => setDisplayMode("card")}
+              >
+                詳細
+              </Button>
+            </div>
+
             {isStar14Mode && (
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 星2と星3のオペレーターは非表示になります。
@@ -351,7 +424,7 @@ export default function Recruit() {
           指定されたタグでは、ロボットまたは星4以上のオペレーターが見つかりませんでした。
         </p>
       ) : (
-        <FilteredResults filteredOperators={filteredOperatorsByMode} />
+        <FilteredResults filteredOperators={filteredOperatorsByMode} displayMode={displayMode} />
       )}
     </>
   );
