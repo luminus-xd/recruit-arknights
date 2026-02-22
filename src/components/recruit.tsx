@@ -26,7 +26,7 @@ import {
 import type { Operator } from "@/types/recruit";
 
 type FilterMode = "default" | "star14Plus";
-type DisplayMode = "icon" | "name";
+type DisplayMode = "icon" | "name" | "card";
 
 const FILTER_MODE_STORAGE_KEY = "recruit-filter-mode";
 const DISPLAY_MODE_STORAGE_KEY = "recruit-display-mode";
@@ -106,8 +106,42 @@ const SelectedTags = memo(({
 ));
 SelectedTags.displayName = "SelectedTags";
 
+// レアリティに応じたテキスト色
+const rarityTextColors: { [key: number]: string } = {
+  1: "text-gray-400",
+  2: "text-green-400",
+  3: "text-blue-400",
+  4: "text-purple-400",
+  5: "text-orange-400",
+  6: "text-red-400",
+};
+
 // オペレーターアイテムコンポーネント
 const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; displayMode: DisplayMode }) => {
+  if (displayMode === "card") {
+    return (
+      <li>
+        <a
+          className="flex items-center gap-2.5 rounded-lg border bg-card px-3 py-2 shadow-sm transition-all hover:shadow-md hover:scale-[1.02]"
+          href={operator.wiki}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <Avatar rarity={operator.rarity} className="h-10 w-10">
+            <AvatarImage alt={operator.name} src={operator.imgPath} />
+            <AvatarFallback>{operator.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold leading-tight">{operator.name}</p>
+            <p className={`text-xs leading-tight ${rarityTextColors[operator.rarity]}`}>
+              {"★".repeat(operator.rarity)}
+            </p>
+          </div>
+        </a>
+      </li>
+    );
+  }
+
   const content = (
     <a
       className="flex items-center gap-1.5 hover:scale-105 transition-transform"
@@ -146,7 +180,7 @@ OperatorItem.displayName = "OperatorItem";
 const OperatorCombination = memo(({ combination, operators, displayMode }: { combination: string, operators: Operator[], displayMode: DisplayMode }) => (
   <div className="relative p-4 border-2 rounded-md" key={combination}>
     <h3 className="absolute inline-block text-lg font-bold -top-[0.92rem] left-[0.55rem] px-2 bg-background">{combination}</h3>
-    <ul className="flex flex-wrap mt-2 gap-2">
+    <ul className={`flex flex-wrap mt-2 ${displayMode === "icon" ? "gap-2" : "gap-3"}`}>
       {operators.map((operator) => (
         <OperatorItem key={operator.id} operator={operator} displayMode={displayMode} />
       ))}
@@ -200,7 +234,7 @@ export default function Recruit() {
     }
 
     const storedDisplayMode = window.localStorage.getItem(DISPLAY_MODE_STORAGE_KEY);
-    if (storedDisplayMode === "icon" || storedDisplayMode === "name") {
+    if (storedDisplayMode === "icon" || storedDisplayMode === "name" || storedDisplayMode === "card") {
       setDisplayMode(storedDisplayMode);
     }
   }, []);
@@ -380,6 +414,13 @@ export default function Recruit() {
                 onClick={() => setDisplayMode("name")}
               >
                 アイコン + 名前
+              </Button>
+              <Button
+                size="sm"
+                variant={displayMode === "card" ? "default" : "outline"}
+                onClick={() => setDisplayMode("card")}
+              >
+                カード
               </Button>
             </div>
 
