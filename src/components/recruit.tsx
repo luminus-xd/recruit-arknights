@@ -133,10 +133,10 @@ const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; disp
           </Avatar>
           <div className="min-w-0">
             <p className="text-sm font-semibold leading-tight">{operator.name}</p>
-            <p className="text-xs leading-tight text-muted-foreground">{operator.type}</p>
             <p className={`text-xs leading-tight ${rarityTextColors[operator.rarity]}`}>
               {"★".repeat(operator.rarity)}
             </p>
+            <p className="text-xs leading-tight text-muted-foreground">{operator.type}</p>
           </div>
         </a>
       </li>
