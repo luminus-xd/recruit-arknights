@@ -21,6 +21,11 @@ export default function ScreenshotAnalysis({ applyOcrTags }: ScreenshotAnalysisP
     const handleFileChange = useCallback(
         async (e: React.ChangeEvent<HTMLInputElement>) => {
             const file = e.target.files?.[0];
+            // Safariでは onClick 内で input.value="" をセットすると onChange が
+            // ファイルピッカーを開く前に発火し、前回のファイルが渡されてしまう。
+            // ここでリセットすることで、同じファイルの再選択も可能にしつつ
+            // Safariの誤発火を防ぐ。
+            e.target.value = "";
             if (!file) return;
             setError(null);
 
@@ -75,10 +80,6 @@ export default function ScreenshotAnalysis({ applyOcrTags }: ScreenshotAnalysisP
                     type="file"
                     accept="image/*;capture=camera"
                     disabled={isLoading}
-                    onClick={(e) => {
-                        const input = e.target as HTMLInputElement;
-                        input.value = "";
-                    }}
                 />
             </div>
 
