@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'crypto';
 import { getVisionClient } from '@/lib/google-vision';
 import { allTags } from "@/lib/utils";
 import levenshtein from 'fast-levenshtein';
@@ -53,11 +54,13 @@ const isFuzzyMatch = (target: string, keyword: string): boolean => {
 };
 
 /**
- * 画像ハッシュの生成（簡易的な実装）
+ * 画像ハッシュの生成
+ * SHA-256を使用して画像全体から一意なハッシュを生成する。
+ * 以前の先頭100文字によるキーはCanvas JPEGエンコード時に
+ * 全画像で共通のJPEGヘッダー部分が一致してしまい衝突が発生していた。
  */
 const generateImageHash = (imageBase64: string): string => {
-    // 画像の先頭部分を使用して簡易ハッシュを生成
-    return imageBase64.substring(0, 100);
+    return createHash('sha256').update(imageBase64).digest('hex');
 };
 
 /**
