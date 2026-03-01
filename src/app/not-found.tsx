@@ -2,7 +2,7 @@ import Link from "next/link";
 import PrtsTerminal from "@/components/prts-terminal";
 import styles from "./not-found.module.css";
 
-const GHOST_TAGS = ["近距離", "火力", "支援", "生存", "範囲攻撃", "COST回復", "ロボット"];
+const GHOST_TAGS = ["近距離", "火力", "支援"];
 
 export default function NotFound() {
   return (

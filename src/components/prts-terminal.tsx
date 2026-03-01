@@ -19,6 +19,7 @@ const EASTER_EGG_COMMANDS: Record<
     { type: "system", text: "  recruit     公開求人を実行" },
     { type: "system", text: "  sanity      理性値を確認" },
     { type: "system", text: "  secret      ..." },
+    { type: "warning", text: "  ※コマンドは小文字しか対応されていません" },
   ],
   status: [
     { type: "info", text: "PRTS v4.0.4 — Rhodes Island Pharmaceutical" },
@@ -91,7 +92,7 @@ const EASTER_EGG_COMMANDS: Record<
     { type: "info", text: "  Mon3trに迎えを寄越そう。」" },
     { type: "warning", text: "[Mon3trの気配を感じる...]" },
   ],
-  "Mon3tr": [
+  mon3tr: [
     { type: "error", text: ">> Mon3trからの通信 <<" },
     { type: "info", text: "「ドクター。こんなところで何をしているんだ？" },
     { type: "info", text: "  早く帰ろう！ここは危険なんだ。" },
@@ -232,11 +233,6 @@ export default function PrtsTerminal() {
           <span className={styles.warning}>???:</span>
           <span>暗闇の中、星の光で彩られた文明の果てで私たちは再会する……きっと。</span>
         </div>
-        <div className={styles.terminalLine}>
-          <span className={styles.prompt}>$</span>
-          <span>suggest --action &quot;return_to_base&quot;</span>
-        </div>
-
         {/* Easter egg history */}
         {history.map((entry, i) => (
           <div key={i} className={styles.historyBlock}>
