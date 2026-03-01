@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSyncExternalStore } from 'react';
 import type { Operator } from "@/types/recruit";
 import Link from "next/link";
 import Image from "next/image";
@@ -150,16 +150,17 @@ const SectionContent = ({
 };
 
 export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
-    const [layoutMode, setLayoutMode] = useState<LayoutMode>('grid');
-
-    // localStorage からレイアウトモードを読み込む
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const stored = window.localStorage.getItem(LAYOUT_MODE_STORAGE_KEY);
-        if (stored === 'grid' || stored === 'table' || stored === 'list') {
-            setLayoutMode(stored);
+    const storedLayoutMode = useSyncExternalStore(
+        () => () => {},
+        () => window.localStorage.getItem(LAYOUT_MODE_STORAGE_KEY),
+        () => null,
+    );
+    const [layoutMode, setLayoutMode] = useState<LayoutMode>(() => {
+        if (storedLayoutMode === 'grid' || storedLayoutMode === 'table' || storedLayoutMode === 'list') {
+            return storedLayoutMode;
         }
-    }, []);
+        return 'grid';
+    });
 
     // localStorage にレイアウトモードを保存する
     useEffect(() => {
@@ -209,7 +210,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
                 <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">表示形式</span>
                 <Button
                     size="sm"
-                    variant={layoutMode === 'grid' ? 'default' : 'outline'}
+                    variant={layoutMode === 'grid' ? 'default' : 'outline-solid'}
                     onClick={() => setLayoutMode('grid')}
                 >
                     <LayoutGrid className="mr-1.5 h-4 w-4" />
@@ -217,7 +218,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
                 </Button>
                 <Button
                     size="sm"
-                    variant={layoutMode === 'table' ? 'default' : 'outline'}
+                    variant={layoutMode === 'table' ? 'default' : 'outline-solid'}
                     onClick={() => setLayoutMode('table')}
                 >
                     <Table2 className="mr-1.5 h-4 w-4" />
@@ -225,7 +226,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
                 </Button>
                 <Button
                     size="sm"
-                    variant={layoutMode === 'list' ? 'default' : 'outline'}
+                    variant={layoutMode === 'list' ? 'default' : 'outline-solid'}
                     onClick={() => setLayoutMode('list')}
                 >
                     <List className="mr-1.5 h-4 w-4" />

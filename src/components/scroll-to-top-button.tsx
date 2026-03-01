@@ -83,7 +83,7 @@ const ScrollToTopButton = () => {
     <button
       type="button"
       onClick={handleClick}
-      className="fixed right-4 rounded-full bg-gray-800 p-3 text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 md:right-8"
+      className="fixed right-4 rounded-full bg-gray-800 p-3 text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-700 focus:outline-hidden focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 md:right-8"
       style={{ bottom: bottomOffset }}
       aria-label="ページトップへ戻る"
     >

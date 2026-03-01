@@ -1,8 +1,12 @@
-import { useCallback, useMemo, useEffect, useState } from "react";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { AllTag } from "@/lib/utils";
 import { allTags, isValidTag } from "@/lib/utils";
 import { parseAsArrayOf, parseAsStringLiteral, useQueryState } from "nuqs";
+
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 const selectedItemsParser = parseAsArrayOf(
   parseAsStringLiteral(allTags)
@@ -14,11 +18,7 @@ export const useCheckboxState = () => {
     selectedItemsParser
   );
 
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+  const isHydrated = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const selectedItems = useMemo(() => {
     if (!isHydrated) {

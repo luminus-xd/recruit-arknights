@@ -1,10 +1,14 @@
 "use client";
 
 import { Moon, SunDim } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 type Props = {
   className?: string;
@@ -13,9 +17,7 @@ type Props = {
 export const AnimatedThemeToggler = ({ className }: Props) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggleTheme = async () => {
     if (!buttonRef.current) return;

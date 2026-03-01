@@ -1,4 +1,4 @@
-import { useCallback, memo, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, memo, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useRecruit } from "@/contexts/RecruitContext";
@@ -122,7 +122,7 @@ const OperatorItem = memo(({ operator, displayMode }: { operator: Operator; disp
     return (
       <li>
         <a
-          className="flex items-center gap-2.5 rounded-lg border bg-card px-3 py-2 shadow-sm transition-all hover:shadow-md hover:scale-[1.02]"
+          className="flex items-center gap-2.5 rounded-lg border bg-card px-3 py-2 shadow-xs transition-all hover:shadow-md hover:scale-[1.02]"
           href={operator.wiki}
           rel="noopener noreferrer"
           target="_blank"
@@ -212,24 +212,22 @@ export default function Recruit() {
     setSelectedItems,
   });
 
-  const [filterMode, setFilterMode] = useState<FilterMode>("default");
-  const [displayMode, setDisplayMode] = useState<DisplayMode>("icon");
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const storedMode = window.localStorage.getItem(FILTER_MODE_STORAGE_KEY);
-    if (storedMode === "default" || storedMode === "star14Plus") {
-      setFilterMode(storedMode);
-    }
-
-    const storedDisplayMode = window.localStorage.getItem(DISPLAY_MODE_STORAGE_KEY);
-    if (storedDisplayMode === "icon" || storedDisplayMode === "card") {
-      setDisplayMode(storedDisplayMode);
-    }
-  }, []);
+  const storedFilterMode = useSyncExternalStore(
+    () => () => {},
+    () => window.localStorage.getItem(FILTER_MODE_STORAGE_KEY),
+    () => null,
+  );
+  const storedDisplayMode = useSyncExternalStore(
+    () => () => {},
+    () => window.localStorage.getItem(DISPLAY_MODE_STORAGE_KEY),
+    () => null,
+  );
+  const [filterMode, setFilterMode] = useState<FilterMode>(() =>
+    storedFilterMode === "default" || storedFilterMode === "star14Plus" ? storedFilterMode : "default"
+  );
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(() =>
+    storedDisplayMode === "icon" || storedDisplayMode === "card" ? storedDisplayMode : "icon"
+  );
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -375,14 +373,14 @@ export default function Recruit() {
               </span>
               <Button
                 size="sm"
-                variant={filterMode === "default" ? "default" : "outline"}
+                variant={filterMode === "default" ? "default" : "outline-solid"}
                 onClick={() => setFilterMode("default")}
               >
                 通常
               </Button>
               <Button
                 size="sm"
-                variant={filterMode === "star14Plus" ? "default" : "outline"}
+                variant={filterMode === "star14Plus" ? "default" : "outline-solid"}
                 onClick={() => setFilterMode("star14Plus")}
               >
                 ロボット & 星4以上
@@ -395,14 +393,14 @@ export default function Recruit() {
               </span>
               <Button
                 size="sm"
-                variant={displayMode === "icon" ? "default" : "outline"}
+                variant={displayMode === "icon" ? "default" : "outline-solid"}
                 onClick={() => setDisplayMode("icon")}
               >
                 アイコンのみ
               </Button>
               <Button
                 size="sm"
-                variant={displayMode === "card" ? "default" : "outline"}
+                variant={displayMode === "card" ? "default" : "outline-solid"}
                 onClick={() => setDisplayMode("card")}
               >
                 詳細

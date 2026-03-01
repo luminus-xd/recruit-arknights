@@ -2,8 +2,8 @@
 
 import {
 	createContext,
-	useContext,
-	ReactNode,
+	use,
+	type ReactNode,
 	useMemo,
 } from "react";
 import type { Recruit } from "@/types/recruit";
@@ -37,7 +37,7 @@ export const RecruitProvider = ({ children, initialData }: RecruitProviderProps)
 };
 
 export const useRecruit = () => {
-	const context = useContext(RecruitContext);
+	const context = use(RecruitContext);
 	if (context === undefined) {
 		throw new Error("useRecruit must be used within a RecruitProvider");
 	}

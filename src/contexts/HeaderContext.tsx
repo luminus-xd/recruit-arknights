@@ -3,7 +3,7 @@
 import { createContext, useRef, RefObject, ReactNode } from "react";
 
 interface HeaderContextType {
-    headerRef: RefObject<HTMLDivElement>;
+    headerRef: RefObject<HTMLDivElement | null>;
 }
 
 export const HeaderContext = createContext<HeaderContextType>({
