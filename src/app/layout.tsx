@@ -3,14 +3,16 @@ import { ThemeProvider } from "@/components/theme-provide";
 import { Inter, BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/react";
+import dynamic from "next/dynamic";
 
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 import Navigation from "@/components/navigation";
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import ScrollToTopButton from "@/components/scroll-to-top-button";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+
+const ScrollProgress = dynamic(() => import("@/components/magicui/scroll-progress").then(m => ({ default: m.ScrollProgress })));
+const Analytics = dynamic(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
+const ScrollToTopButton = dynamic(() => import("@/components/scroll-to-top-button"));
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),

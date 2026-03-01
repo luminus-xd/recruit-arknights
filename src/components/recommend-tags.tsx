@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Operator } from "@/types/recruit";
+import type { Operator } from "@/types/recruit";
 import Link from "next/link";
 import Image from "next/image";
 import { useMemo } from "react";
@@ -16,16 +16,18 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowBigLeft, LayoutGrid, Table2, List } from 'lucide-react';
 
+type SlimOperator = Pick<Operator, 'id' | 'name' | 'rarity' | 'imgPath' | 'wiki'>;
+
 type LayoutMode = 'grid' | 'table' | 'list';
 
 const LAYOUT_MODE_STORAGE_KEY = "recommend-layout-mode";
 
 interface RecommendTagsProps {
-    recommendedTags: { [key: string]: Operator[] };
+    recommendedTags: { [key: string]: SlimOperator[] };
 }
 
 // オペレーターアイテムコンポーネント
-const OperatorItem = ({ operator }: { operator: Operator }) => {
+const OperatorItem = ({ operator }: { operator: SlimOperator }) => {
     return (
         <li>
             <Tooltip>
@@ -58,7 +60,7 @@ const OperatorItem = ({ operator }: { operator: Operator }) => {
 };
 
 // グリッドレイアウト
-const GridLayout = ({ items }: { items: { tags: string; operators: Operator[] }[] }) => (
+const GridLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map(({ tags, operators }) => (
             <div key={tags} className="border rounded-lg p-4">
@@ -76,7 +78,7 @@ const GridLayout = ({ items }: { items: { tags: string; operators: Operator[] }[
 );
 
 // テーブルレイアウト
-const TableLayout = ({ items }: { items: { tags: string; operators: Operator[] }[] }) => (
+const TableLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
     <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
             <thead>
@@ -106,7 +108,7 @@ const TableLayout = ({ items }: { items: { tags: string; operators: Operator[] }
 );
 
 // リスト(dl/dt/dd)レイアウト
-const ListLayout = ({ items }: { items: { tags: string; operators: Operator[] }[] }) => (
+const ListLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
     <dl className="space-y-4">
         {items.map(({ tags, operators }) => (
             <div key={tags} className="border-l-4 border-primary pl-4">
@@ -130,7 +132,7 @@ const SectionContent = ({
     items,
     layoutMode,
 }: {
-    items: { tags: string; operators: Operator[] }[];
+    items: { tags: string; operators: SlimOperator[] }[];
     layoutMode: LayoutMode;
 }) => {
     if (items.length === 0) {
@@ -167,7 +169,7 @@ export default function RecommendTags({ recommendedTags }: RecommendTagsProps) {
 
     const groupedByRarity = useMemo(() => {
         // 星5確定と星4以上確定のグループを準備
-        const grouped: { [key: string]: { tags: string; operators: Operator[] }[] } = {
+        const grouped: { [key: string]: { tags: string; operators: SlimOperator[] }[] } = {
             'star5': [], // 星5確定
             'star4plus': [], // 星4以上確定
         };

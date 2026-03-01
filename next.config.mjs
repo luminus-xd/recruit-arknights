@@ -103,6 +103,7 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     reactCompiler: true,
+    optimizePackageImports: ['lucide-react', 'motion/react'],
   },
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,

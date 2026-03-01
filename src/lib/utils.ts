@@ -46,8 +46,10 @@ export const allTags = [
 
 export type AllTag = RarityTag | Position | Type | Tag;
 
+const allTagsSet: ReadonlySet<string> = new Set<string>(allTags);
+
 export const isValidTag = (item: string): item is AllTag => {
-  return allTags.includes(item as AllTag);
+  return allTagsSet.has(item);
 };
 
 // 定数定義

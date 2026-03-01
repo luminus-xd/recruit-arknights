@@ -159,7 +159,7 @@ const getImageCacheKey = (base64: string): string => {
  */
 export function useScreenshotAnalysis() {
     // 解析結果のキャッシュ（画像コンテンツベースのキーで管理）
-    const [resultCache, setResultCache] = useState<Map<string, string[]>>(new Map());
+    const [resultCache, setResultCache] = useState(() => new Map<string, string[]>());
 
     const { trigger, data, error, isMutating, reset } = useSWRMutation(
         "/api/parse-tags",
