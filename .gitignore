@@ -53,3 +53,8 @@ src/components/generated/
 # 一時ファイル
 pr_description.md
 *.tmp
+
+# claude code
+.agents/
+.claude/
+skills-lock.json
