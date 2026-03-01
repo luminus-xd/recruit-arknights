@@ -73,32 +73,6 @@
   }
 }
 
-/* --- Screen Flicker --- */
-.screen {
-  animation: flicker 6s infinite;
-}
-
-@keyframes flicker {
-
-  0%,
-  97%,
-  100% {
-    opacity: 1;
-  }
-
-  97.5% {
-    opacity: 0.85;
-  }
-
-  98% {
-    opacity: 1;
-  }
-
-  98.5% {
-    opacity: 0.9;
-  }
-}
-
 /* --- 404 Glitch Text --- */
 .glitchWrapper {
   position: relative;
