@@ -57,4 +57,6 @@ pr_description.md
 # claude code
 .agents/
 .claude/
+AGENTS.md
 skills-lock.json
+CLAUDE.md
