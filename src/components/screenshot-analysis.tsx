@@ -75,7 +75,7 @@ export default function ScreenshotAnalysis({ applyOcrTags }: ScreenshotAnalysisP
                 </Label>
                 <Input
                     id="picture"
-                    className="h-15 mt-1 text-sm px-2.5 py-3.5 text-gray-500 dark:text-gray-400"
+                    className="mt-1 h-auto text-sm px-2.5 py-3.5 text-gray-500 dark:text-gray-400"
                     onChange={handleFileChange}
                     type="file"
                     accept="image/*;capture=camera"

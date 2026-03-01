@@ -1,95 +1,10 @@
 /** @type {import('next').NextConfig} */
-import withPWA from "next-pwa";
 import withBundleAnalyzer from "@next/bundle-analyzer";
-
-const pwaConfig = {
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-  runtimeCaching: [
-    {
-      urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts',
-        expiration: {
-          maxEntries: 4,
-          maxAgeSeconds: 365 * 24 * 60 * 60, // 1年
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'static-font-assets',
-        expiration: {
-          maxEntries: 4,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 1週間
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'static-image-assets',
-        expiration: {
-          maxEntries: 64,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30日
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:js)$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'static-js-assets',
-        expiration: {
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24時間
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:css|less)$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'static-style-assets',
-        expiration: {
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24時間
-        },
-      },
-    },
-    {
-      urlPattern: /\/json\/.*\.json$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'json-data',
-        expiration: {
-          maxEntries: 32,
-          maxAgeSeconds: 6 * 60 * 60, // 6時間に短縮
-        },
-      },
-    },
-    {
-      urlPattern: /.*/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'others',
-        expiration: {
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24時間
-        },
-      },
-    },
-  ],
-};
+import withSerwistInit from "@serwist/next";
 
 const nextConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
   // 画像最適化
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -99,10 +14,7 @@ const nextConfig = {
   },
   // 静的アセットの圧縮
   compress: true,
-  // 実験的な最適化機能
   experimental: {
-    scrollRestoration: true,
-    reactCompiler: true,
     optimizePackageImports: ['lucide-react', 'motion/react'],
   },
   onDemandEntries: {
@@ -111,6 +23,7 @@ const nextConfig = {
   },
   // 本番環境でのソースマップ無効化
   productionBrowserSourceMaps: false,
+  turbopack: {},
 };
 
 // バンドル分析の設定
@@ -119,4 +32,10 @@ const analyzerConfig = {
   openAnalyzer: true,
 };
 
-export default withBundleAnalyzer(analyzerConfig)(withPWA(pwaConfig)(nextConfig));
+const withPWA = withSerwistInit({
+  swSrc: "src/app/sw.ts",
+  swDest: "public/sw.js",
+  disable: process.env.NODE_ENV === "development",
+});
+
+export default withBundleAnalyzer(analyzerConfig)(withPWA(nextConfig));
