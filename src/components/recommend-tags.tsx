@@ -61,70 +61,70 @@ const OperatorItem = ({ operator }: { operator: SlimOperator }) => {
 
 // グリッドレイアウト
 const GridLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map(({ tags, operators }) => (
-            <div key={tags} className="border rounded-lg p-4">
-                <h3 className="text-lg font-bold border-b-2 pb-1">{tags}</h3>
-                <TooltipProvider>
+    <TooltipProvider>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {items.map(({ tags, operators }) => (
+                <div key={tags} className="border rounded-lg p-4">
+                    <h3 className="text-lg font-bold border-b-2 pb-1">{tags}</h3>
                     <ul className="flex flex-wrap gap-2 mt-3">
                         {operators.map(operator => (
                             <OperatorItem key={operator.id} operator={operator} />
                         ))}
                     </ul>
-                </TooltipProvider>
-            </div>
-        ))}
-    </div>
+                </div>
+            ))}
+        </div>
+    </TooltipProvider>
 );
 
 // テーブルレイアウト
 const TableLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
-    <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
-            <thead>
-                <tr className="border-b-2">
-                    <th className="text-left py-2 pr-6 font-bold whitespace-nowrap">タグ組み合わせ</th>
-                    <th className="text-left py-2 font-bold">オペレーター</th>
-                </tr>
-            </thead>
-            <tbody>
-                {items.map(({ tags, operators }) => (
-                    <tr key={tags} className="border-b">
-                        <td className="py-2 pr-6 font-semibold align-middle whitespace-nowrap">{tags}</td>
-                        <td className="py-2">
-                            <TooltipProvider>
+    <TooltipProvider>
+        <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+                <thead>
+                    <tr className="border-b-2">
+                        <th className="text-left py-2 pr-6 font-bold whitespace-nowrap">タグ組み合わせ</th>
+                        <th className="text-left py-2 font-bold">オペレーター</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map(({ tags, operators }) => (
+                        <tr key={tags} className="border-b">
+                            <td className="py-2 pr-6 font-semibold align-middle whitespace-nowrap">{tags}</td>
+                            <td className="py-2">
                                 <ul className="flex flex-wrap gap-2">
                                     {operators.map(operator => (
                                         <OperatorItem key={operator.id} operator={operator} />
                                     ))}
                                 </ul>
-                            </TooltipProvider>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </TooltipProvider>
 );
 
 // リスト(dl/dt/dd)レイアウト
 const ListLayout = ({ items }: { items: { tags: string; operators: SlimOperator[] }[] }) => (
-    <dl className="space-y-4">
-        {items.map(({ tags, operators }) => (
-            <div key={tags} className="border-l-4 border-primary pl-4">
-                <dt className="font-bold text-base">{tags}</dt>
-                <dd className="mt-2">
-                    <TooltipProvider>
+    <TooltipProvider>
+        <dl className="space-y-4">
+            {items.map(({ tags, operators }) => (
+                <div key={tags} className="border-l-4 border-primary pl-4">
+                    <dt className="font-bold text-base">{tags}</dt>
+                    <dd className="mt-2">
                         <ul className="flex flex-wrap gap-2">
                             {operators.map(operator => (
                                 <OperatorItem key={operator.id} operator={operator} />
                             ))}
                         </ul>
-                    </TooltipProvider>
-                </dd>
-            </div>
-        ))}
-    </dl>
+                    </dd>
+                </div>
+            ))}
+        </dl>
+    </TooltipProvider>
 );
 
 // セクション内容をレイアウトモードに応じてレンダリング

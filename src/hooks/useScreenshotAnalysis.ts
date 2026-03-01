@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef } from "react";
 import useSWRMutation from "swr/mutation";
 
 // 画像処理のための定数
@@ -159,7 +159,7 @@ const getImageCacheKey = (base64: string): string => {
  */
 export function useScreenshotAnalysis() {
     // 解析結果のキャッシュ（画像コンテンツベースのキーで管理）
-    const [resultCache, setResultCache] = useState(() => new Map<string, string[]>());
+    const resultCacheRef = useRef(new Map<string, string[]>());
 
     const { trigger, data, error, isMutating, reset } = useSWRMutation(
         "/api/parse-tags",
@@ -182,8 +182,8 @@ export function useScreenshotAnalysis() {
 
                 // コンテンツベースのキャッシュチェック
                 const cacheKey = getImageCacheKey(base64);
-                if (resultCache.has(cacheKey)) {
-                    return resultCache.get(cacheKey) || [];
+                if (resultCacheRef.current.has(cacheKey)) {
+                    return resultCacheRef.current.get(cacheKey) || [];
                 }
 
                 // APIリクエスト
@@ -191,7 +191,7 @@ export function useScreenshotAnalysis() {
 
                 // キャッシュに保存
                 const tags = result.tags || [];
-                setResultCache(prev => new Map(prev).set(cacheKey, tags));
+                resultCacheRef.current.set(cacheKey, tags);
 
                 return tags;
             } catch (error) {
@@ -201,7 +201,7 @@ export function useScreenshotAnalysis() {
                     : new Error("画像の解析中に予期せぬエラーが発生しました。");
             }
         },
-        [trigger, resultCache]
+        [trigger]
     );
 
     // エラー発生時にリセット
