@@ -2070,5 +2070,33 @@
     "addDay": "2026/01/16",
     "wiki": "https://arknights.wikiru.jp/?%E3%83%88%E3%82%AE%E3%83%95%E3%82%A9%E3%83%B3%E3%82%B9",
     "imgPath": "/img/operators/151.png"
+  },
+  {
+    "id": 152,
+    "name": "ケルシー",
+    "rarity": 6,
+    "type": "医療",
+    "tags": [
+      "遠距離",
+      "召喚",
+      "治療"
+    ],
+    "addDay": "2026/04/14",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%B1%E3%83%AB%E3%82%B7%E3%83%BC",
+    "imgPath": "/img/operators/152.png"
+  },
+  {
+    "id": 153,
+    "name": "アカフユ",
+    "rarity": 5,
+    "type": "前衛",
+    "tags": [
+      "近距離",
+      "生存",
+      "火力"
+    ],
+    "addDay": "2026/04/14",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%A2%E3%82%AB%E3%83%95%E3%83%A6",
+    "imgPath": "/img/operators/153.png"
   }
 ]
