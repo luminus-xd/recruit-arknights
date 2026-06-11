@@ -1,4 +1,4 @@
-import type { Operator } from "@/types/recruit";
+import type { Operator, Recruit } from "@/types/recruit";
 import { detectRecommendedTags } from "@/lib/recommendTags";
 import recruitData from "../../../public/json/ak-recruit.min.json";
 import RecommendTags from "@/components/recommend-tags";
@@ -15,7 +15,7 @@ export const metadata = {
 };
 
 export default function RecommendPage() {
-	const recommendedTags = detectRecommendedTags(recruitData as Operator[]);
+	const recommendedTags = detectRecommendedTags(recruitData as Recruit);
 
 	// クライアントに必要なフィールドのみ送信してHTMLペイロードを削減
 	const slimRecommendedTags: { [key: string]: SlimOperator[] } = {};

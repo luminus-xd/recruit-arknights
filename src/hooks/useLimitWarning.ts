@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
-import { RECRUIT_LIMITS } from "@/lib/utils";
+import { RECRUIT_LIMITS } from "@/lib/constants";
 
 /**
  * タグの選択数が上限を超えた場合にトーストUIによる警告を行う

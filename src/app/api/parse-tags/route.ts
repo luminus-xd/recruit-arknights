@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHash } from 'crypto';
 import { getVisionClient } from '@/lib/google-vision';
+import { OCR_TIMEOUT } from '@/lib/constants';
 import { allTags } from "@/lib/utils";
 import levenshtein from 'fast-levenshtein';
 
@@ -106,7 +107,7 @@ export async function POST(req: NextRequest) {
                 }
             }),
             new Promise<never>((_, reject) =>
-                setTimeout(() => reject(new Error('Vision API request timeout')), 15000)
+                setTimeout(() => reject(new Error('Vision API request timeout')), OCR_TIMEOUT.SERVER_MS)
             )
         ]);
 

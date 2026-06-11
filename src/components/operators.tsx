@@ -1,17 +1,9 @@
-import { useEffect } from "react";
 import { useRecruit } from "@/contexts/RecruitContext";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import type { Recruit } from "@/types/recruit";
 
 export default function Operators() {
   const { recruitData, isLoading } = useRecruit();
-
-  useEffect(() => {
-    if (!isLoading) {
-      console.log(recruitData);
-    }
-  }, [isLoading, recruitData]);
 
   return (
     <>
