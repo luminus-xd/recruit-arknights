@@ -52,12 +52,6 @@ export const isValidTag = (item: string): item is AllTag => {
   return allTagsSet.has(item);
 };
 
-// 定数定義
-export const RECRUIT_LIMITS = {
-  MAX_SELECTED_TAGS: 6,
-  WARNING_THRESHOLD: 7,
-} as const;
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

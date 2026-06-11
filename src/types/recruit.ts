@@ -37,7 +37,7 @@ export type Operator = {
   name: string;
   rarity: Rarity;
   type: Type;
-  tags: (Tag | RarityTag)[];
+  tags: (Position | Tag | RarityTag)[];
   addDay?: string;
   wiki: string;
   imgPath: string;

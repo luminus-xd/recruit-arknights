@@ -13,6 +13,72 @@ const {
 const DEFAULT_ICON_DIR = path.resolve(__dirname, "../public/img/operators");
 const TARGET_SIZE = 96;
 const WEBP_QUALITY = 90;
+const VALID_RARITIES = new Set([1, 2, 3, 4, 5, 6]);
+const VALID_TYPES = new Set(["先鋒", "前衛", "重装", "狙撃", "術師", "医療", "補助", "特殊"]);
+
+function getOperatorRecords(data) {
+  if (Array.isArray(data)) {
+    return data;
+  }
+
+  if (data && typeof data === "object" && Array.isArray(data.operators)) {
+    return data.operators;
+  }
+
+  return null;
+}
+
+function validateOperators(data) {
+  const operators = getOperatorRecords(data);
+  if (!operators) {
+    throw new Error("ak-recruit.json の検証エラー: オペレーター配列が見つかりません。");
+  }
+
+  const errors = [];
+
+  operators.forEach((operator, index) => {
+    const label = `[${index}${operator && operator.name ? ` ${operator.name}` : ""}]`;
+
+    if (!operator || typeof operator !== "object") {
+      errors.push(`${label} レコードがオブジェクトではありません。`);
+      return;
+    }
+
+    if (typeof operator.id !== "number") {
+      errors.push(`${label} id が数値ではありません。`);
+    }
+
+    if (typeof operator.name !== "string" || operator.name.length === 0) {
+      errors.push(`${label} name が不正です。`);
+    }
+
+    if (!VALID_RARITIES.has(operator.rarity)) {
+      errors.push(`${label} rarity が不正です: ${operator.rarity}`);
+    }
+
+    if (!VALID_TYPES.has(operator.type)) {
+      errors.push(`${label} type が不正です: ${operator.type}`);
+    }
+
+    if (!Array.isArray(operator.tags)) {
+      errors.push(`${label} tags が配列ではありません。`);
+    }
+
+    if (typeof operator.wiki !== "string" || operator.wiki.length === 0) {
+      errors.push(`${label} wiki が不正です。`);
+    }
+
+    if (typeof operator.imgPath !== "string" || operator.imgPath.length === 0) {
+      errors.push(`${label} imgPath が不正です。`);
+    }
+  });
+
+  if (errors.length > 0) {
+    throw new Error(`ak-recruit.json の検証エラー:\n${errors.join("\n")}`);
+  }
+
+  console.log(`ak-recruit.json を検証しました: ${operators.length} 件`);
+}
 
 function toWebpPath(value) {
   if (typeof value !== "string") {
@@ -127,7 +193,10 @@ function isDefaultRecruitJson(inputPath) {
 
 async function main() {
   const { inputPath, outputPath, options } = parseArguments();
-  optimizeJson(inputPath, outputPath, options, transformOperatorsToWebp);
+  optimizeJson(inputPath, outputPath, options, (data) => {
+    validateOperators(data);
+    return transformOperatorsToWebp(data);
+  });
 
   if (isDefaultRecruitJson(inputPath)) {
     await optimizeOperatorIcons();
@@ -146,4 +215,5 @@ if (require.main === module) {
 module.exports = {
   optimizeOperatorIcons,
   transformOperatorsToWebp,
+  validateOperators,
 };
