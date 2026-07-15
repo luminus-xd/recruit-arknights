@@ -2098,5 +2098,47 @@
     "addDay": "2026/04/14",
     "wiki": "https://arknights.wikiru.jp/?%E3%82%A2%E3%82%AB%E3%83%95%E3%83%A6",
     "imgPath": "/img/operators/153.png"
+  },
+  {
+    "id": 154,
+    "name": "カーネリアン",
+    "rarity": 6,
+    "type": "術師",
+    "tags": [
+      "遠距離",
+      "範囲攻撃",
+      "防御"
+    ],
+    "addDay": "2026/07/16",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AA%E3%82%A2%E3%83%B3",
+    "imgPath": "/img/operators/154.png"
+  },
+  {
+    "id": 155,
+    "name": "キララ",
+    "rarity": 5,
+    "type": "特殊",
+    "tags": [
+      "近距離",
+      "生存",
+      "火力"
+    ],
+    "addDay": "2026/07/16",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%AD%E3%83%A9%E3%83%A9",
+    "imgPath": "/img/operators/155.png"
+  },
+  {
+    "id": 156,
+    "name": "インディゴ",
+    "rarity": 4,
+    "type": "術師",
+    "tags": [
+      "遠距離",
+      "牽制",
+      "火力"
+    ],
+    "addDay": "2026/07/16",
+    "wiki": "https://arknights.wikiru.jp/?%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%82%B4",
+    "imgPath": "/img/operators/156.png"
   }
 ]
