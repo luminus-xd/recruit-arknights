@@ -14,6 +14,7 @@ import { useOcrTagApplicator } from "@/hooks/useOcrTagApplicator";
 
 import { CheckboxGroup } from "@/components/recruit/checkbox-group";
 import { FilteredResults } from "@/components/recruit/filtered-results";
+import { ResultImageDialog } from "@/components/recruit/result-image-dialog";
 import { SelectedTags } from "@/components/recruit/selected-tags";
 import type { DisplayMode, FilterMode } from "@/components/recruit/types";
 import ScreenshotAnalysis from "@/components/screenshot-analysis";
@@ -217,6 +218,17 @@ export default function Recruit() {
               >
                 詳細
               </Button>
+            </div>
+
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                書き出し
+              </span>
+              <ResultImageDialog
+                selectedItems={selectedItems}
+                filteredOperators={filteredOperatorsByMode}
+                filterMode={filterMode}
+              />
             </div>
 
             {isStar14Mode && (

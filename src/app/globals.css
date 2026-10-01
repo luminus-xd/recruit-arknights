@@ -80,6 +80,15 @@
     }
   }
 
+  @keyframes result-image-scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(1200%);
+    }
+  }
+
   @keyframes line-shadow {
     0% {
       background-position: 0 0;
