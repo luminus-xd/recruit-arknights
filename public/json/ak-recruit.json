@@ -2140,5 +2140,33 @@
     "addDay": "2026/07/16",
     "wiki": "https://arknights.wikiru.jp/?%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%82%B4",
     "imgPath": "/img/operators/156.png"
+  },
+  {
+    "id": 157,
+    "name": "パラス",
+    "rarity": 6,
+    "type": "前衛",
+    "tags": [
+      "近距離",
+      "火力",
+      "支援"
+    ],
+    "addDay": "2026/10/14",
+    "wiki": "https://arknights.wikiru.jp/?%E3%83%91%E3%83%A9%E3%82%B9",
+    "imgPath": "/img/operators/157.png"
+  },
+  {
+    "id": 158,
+    "name": "GALLUS²",
+    "rarity": 1,
+    "type": "術師",
+    "tags": [
+      "遠距離",
+      "ロボット",
+      "弱化"
+    ],
+    "addDay": "2026/10/14",
+    "wiki": "https://arknights.wikiru.jp/?GALLUS%C2%B2",
+    "imgPath": "/img/operators/158.png"
   }
 ]
