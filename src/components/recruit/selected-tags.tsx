@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 interface SelectedTagsProps {
   selectedItems: string[];
   modeControls?: ReactNode;
-  /** 選択されたタグの横に並べる操作（リセットなど） */
   resetAction?: ReactNode;
 }
 

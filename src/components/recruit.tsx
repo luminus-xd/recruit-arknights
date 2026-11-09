@@ -34,11 +34,9 @@ const isDisplayMode = (value: string): value is DisplayMode => {
 };
 
 interface RecruitProps {
-  /** ページ冒頭（タイトルや共有ボタン）に表示する要素 */
   intro?: ReactNode;
 }
 
-// xl以上で入力系のまとまりをカードとして見せる
 const PANEL_CLASS_NAME = "xl:rounded-lg xl:border xl:bg-muted/30 xl:p-5";
 
 export default function Recruit({ intro }: RecruitProps) {
@@ -133,7 +131,6 @@ export default function Recruit({ intro }: RecruitProps) {
   };
 
   return (
-    // xl以上: 左に入力（画像解析 → タグ選択）、右に結果を並べる2カラム
     <div className="xl:grid xl:grid-cols-[30rem_minmax(0,1fr)] xl:gap-x-12 xl:gap-y-8">
       <div className="xl:col-span-2">{intro}</div>
 
@@ -146,7 +143,6 @@ export default function Recruit({ intro }: RecruitProps) {
 
         <Separator className="my-8 xl:hidden" />
 
-        {/* タグ選択はスクロールに追従させ、結果を見ながら選び直せるようにする */}
         <section
           aria-label="タグ選択"
           className={`mt-8 xl:sticky xl:top-24 xl:mt-0 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto ${PANEL_CLASS_NAME}`}
