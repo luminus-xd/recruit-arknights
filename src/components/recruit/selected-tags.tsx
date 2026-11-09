@@ -7,7 +7,7 @@ interface SelectedTagsProps {
 
 export function SelectedTags({ selectedItems, modeControls }: SelectedTagsProps) {
   return (
-    <div className="mt-8">
+    <div className="mt-8 xl:mt-0">
       <hgroup className="flex items-center gap-3">
         <h2 className="text-3xl font-extrabold tracking-tight">Result</h2>
         <p className="mt-1 font-bold tracking-tight text-gray-500 dark:text-gray-400">

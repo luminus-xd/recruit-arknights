@@ -27,7 +27,7 @@ export function CheckboxGroup({
           {description}
         </p>
       </hgroup>
-      <div className="mt-2 mb-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6">
+      <div className="mt-2 mb-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:mb-5 xl:grid-cols-4 xl:gap-2">
         {items.map((item, index) => (
           <Checkbox
             key={`${prefix}-${item}`}
