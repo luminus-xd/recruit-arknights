@@ -38,6 +38,9 @@ interface RecruitProps {
   intro?: ReactNode;
 }
 
+// xl以上で入力系のまとまりをカードとして見せる
+const PANEL_CLASS_NAME = "xl:rounded-lg xl:border xl:bg-muted/30 xl:p-5";
+
 export default function Recruit({ intro }: RecruitProps) {
   const { recruitData } = useRecruit();
   const {
@@ -130,58 +133,64 @@ export default function Recruit({ intro }: RecruitProps) {
   };
 
   return (
-    // xl以上: 左にタグ選択（スクロール追従）、右に結果を並べる2カラム
-    <div className="xl:grid xl:grid-cols-[28rem_minmax(0,1fr)] xl:gap-x-12">
-      <div>{intro}</div>
+    // xl以上: 左に入力（画像解析 → タグ選択）、右に結果を並べる2カラム
+    <div className="xl:grid xl:grid-cols-[30rem_minmax(0,1fr)] xl:gap-x-12 xl:gap-y-8">
+      <div className="xl:col-span-2">{intro}</div>
 
       <Separator className="my-8 xl:hidden" />
 
-      <section>
-        <ScreenshotAnalysis applyOcrTags={applyOcrTags} />
-      </section>
+      <div className="xl:flex xl:flex-col xl:gap-5">
+        <section className={PANEL_CLASS_NAME}>
+          <ScreenshotAnalysis applyOcrTags={applyOcrTags} />
+        </section>
 
-      <Separator className="my-8 xl:col-span-2" />
+        <Separator className="my-8 xl:hidden" />
 
-      <div>
-        <div className="mt-8 xl:sticky xl:top-24 xl:-m-1 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto xl:p-1">
-          <CheckboxGroup
-            title="Rarity"
-            description="レアリティ"
-            items={rarityTags}
-            prefix="rarity"
-            checkedItems={checkedItems}
-            onCheckboxChange={handleCheckboxChange}
-          />
-          <CheckboxGroup
-            title="Type"
-            description="職分"
-            items={types}
-            prefix="type"
-            checkedItems={checkedItems}
-            onCheckboxChange={handleCheckboxChange}
-          />
-          <CheckboxGroup
-            title="Position"
-            description="位置"
-            items={positions}
-            prefix="position"
-            checkedItems={checkedItems}
-            onCheckboxChange={handleCheckboxChange}
-          />
-          <CheckboxGroup
-            title="Tag"
-            description="タグ"
-            items={tags}
-            prefix="tag"
-            checkedItems={checkedItems}
-            onCheckboxChange={handleCheckboxChange}
-          />
-          <div className="mt-4 xl:mt-0">
+        {/* タグ選択はスクロールに追従させ、結果を見ながら選び直せるようにする */}
+        <section
+          aria-label="タグ選択"
+          className={`mt-8 xl:sticky xl:top-24 xl:mt-0 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto ${PANEL_CLASS_NAME}`}
+        >
+          <div>
+            <CheckboxGroup
+              title="Rarity"
+              description="レアリティ"
+              items={rarityTags}
+              prefix="rarity"
+              checkedItems={checkedItems}
+              onCheckboxChange={handleCheckboxChange}
+            />
+            <CheckboxGroup
+              title="Type"
+              description="職分"
+              items={types}
+              prefix="type"
+              checkedItems={checkedItems}
+              onCheckboxChange={handleCheckboxChange}
+            />
+            <CheckboxGroup
+              title="Position"
+              description="位置"
+              items={positions}
+              prefix="position"
+              checkedItems={checkedItems}
+              onCheckboxChange={handleCheckboxChange}
+            />
+            <CheckboxGroup
+              title="Tag"
+              description="タグ"
+              items={tags}
+              prefix="tag"
+              checkedItems={checkedItems}
+              onCheckboxChange={handleCheckboxChange}
+            />
+          </div>
+          <div className="mt-4 xl:hidden">
             <Button className="text-sm" onClick={handleReset}>
               選択状態をリセット
             </Button>
           </div>
-        </div>
+        </section>
       </div>
 
       <Separator className="my-8 xl:hidden" />
@@ -189,6 +198,16 @@ export default function Recruit({ intro }: RecruitProps) {
       <section className="min-w-0">
         <SelectedTags
           selectedItems={selectedItems}
+          resetAction={
+            <Button
+              className="hidden xl:inline-flex"
+              size="sm"
+              variant="outline-solid"
+              onClick={handleReset}
+            >
+              選択状態をリセット
+            </Button>
+          }
           modeControls={
             <>
               <div className="mt-6 flex flex-col gap-3 xl:flex-row xl:flex-wrap xl:gap-x-8">
@@ -255,7 +274,7 @@ export default function Recruit({ intro }: RecruitProps) {
             指定されたタグでは、ロボットまたは星4以上のオペレーターが見つかりませんでした。
           </p>
         ) : selectedItems.length === 0 ? (
-          <p className="mt-8 hidden rounded-md border-2 border-dashed px-4 py-16 text-center text-sm text-gray-500 xl:block dark:text-gray-400">
+          <p className="mt-8 hidden rounded-md border-2 border-dashed px-4 py-24 text-center text-sm text-gray-500 xl:block dark:text-gray-400">
             タグを選択すると、ここに結果が表示されます
           </p>
         ) : (

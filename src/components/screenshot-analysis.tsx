@@ -92,27 +92,27 @@ export default function ScreenshotAnalysis({
     return (
         <>
             <hgroup className="flex items-center gap-3">
-                <h2 className="text-3xl font-extrabold tracking-tight">
+                <h2 className="text-3xl font-extrabold tracking-tight xl:text-xl">
                     Image Analysis
                 </h2>
-                <p className="mt-1 text-gray-500 dark:text-gray-400 font-bold tracking-tight">
+                <p className="mt-1 text-gray-500 dark:text-gray-400 font-bold tracking-tight xl:mt-0 xl:text-sm">
                     画像解析
                 </p>
             </hgroup>
-            <div className="xl:grid xl:grid-cols-2 xl:items-start xl:gap-x-8">
+            <div>
                 <div>
-                    <p className="text-sm leading-6 text-gray-600 dark:text-gray-300 mt-4">
+                    <p className="text-sm leading-6 text-gray-600 dark:text-gray-300 mt-4 xl:mt-2">
                         <span className="block">
                             公開求人画面のスクリーンショットを用いて、タグを抽出します
                         </span>
                     </p>
-                    <ul className="text-sm ml-0 text-gray-500 list-disc list-inside mt-2 dark:text-gray-400">
+                    <ul className="text-sm ml-0 text-gray-500 list-disc list-inside mt-2 dark:text-gray-400 xl:mt-1 xl:text-xs xl:leading-5">
                         <li>横幅1000px以上の画像サイズが推奨されます</li>
                         <li>完璧にタグを抽出できない場合があります</li>
                     </ul>
                 </div>
-                <div className="grid w-full max-w-sm items-center gap-2 mt-6 xl:mt-4">
-                    <Label htmlFor="picture">
+                <div className="grid w-full max-w-sm items-center gap-2 mt-6 xl:mt-4 xl:max-w-none">
+                    <Label htmlFor="picture" className="xl:sr-only">
                         スクリーンショット{" "}
                         <span className="text-gray-500 dark:text-gray-400">
                             (.png, .jpg, .jpeg, .webp)
@@ -120,13 +120,13 @@ export default function ScreenshotAnalysis({
                     </Label>
                     <Input
                         id="picture"
-                        className="mt-1 h-auto text-sm px-2.5 py-3.5 text-gray-500 dark:text-gray-400"
+                        className="mt-1 h-auto text-sm px-2.5 py-3.5 text-gray-500 dark:text-gray-400 xl:py-2.5"
                         onChange={handleFileChange}
                         type="file"
                         accept="image/png,image/jpeg,image/webp"
                         disabled={isLoading}
                     />
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 xl:text-xs">
                         画像をコピーして、この画面に貼り付けることもできます。
                     </p>
                 </div>

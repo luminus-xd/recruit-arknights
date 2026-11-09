@@ -22,12 +22,12 @@ export function CheckboxGroup({
   return (
     <>
       <hgroup className="flex items-center gap-3">
-        <h2 className="text-3xl font-extrabold tracking-tight">{title}</h2>
-        <p className="mt-1 font-bold tracking-tight text-gray-500 dark:text-gray-400">
+        <h2 className="text-3xl font-extrabold tracking-tight xl:text-xl">{title}</h2>
+        <p className="mt-1 font-bold tracking-tight text-gray-500 xl:mt-0 xl:text-sm dark:text-gray-400">
           {description}
         </p>
       </hgroup>
-      <div className="mt-2 mb-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:mb-5 xl:grid-cols-4 xl:gap-2">
+      <div className="mt-2 mb-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:mb-4 xl:grid-cols-4 xl:gap-2 xl:last:mb-0">
         {items.map((item, index) => (
           <Checkbox
             key={`${prefix}-${item}`}
